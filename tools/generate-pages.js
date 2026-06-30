@@ -20,9 +20,9 @@ const STORE_ID = 'albertomart09-21';
 const BRAND_NAME = 'EmpiezaLibros';
 const TODAY = '2026-06-30';
 const CONTACT_EMAIL = 'contacto@empiezalibros.es';
-// ⚠️ Crea un formulario propio para EmpiezaLibros en MailerLite y pega aquí su URL de acción.
+// Acción del formulario de newsletter de EmpiezaLibros en MailerLite (cuenta 2480900).
 // (También está en index.html, en el formulario de la home.)
-const MAILERLITE_ACTION = 'https://assets.mailerlite.com/jsonp/2480900/forms/REEMPLAZA_FORM_ID/subscribe';
+const MAILERLITE_ACTION = 'https://assets.mailerlite.com/jsonp/2480900/forms/191732667053507940/subscribe';
 
 // ---------- 1. Extraer los datos desde index.html ----------
 const indexSrc = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
