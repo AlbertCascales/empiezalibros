@@ -53,18 +53,18 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --green:   #6e1722;
-    --green-l: #f5e9eb;
-    --green-d: #4a0d15;
-    --lime:    #9e2a3a;
-    --lime-d:  #842331;
-    --black:   #1a1010;
+    --green:   #1d3a64;
+    --green-l: #e8eef6;
+    --green-d: #122644;
+    --lime:    #4d8fd6;
+    --lime-d:  #3a78bd;
+    --black:   #101a2b;
     --white:   #ffffff;
-    --gray-1:  #f6f3ef;
-    --gray-2:  #e9e4dc;
-    --gray-3:  #b3aaa0;
-    --gray-4:  #6b6259;
-    --text:    #221c16;
+    --gray-1:  #f4f6f8;
+    --gray-2:  #e4e8ec;
+    --gray-3:  #a8b0ba;
+    --gray-4:  #5f6670;
+    --text:    #1a1f26;
     --radius:  10px;
     --shadow:  0 2px 16px rgba(0,0,0,0.07);
   }
@@ -80,7 +80,7 @@
 
   /* HERO */
   .hero { background: var(--black); padding: 3.5rem 2rem 3.5rem; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(158,42,58,0.16) 0%, transparent 70%); pointer-events: none; }
+  .hero::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(77,143,214,0.16) 0%, transparent 70%); pointer-events: none; }
   .hero p { color: var(--gray-3); font-size: 1.05rem; max-width: 500px; margin: 0 auto 2rem; }
   .hero-search { display: flex; max-width: 460px; margin: 0 auto; background: var(--white); border-radius: var(--radius); overflow: hidden; border: 2px solid var(--lime); }
   .hero-search input { flex: 1; border: none; outline: none; padding: 0.75rem 1rem; font-size: 0.9rem; font-family: 'DM Sans', sans-serif; }
@@ -115,7 +115,7 @@
   /* PRODUCT CARDS */
   .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
   .product-card { background: var(--white); border: 1.5px solid var(--gray-2); border-radius: 14px; overflow: hidden; transition: box-shadow 0.2s, transform 0.2s; display: flex; flex-direction: column; }
-  .product-card:hover { box-shadow: 0 8px 32px rgba(110,23,34,0.18); transform: translateY(-2px); }
+  .product-card:hover { box-shadow: 0 8px 32px rgba(29,58,100,0.20); transform: translateY(-2px); }
   .card-cover { height: 230px; position: relative; border-bottom: 1px solid var(--gray-2); }
   .badge-new { position: absolute; top: 10px; right: 10px; background: var(--lime); color: var(--black); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; z-index: 3; }
   .badge-top { position: absolute; top: 10px; right: 10px; background: #fff; color: var(--green-d); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 20px; z-index: 3; }
