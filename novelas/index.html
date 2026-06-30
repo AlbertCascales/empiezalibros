@@ -42,6 +42,9 @@ p{margin-bottom:.85rem}
 .bc-title{font-family:'DM Serif Display',serif;font-size:1.2rem;line-height:1.18;margin-top:.7rem}
 .bc-author{font-size:.74rem;margin-top:auto;padding-top:.6rem;opacity:.92;font-style:italic}
 .bookcover.big .bc-title{font-size:1.7rem}
+.bookcover .bc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2}
+.bc-fallback{display:none;flex-direction:column;height:100%}
+.bookcover.nocover .bc-fallback{display:flex}
 .tag{display:inline-block;background:var(--lime);color:var(--black);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:.6rem}
 .brand{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
 .stars{color:#d98a00;font-size:.95rem;margin:.4rem 0}
@@ -113,100 +116,142 @@ footer .logo span{color:var(--lime)}
 <p class="sub">14 libros de novela y ficción reseñados para 2026.</p>
 <div class="grid"><a class="card" href="/novelas/david-ucles-la-peninsula-de-las-casas-vacias/">
     <div class="card-cover"><div class="bookcover" style="--c1:#3d5a40;--c2:#1f3322">
-    <div class="bc-top">David Uclés</div>
-    <div class="bc-title">La península de las casas vacías</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n1.jpg" alt="La península de las casas vacías — David Uclés" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">David Uclés</div>
+      <div class="bc-title">La península de las casas vacías</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">David Uclés</div><div class="card-name">La península de las casas vacías</div><div class="card-meta">Novela · 23,65€</div></div>
   </a><a class="card" href="/novelas/sonsoles-onega-las-hijas-de-la-criada/">
     <div class="card-cover"><div class="bookcover" style="--c1:#7a2e3b;--c2:#4a1822">
-    <div class="bc-top">Sonsoles Ónega</div>
-    <div class="bc-title">Las hijas de la criada</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n2.jpg" alt="Las hijas de la criada — Sonsoles Ónega" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Sonsoles Ónega</div>
+      <div class="bc-title">Las hijas de la criada</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Sonsoles Ónega</div><div class="card-name">Las hijas de la criada</div><div class="card-meta">Novela · 21,75€</div></div>
   </a><a class="card" href="/novelas/arturo-perez-reverte-el-problema-final/">
     <div class="card-cover"><div class="bookcover" style="--c1:#2c3e50;--c2:#161f29">
-    <div class="bc-top">Arturo Pérez-Reverte</div>
-    <div class="bc-title">El problema final</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n3.jpg" alt="El problema final — Arturo Pérez-Reverte" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Arturo Pérez-Reverte</div>
+      <div class="bc-title">El problema final</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Arturo Pérez-Reverte</div><div class="card-name">El problema final</div><div class="card-meta">Novela · 20,80€</div></div>
   </a><a class="card" href="/novelas/gustavo-rodriguez-cien-cuyes/">
     <div class="card-cover"><div class="bookcover" style="--c1:#8a5a2b;--c2:#523417">
-    <div class="bc-top">Gustavo Rodríguez</div>
-    <div class="bc-title">Cien cuyes</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n4.jpg" alt="Cien cuyes — Gustavo Rodríguez" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Gustavo Rodríguez</div>
+      <div class="bc-title">Cien cuyes</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Gustavo Rodríguez</div><div class="card-name">Cien cuyes</div><div class="card-meta">Novela · 18,90€</div></div>
   </a><a class="card" href="/novelas/ignacio-martinez-de-pison-castillos-de-fuego/">
     <div class="card-cover"><div class="bookcover" style="--c1:#4b3869;--c2:#2a1f3d">
-    <div class="bc-top">Ignacio Martínez de Pisón</div>
-    <div class="bc-title">Castillos de fuego</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n5.jpg" alt="Castillos de fuego — Ignacio Martínez de Pisón" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Ignacio Martínez de Pisón</div>
+      <div class="bc-title">Castillos de fuego</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Ignacio Martínez de Pisón</div><div class="card-name">Castillos de fuego</div><div class="card-meta">Novela · 22,70€</div></div>
   </a><a class="card" href="/novelas/matt-haig-la-biblioteca-de-la-medianoche/">
     <div class="card-cover"><div class="bookcover" style="--c1:#1f5c5c;--c2:#103333">
-    <div class="bc-top">Matt Haig</div>
-    <div class="bc-title">La biblioteca de la medianoche</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n6.jpg" alt="La biblioteca de la medianoche — Matt Haig" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Matt Haig</div>
+      <div class="bc-title">La biblioteca de la medianoche</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Matt Haig</div><div class="card-name">La biblioteca de la medianoche</div><div class="card-meta">Novela · 17,95€</div></div>
   </a><a class="card" href="/novelas/carlos-ruiz-zafon-la-sombra-del-viento/">
     <div class="card-cover"><div class="bookcover" style="--c1:#2b2f55;--c2:#15182e">
-    <div class="bc-top">Carlos Ruiz Zafón</div>
-    <div class="bc-title">La sombra del viento</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n7.jpg" alt="La sombra del viento — Carlos Ruiz Zafón" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Carlos Ruiz Zafón</div>
+      <div class="bc-title">La sombra del viento</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Carlos Ruiz Zafón</div><div class="card-name">La sombra del viento</div><div class="card-meta">Novela · 12,30€</div></div>
   </a><a class="card" href="/novelas/fernando-aramburu-patria/">
     <div class="card-cover"><div class="bookcover" style="--c1:#4a4a2b;--c2:#26260f">
-    <div class="bc-top">Fernando Aramburu</div>
-    <div class="bc-title">Patria</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n8.jpg" alt="Patria — Fernando Aramburu" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Fernando Aramburu</div>
+      <div class="bc-title">Patria</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Fernando Aramburu</div><div class="card-name">Patria</div><div class="card-meta">Novela · 13,20€</div></div>
   </a><a class="card" href="/novelas/torcuato-luca-de-tena-los-renglones-torcidos-de-dios/">
     <div class="card-cover"><div class="bookcover" style="--c1:#3a2b2b;--c2:#1d1414">
-    <div class="bc-top">Torcuato Luca de Tena</div>
-    <div class="bc-title">Los renglones torcidos de Dios</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n9.jpg" alt="Los renglones torcidos de Dios — Torcuato Luca de Tena" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Torcuato Luca de Tena</div>
+      <div class="bc-title">Los renglones torcidos de Dios</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Torcuato Luca de Tena</div><div class="card-name">Los renglones torcidos de Dios</div><div class="card-meta">Novela · 11,35€</div></div>
   </a><a class="card" href="/novelas/delia-owens-donde-cantan-los-cangrejos/">
     <div class="card-cover"><div class="bookcover" style="--c1:#2b4a3a;--c2:#15261d">
-    <div class="bc-top">Delia Owens</div>
-    <div class="bc-title">Donde cantan los cangrejos</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n10.jpg" alt="Donde cantan los cangrejos — Delia Owens" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Delia Owens</div>
+      <div class="bc-title">Donde cantan los cangrejos</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Delia Owens</div><div class="card-name">Donde cantan los cangrejos</div><div class="card-meta">Novela · 19,85€</div></div>
   </a><a class="card" href="/novelas/madeline-miller-la-cancion-de-aquiles/">
     <div class="card-cover"><div class="bookcover" style="--c1:#6b4a1f;--c2:#3a2810">
-    <div class="bc-top">Madeline Miller</div>
-    <div class="bc-title">La canción de Aquiles</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n11.jpg" alt="La canción de Aquiles — Madeline Miller" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Madeline Miller</div>
+      <div class="bc-title">La canción de Aquiles</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Madeline Miller</div><div class="card-name">La canción de Aquiles</div><div class="card-meta">Novela · 19,90€</div></div>
   </a><a class="card" href="/novelas/claire-keegan-pequenas-cosas-como-estas/">
     <div class="card-cover"><div class="bookcover" style="--c1:#3a4a5c;--c2:#1d2630">
-    <div class="bc-top">Claire Keegan</div>
-    <div class="bc-title">Pequeñas cosas como estas</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n12.jpg" alt="Pequeñas cosas como estas — Claire Keegan" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Claire Keegan</div>
+      <div class="bc-title">Pequeñas cosas como estas</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Claire Keegan</div><div class="card-name">Pequeñas cosas como estas</div><div class="card-meta">Novela · 16,10€</div></div>
   </a><a class="card" href="/novelas/kazuo-ishiguro-klara-y-el-sol/">
     <div class="card-cover"><div class="bookcover" style="--c1:#4a5c6b;--c2:#26303a">
-    <div class="bc-top">Kazuo Ishiguro</div>
-    <div class="bc-title">Klara y el Sol</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n13.jpg" alt="Klara y el Sol — Kazuo Ishiguro" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Kazuo Ishiguro</div>
+      <div class="bc-title">Klara y el Sol</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Kazuo Ishiguro</div><div class="card-name">Klara y el Sol</div><div class="card-meta">Novela · 20,80€</div></div>
   </a><a class="card" href="/novelas/maggie-o-farrell-hamnet/">
     <div class="card-cover"><div class="bookcover" style="--c1:#5c2b3a;--c2:#2e151d">
-    <div class="bc-top">Maggie O'Farrell</div>
-    <div class="bc-title">Hamnet</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n14.jpg" alt="Hamnet — Maggie O'Farrell" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Maggie O'Farrell</div>
+      <div class="bc-title">Hamnet</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Maggie O'Farrell</div><div class="card-name">Hamnet</div><div class="card-meta">Novela · 21,75€</div></div>
   </a></div>

@@ -42,6 +42,9 @@ p{margin-bottom:.85rem}
 .bc-title{font-family:'DM Serif Display',serif;font-size:1.2rem;line-height:1.18;margin-top:.7rem}
 .bc-author{font-size:.74rem;margin-top:auto;padding-top:.6rem;opacity:.92;font-style:italic}
 .bookcover.big .bc-title{font-size:1.7rem}
+.bookcover .bc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2}
+.bc-fallback{display:none;flex-direction:column;height:100%}
+.bookcover.nocover .bc-fallback{display:flex}
 .tag{display:inline-block;background:var(--lime);color:var(--black);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:.6rem}
 .brand{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
 .stars{color:#d98a00;font-size:.95rem;margin:.4rem 0}
@@ -153,9 +156,12 @@ footer .logo span{color:var(--lime)}
 <p class="sub">Sinopsis, reseña y dónde comprarlo — Ensayo</p>
 <div class="hero">
   <div class="hero-cover"><div class="bookcover big" style="--c1:#7a5a1f;--c2:#4a3510">
-    <div class="bc-top">Yuval Noah Harari</div>
-    <div class="bc-title">Sapiens. De animales a dioses</div>
-    <div class="bc-author">Ensayo</div>
+    <img class="bc-img" src="/img/covers/d2.jpg" alt="Sapiens. De animales a dioses — Yuval Noah Harari" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Yuval Noah Harari</div>
+      <div class="bc-title">Sapiens. De animales a dioses</div>
+      <div class="bc-author">Ensayo</div>
+    </div>
   </div></div>
   <div>
     <span class="tag">Bestseller</span>
@@ -189,30 +195,42 @@ footer .logo span{color:var(--lime)}
     <div class="grid">
       <a class="card" href="/no-ficcion/james-clear-habitos-atomicos/">
         <div class="card-cover"><div class="bookcover" style="--c1:#1f5c3d;--c2:#103322">
-    <div class="bc-top">James Clear</div>
-    <div class="bc-title">Hábitos atómicos</div>
-    <div class="bc-author">Desarrollo personal</div>
+    <img class="bc-img" src="/img/covers/d1.jpg" alt="Hábitos atómicos — James Clear" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">James Clear</div>
+      <div class="bc-title">Hábitos atómicos</div>
+      <div class="bc-author">Desarrollo personal</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">James Clear</div><div class="card-name">Hábitos atómicos</div><div class="card-meta">Desarrollo personal · 18,90€</div></div>
       </a><a class="card" href="/no-ficcion/garcia-y-miralles-ikigai/">
         <div class="card-cover"><div class="bookcover" style="--c1:#a8482b;--c2:#5e2817">
-    <div class="bc-top">García y Miralles</div>
-    <div class="bc-title">Ikigai</div>
-    <div class="bc-author">Bienestar</div>
+    <img class="bc-img" src="/img/covers/d3.jpg" alt="Ikigai — García y Miralles" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">García y Miralles</div>
+      <div class="bc-title">Ikigai</div>
+      <div class="bc-author">Bienestar</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">García y Miralles</div><div class="card-name">Ikigai</div><div class="card-meta">Bienestar · 16,10€</div></div>
       </a><a class="card" href="/no-ficcion/bessel-van-der-kolk-el-cuerpo-lleva-la-cuenta/">
         <div class="card-cover"><div class="bookcover" style="--c1:#3a2e5c;--c2:#1d1733">
-    <div class="bc-top">Bessel van der Kolk</div>
-    <div class="bc-title">El cuerpo lleva la cuenta</div>
-    <div class="bc-author">Psicología</div>
+    <img class="bc-img" src="/img/covers/d4.jpg" alt="El cuerpo lleva la cuenta — Bessel van der Kolk" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Bessel van der Kolk</div>
+      <div class="bc-title">El cuerpo lleva la cuenta</div>
+      <div class="bc-author">Psicología</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">Bessel van der Kolk</div><div class="card-name">El cuerpo lleva la cuenta</div><div class="card-meta">Psicología · 23,60€</div></div>
       </a><a class="card" href="/no-ficcion/robert-greene-las-48-leyes-del-poder/">
         <div class="card-cover"><div class="bookcover" style="--c1:#1a1a1a;--c2:#000000">
-    <div class="bc-top">Robert Greene</div>
-    <div class="bc-title">Las 48 leyes del poder</div>
-    <div class="bc-author">Ensayo</div>
+    <img class="bc-img" src="/img/covers/d5.jpg" alt="Las 48 leyes del poder — Robert Greene" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Robert Greene</div>
+      <div class="bc-title">Las 48 leyes del poder</div>
+      <div class="bc-author">Ensayo</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">Robert Greene</div><div class="card-name">Las 48 leyes del poder</div><div class="card-meta">Ensayo · 22,70€</div></div>
       </a>

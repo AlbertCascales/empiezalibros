@@ -111,6 +111,9 @@
   .bc-top { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
   .bc-title { font-family: 'DM Serif Display', serif; font-size: 1.2rem; line-height: 1.18; margin-top: 0.7rem; }
   .bc-author { font-size: 0.74rem; margin-top: auto; padding-top: 0.6rem; opacity: 0.92; font-style: italic; }
+  .bookcover .bc-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; z-index: 2; }
+  .bc-fallback { display: none; flex-direction: column; height: 100%; }
+  .bookcover.nocover .bc-fallback { display: flex; }
 
   /* PRODUCT CARDS */
   .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
@@ -1011,9 +1014,12 @@ function renderStars(n){ return '★'.repeat(n) + '☆'.repeat(5 - n); }
 
 function bookCover(p){
   return `<div class="bookcover" style="--c1:${p.c1};--c2:${p.c2}">
-    <div class="bc-top">${p.brand}</div>
-    <div class="bc-title">${p.name}</div>
-    <div class="bc-author">${p.level}</div>
+    <img class="bc-img" src="/img/covers/${p.id}.jpg" alt="${p.name} — ${p.brand}" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">${p.brand}</div>
+      <div class="bc-title">${p.name}</div>
+      <div class="bc-author">${p.level}</div>
+    </div>
   </div>`;
 }
 

@@ -42,6 +42,9 @@ p{margin-bottom:.85rem}
 .bc-title{font-family:'DM Serif Display',serif;font-size:1.2rem;line-height:1.18;margin-top:.7rem}
 .bc-author{font-size:.74rem;margin-top:auto;padding-top:.6rem;opacity:.92;font-style:italic}
 .bookcover.big .bc-title{font-size:1.7rem}
+.bookcover .bc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2}
+.bc-fallback{display:none;flex-direction:column;height:100%}
+.bookcover.nocover .bc-fallback{display:flex}
 .tag{display:inline-block;background:var(--lime);color:var(--black);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:.6rem}
 .brand{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
 .stars{color:#d98a00;font-size:.95rem;margin:.4rem 0}
@@ -153,9 +156,12 @@ footer .logo span{color:var(--lime)}
 <p class="sub">Sinopsis, reseña y dónde comprarlo — Novela</p>
 <div class="hero">
   <div class="hero-cover"><div class="bookcover big" style="--c1:#8a5a2b;--c2:#523417">
-    <div class="bc-top">Gustavo Rodríguez</div>
-    <div class="bc-title">Cien cuyes</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n4.jpg" alt="Cien cuyes — Gustavo Rodríguez" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Gustavo Rodríguez</div>
+      <div class="bc-title">Cien cuyes</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
   <div>
     
@@ -189,30 +195,42 @@ footer .logo span{color:var(--lime)}
     <div class="grid">
       <a class="card" href="/novelas/david-ucles-la-peninsula-de-las-casas-vacias/">
         <div class="card-cover"><div class="bookcover" style="--c1:#3d5a40;--c2:#1f3322">
-    <div class="bc-top">David Uclés</div>
-    <div class="bc-title">La península de las casas vacías</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n1.jpg" alt="La península de las casas vacías — David Uclés" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">David Uclés</div>
+      <div class="bc-title">La península de las casas vacías</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">David Uclés</div><div class="card-name">La península de las casas vacías</div><div class="card-meta">Novela · 23,65€</div></div>
       </a><a class="card" href="/novelas/sonsoles-onega-las-hijas-de-la-criada/">
         <div class="card-cover"><div class="bookcover" style="--c1:#7a2e3b;--c2:#4a1822">
-    <div class="bc-top">Sonsoles Ónega</div>
-    <div class="bc-title">Las hijas de la criada</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n2.jpg" alt="Las hijas de la criada — Sonsoles Ónega" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Sonsoles Ónega</div>
+      <div class="bc-title">Las hijas de la criada</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">Sonsoles Ónega</div><div class="card-name">Las hijas de la criada</div><div class="card-meta">Novela · 21,75€</div></div>
       </a><a class="card" href="/novelas/arturo-perez-reverte-el-problema-final/">
         <div class="card-cover"><div class="bookcover" style="--c1:#2c3e50;--c2:#161f29">
-    <div class="bc-top">Arturo Pérez-Reverte</div>
-    <div class="bc-title">El problema final</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n3.jpg" alt="El problema final — Arturo Pérez-Reverte" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Arturo Pérez-Reverte</div>
+      <div class="bc-title">El problema final</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">Arturo Pérez-Reverte</div><div class="card-name">El problema final</div><div class="card-meta">Novela · 20,80€</div></div>
       </a><a class="card" href="/novelas/ignacio-martinez-de-pison-castillos-de-fuego/">
         <div class="card-cover"><div class="bookcover" style="--c1:#4b3869;--c2:#2a1f3d">
-    <div class="bc-top">Ignacio Martínez de Pisón</div>
-    <div class="bc-title">Castillos de fuego</div>
-    <div class="bc-author">Novela</div>
+    <img class="bc-img" src="/img/covers/n5.jpg" alt="Castillos de fuego — Ignacio Martínez de Pisón" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Ignacio Martínez de Pisón</div>
+      <div class="bc-title">Castillos de fuego</div>
+      <div class="bc-author">Novela</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">Ignacio Martínez de Pisón</div><div class="card-name">Castillos de fuego</div><div class="card-meta">Novela · 22,70€</div></div>
       </a>

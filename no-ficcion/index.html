@@ -42,6 +42,9 @@ p{margin-bottom:.85rem}
 .bc-title{font-family:'DM Serif Display',serif;font-size:1.2rem;line-height:1.18;margin-top:.7rem}
 .bc-author{font-size:.74rem;margin-top:auto;padding-top:.6rem;opacity:.92;font-style:italic}
 .bookcover.big .bc-title{font-size:1.7rem}
+.bookcover .bc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2}
+.bc-fallback{display:none;flex-direction:column;height:100%}
+.bookcover.nocover .bc-fallback{display:flex}
 .tag{display:inline-block;background:var(--lime);color:var(--black);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:.6rem}
 .brand{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
 .stars{color:#d98a00;font-size:.95rem;margin:.4rem 0}
@@ -113,100 +116,142 @@ footer .logo span{color:var(--lime)}
 <p class="sub">14 libros de no ficción reseñados para 2026.</p>
 <div class="grid"><a class="card" href="/no-ficcion/james-clear-habitos-atomicos/">
     <div class="card-cover"><div class="bookcover" style="--c1:#1f5c3d;--c2:#103322">
-    <div class="bc-top">James Clear</div>
-    <div class="bc-title">Hábitos atómicos</div>
-    <div class="bc-author">Desarrollo personal</div>
+    <img class="bc-img" src="/img/covers/d1.jpg" alt="Hábitos atómicos — James Clear" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">James Clear</div>
+      <div class="bc-title">Hábitos atómicos</div>
+      <div class="bc-author">Desarrollo personal</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">James Clear</div><div class="card-name">Hábitos atómicos</div><div class="card-meta">Desarrollo personal · 18,90€</div></div>
   </a><a class="card" href="/no-ficcion/yuval-noah-harari-sapiens-de-animales-a-dioses/">
     <div class="card-cover"><div class="bookcover" style="--c1:#7a5a1f;--c2:#4a3510">
-    <div class="bc-top">Yuval Noah Harari</div>
-    <div class="bc-title">Sapiens. De animales a dioses</div>
-    <div class="bc-author">Ensayo</div>
+    <img class="bc-img" src="/img/covers/d2.jpg" alt="Sapiens. De animales a dioses — Yuval Noah Harari" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Yuval Noah Harari</div>
+      <div class="bc-title">Sapiens. De animales a dioses</div>
+      <div class="bc-author">Ensayo</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Yuval Noah Harari</div><div class="card-name">Sapiens. De animales a dioses</div><div class="card-meta">Ensayo · 21,75€</div></div>
   </a><a class="card" href="/no-ficcion/garcia-y-miralles-ikigai/">
     <div class="card-cover"><div class="bookcover" style="--c1:#a8482b;--c2:#5e2817">
-    <div class="bc-top">García y Miralles</div>
-    <div class="bc-title">Ikigai</div>
-    <div class="bc-author">Bienestar</div>
+    <img class="bc-img" src="/img/covers/d3.jpg" alt="Ikigai — García y Miralles" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">García y Miralles</div>
+      <div class="bc-title">Ikigai</div>
+      <div class="bc-author">Bienestar</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">García y Miralles</div><div class="card-name">Ikigai</div><div class="card-meta">Bienestar · 16,10€</div></div>
   </a><a class="card" href="/no-ficcion/bessel-van-der-kolk-el-cuerpo-lleva-la-cuenta/">
     <div class="card-cover"><div class="bookcover" style="--c1:#3a2e5c;--c2:#1d1733">
-    <div class="bc-top">Bessel van der Kolk</div>
-    <div class="bc-title">El cuerpo lleva la cuenta</div>
-    <div class="bc-author">Psicología</div>
+    <img class="bc-img" src="/img/covers/d4.jpg" alt="El cuerpo lleva la cuenta — Bessel van der Kolk" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Bessel van der Kolk</div>
+      <div class="bc-title">El cuerpo lleva la cuenta</div>
+      <div class="bc-author">Psicología</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Bessel van der Kolk</div><div class="card-name">El cuerpo lleva la cuenta</div><div class="card-meta">Psicología · 23,60€</div></div>
   </a><a class="card" href="/no-ficcion/robert-greene-las-48-leyes-del-poder/">
     <div class="card-cover"><div class="bookcover" style="--c1:#1a1a1a;--c2:#000000">
-    <div class="bc-top">Robert Greene</div>
-    <div class="bc-title">Las 48 leyes del poder</div>
-    <div class="bc-author">Ensayo</div>
+    <img class="bc-img" src="/img/covers/d5.jpg" alt="Las 48 leyes del poder — Robert Greene" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Robert Greene</div>
+      <div class="bc-title">Las 48 leyes del poder</div>
+      <div class="bc-author">Ensayo</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Robert Greene</div><div class="card-name">Las 48 leyes del poder</div><div class="card-meta">Ensayo · 22,70€</div></div>
   </a><a class="card" href="/no-ficcion/robin-sharma-el-club-de-las-5-de-la-manana/">
     <div class="card-cover"><div class="bookcover" style="--c1:#1f4a6b;--c2:#0f263a">
-    <div class="bc-top">Robin Sharma</div>
-    <div class="bc-title">El club de las 5 de la mañana</div>
-    <div class="bc-author">Desarrollo personal</div>
+    <img class="bc-img" src="/img/covers/d6.jpg" alt="El club de las 5 de la mañana — Robin Sharma" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Robin Sharma</div>
+      <div class="bc-title">El club de las 5 de la mañana</div>
+      <div class="bc-author">Desarrollo personal</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Robin Sharma</div><div class="card-name">El club de las 5 de la mañana</div><div class="card-meta">Desarrollo personal · 17,05€</div></div>
   </a><a class="card" href="/no-ficcion/mark-manson-el-sutil-arte-de-que-casi-todo-te-importe-una-mierda/">
     <div class="card-cover"><div class="bookcover" style="--c1:#d9641f;--c2:#7a3410">
-    <div class="bc-top">Mark Manson</div>
-    <div class="bc-title">El sutil arte de que (casi todo) te importe una mierda</div>
-    <div class="bc-author">Desarrollo personal</div>
+    <img class="bc-img" src="/img/covers/d7.jpg" alt="El sutil arte de que (casi todo) te importe una mierda — Mark Manson" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Mark Manson</div>
+      <div class="bc-title">El sutil arte de que (casi todo) te importe una mierda</div>
+      <div class="bc-author">Desarrollo personal</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Mark Manson</div><div class="card-name">El sutil arte de que (casi todo) te importe una mierda</div><div class="card-meta">Desarrollo personal · 17,05€</div></div>
   </a><a class="card" href="/no-ficcion/viktor-frankl-el-hombre-en-busca-de-sentido/">
     <div class="card-cover"><div class="bookcover" style="--c1:#3a3a3a;--c2:#1d1d1d">
-    <div class="bc-top">Viktor Frankl</div>
-    <div class="bc-title">El hombre en busca de sentido</div>
-    <div class="bc-author">Psicología</div>
+    <img class="bc-img" src="/img/covers/d8.jpg" alt="El hombre en busca de sentido — Viktor Frankl" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Viktor Frankl</div>
+      <div class="bc-title">El hombre en busca de sentido</div>
+      <div class="bc-author">Psicología</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Viktor Frankl</div><div class="card-name">El hombre en busca de sentido</div><div class="card-meta">Psicología · 8,50€</div></div>
   </a><a class="card" href="/no-ficcion/robert-kiyosaki-padre-rico-padre-pobre/">
     <div class="card-cover"><div class="bookcover" style="--c1:#2b4a6b;--c2:#15263a">
-    <div class="bc-top">Robert Kiyosaki</div>
-    <div class="bc-title">Padre rico, padre pobre</div>
-    <div class="bc-author">Finanzas</div>
+    <img class="bc-img" src="/img/covers/d9.jpg" alt="Padre rico, padre pobre — Robert Kiyosaki" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Robert Kiyosaki</div>
+      <div class="bc-title">Padre rico, padre pobre</div>
+      <div class="bc-author">Finanzas</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Robert Kiyosaki</div><div class="card-name">Padre rico, padre pobre</div><div class="card-meta">Finanzas · 12,30€</div></div>
   </a><a class="card" href="/no-ficcion/dale-carnegie-como-ganar-amigos-e-influir-sobre-las-personas/">
     <div class="card-cover"><div class="bookcover" style="--c1:#6b5a1f;--c2:#3a3010">
-    <div class="bc-top">Dale Carnegie</div>
-    <div class="bc-title">Cómo ganar amigos e influir sobre las personas</div>
-    <div class="bc-author">Habilidades sociales</div>
+    <img class="bc-img" src="/img/covers/d10.jpg" alt="Cómo ganar amigos e influir sobre las personas — Dale Carnegie" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Dale Carnegie</div>
+      <div class="bc-title">Cómo ganar amigos e influir sobre las personas</div>
+      <div class="bc-author">Habilidades sociales</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Dale Carnegie</div><div class="card-name">Cómo ganar amigos e influir sobre las personas</div><div class="card-meta">Habilidades sociales · 10,40€</div></div>
   </a><a class="card" href="/no-ficcion/daniel-goleman-inteligencia-emocional/">
     <div class="card-cover"><div class="bookcover" style="--c1:#1f5a4a;--c2:#0f2e26">
-    <div class="bc-top">Daniel Goleman</div>
-    <div class="bc-title">Inteligencia emocional</div>
-    <div class="bc-author">Psicología</div>
+    <img class="bc-img" src="/img/covers/d11.jpg" alt="Inteligencia emocional — Daniel Goleman" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Daniel Goleman</div>
+      <div class="bc-title">Inteligencia emocional</div>
+      <div class="bc-author">Psicología</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Daniel Goleman</div><div class="card-name">Inteligencia emocional</div><div class="card-meta">Psicología · 19,90€</div></div>
   </a><a class="card" href="/no-ficcion/napoleon-hill-piense-y-hagase-rico/">
     <div class="card-cover"><div class="bookcover" style="--c1:#5c4a1f;--c2:#2e2610">
-    <div class="bc-top">Napoleon Hill</div>
-    <div class="bc-title">Piense y hágase rico</div>
-    <div class="bc-author">Desarrollo personal</div>
+    <img class="bc-img" src="/img/covers/d12.jpg" alt="Piense y hágase rico — Napoleon Hill" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Napoleon Hill</div>
+      <div class="bc-title">Piense y hágase rico</div>
+      <div class="bc-author">Desarrollo personal</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Napoleon Hill</div><div class="card-name">Piense y hágase rico</div><div class="card-meta">Desarrollo personal · 11,35€</div></div>
   </a><a class="card" href="/no-ficcion/eckhart-tolle-el-poder-del-ahora/">
     <div class="card-cover"><div class="bookcover" style="--c1:#2b3a5c;--c2:#15202e">
-    <div class="bc-top">Eckhart Tolle</div>
-    <div class="bc-title">El poder del ahora</div>
-    <div class="bc-author">Espiritualidad</div>
+    <img class="bc-img" src="/img/covers/d13.jpg" alt="El poder del ahora — Eckhart Tolle" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Eckhart Tolle</div>
+      <div class="bc-title">El poder del ahora</div>
+      <div class="bc-author">Espiritualidad</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Eckhart Tolle</div><div class="card-name">El poder del ahora</div><div class="card-meta">Espiritualidad · 16,15€</div></div>
   </a><a class="card" href="/no-ficcion/carol-dweck-mindset-la-actitud-del-exito/">
     <div class="card-cover"><div class="bookcover" style="--c1:#5c1f4a;--c2:#2e0f26">
-    <div class="bc-top">Carol Dweck</div>
-    <div class="bc-title">Mindset: la actitud del éxito</div>
-    <div class="bc-author">Psicología</div>
+    <img class="bc-img" src="/img/covers/d14.jpg" alt="Mindset: la actitud del éxito — Carol Dweck" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Carol Dweck</div>
+      <div class="bc-title">Mindset: la actitud del éxito</div>
+      <div class="bc-author">Psicología</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Carol Dweck</div><div class="card-name">Mindset: la actitud del éxito</div><div class="card-meta">Psicología · 18,90€</div></div>
   </a></div>

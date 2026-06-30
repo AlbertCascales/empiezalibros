@@ -42,6 +42,9 @@ p{margin-bottom:.85rem}
 .bc-title{font-family:'DM Serif Display',serif;font-size:1.2rem;line-height:1.18;margin-top:.7rem}
 .bc-author{font-size:.74rem;margin-top:auto;padding-top:.6rem;opacity:.92;font-style:italic}
 .bookcover.big .bc-title{font-size:1.7rem}
+.bookcover .bc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2}
+.bc-fallback{display:none;flex-direction:column;height:100%}
+.bookcover.nocover .bc-fallback{display:flex}
 .tag{display:inline-block;background:var(--lime);color:var(--black);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:.6rem}
 .brand{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
 .stars{color:#d98a00;font-size:.95rem;margin:.4rem 0}
@@ -153,9 +156,12 @@ footer .logo span{color:var(--lime)}
 <p class="sub">Sinopsis, reseña y dónde comprarlo — Romantasy</p>
 <div class="hero">
   <div class="hero-cover"><div class="bookcover big" style="--c1:#1f3a3a;--c2:#0f1f1f">
-    <div class="bc-top">Rebecca Yarros</div>
-    <div class="bc-title">Alas de hierro</div>
-    <div class="bc-author">Romantasy</div>
+    <img class="bc-img" src="/img/covers/r2.jpg" alt="Alas de hierro — Rebecca Yarros" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Rebecca Yarros</div>
+      <div class="bc-title">Alas de hierro</div>
+      <div class="bc-author">Romantasy</div>
+    </div>
   </div></div>
   <div>
     <span class="tag">Novedad 2026</span>
@@ -189,30 +195,42 @@ footer .logo span{color:var(--lime)}
     <div class="grid">
       <a class="card" href="/romantasy/rebecca-yarros-alas-de-sangre/">
         <div class="card-cover"><div class="bookcover" style="--c1:#5a1f2b;--c2:#2e0f16">
-    <div class="bc-top">Rebecca Yarros</div>
-    <div class="bc-title">Alas de sangre</div>
-    <div class="bc-author">Romantasy</div>
+    <img class="bc-img" src="/img/covers/r1.jpg" alt="Alas de sangre — Rebecca Yarros" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Rebecca Yarros</div>
+      <div class="bc-title">Alas de sangre</div>
+      <div class="bc-author">Romantasy</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">Rebecca Yarros</div><div class="card-name">Alas de sangre</div><div class="card-meta">Romantasy · 21,75€</div></div>
       </a><a class="card" href="/romantasy/sarah-j-maas-una-corte-de-rosas-y-espinas/">
         <div class="card-cover"><div class="bookcover" style="--c1:#3a1f5c;--c2:#1d0f33">
-    <div class="bc-top">Sarah J. Maas</div>
-    <div class="bc-title">Una corte de rosas y espinas</div>
-    <div class="bc-author">Romantasy</div>
+    <img class="bc-img" src="/img/covers/r3.jpg" alt="Una corte de rosas y espinas — Sarah J. Maas" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Sarah J. Maas</div>
+      <div class="bc-title">Una corte de rosas y espinas</div>
+      <div class="bc-author">Romantasy</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">Sarah J. Maas</div><div class="card-name">Una corte de rosas y espinas</div><div class="card-meta">Romantasy · 19,85€</div></div>
       </a><a class="card" href="/romantasy/patrick-rothfuss-el-nombre-del-viento/">
         <div class="card-cover"><div class="bookcover" style="--c1:#2c2c2c;--c2:#141414">
-    <div class="bc-top">Patrick Rothfuss</div>
-    <div class="bc-title">El nombre del viento</div>
-    <div class="bc-author">Fantasía</div>
+    <img class="bc-img" src="/img/covers/r4.jpg" alt="El nombre del viento — Patrick Rothfuss" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Patrick Rothfuss</div>
+      <div class="bc-title">El nombre del viento</div>
+      <div class="bc-author">Fantasía</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">Patrick Rothfuss</div><div class="card-name">El nombre del viento</div><div class="card-meta">Fantasía · 23,65€</div></div>
       </a><a class="card" href="/romantasy/sarah-j-maas-trono-de-cristal/">
         <div class="card-cover"><div class="bookcover" style="--c1:#6b3a1f;--c2:#3a1f0f">
-    <div class="bc-top">Sarah J. Maas</div>
-    <div class="bc-title">Trono de cristal</div>
-    <div class="bc-author">Romantasy</div>
+    <img class="bc-img" src="/img/covers/r5.jpg" alt="Trono de cristal — Sarah J. Maas" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Sarah J. Maas</div>
+      <div class="bc-title">Trono de cristal</div>
+      <div class="bc-author">Romantasy</div>
+    </div>
   </div></div>
         <div class="card-b"><div class="brand">Sarah J. Maas</div><div class="card-name">Trono de cristal</div><div class="card-meta">Romantasy · 18,90€</div></div>
       </a>

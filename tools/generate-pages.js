@@ -84,9 +84,12 @@ function guidePath(id) { return `/guias/${guideSlug(id)}/`; }
 // Portada generada con CSS (sin imágenes externas)
 function bookCover(p, big) {
   return `<div class="bookcover${big ? ' big' : ''}" style="--c1:${p.c1};--c2:${p.c2}">
-    <div class="bc-top">${esc(p.brand)}</div>
-    <div class="bc-title">${esc(p.name)}</div>
-    <div class="bc-author">${esc(p.level)}</div>
+    <img class="bc-img" src="/img/covers/${p.id}.jpg" alt="${esc(p.name + ' — ' + p.brand)}" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">${esc(p.brand)}</div>
+      <div class="bc-title">${esc(p.name)}</div>
+      <div class="bc-author">${esc(p.level)}</div>
+    </div>
   </div>`;
 }
 
@@ -116,6 +119,9 @@ p{margin-bottom:.85rem}
 .bc-title{font-family:'DM Serif Display',serif;font-size:1.2rem;line-height:1.18;margin-top:.7rem}
 .bc-author{font-size:.74rem;margin-top:auto;padding-top:.6rem;opacity:.92;font-style:italic}
 .bookcover.big .bc-title{font-size:1.7rem}
+.bookcover .bc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2}
+.bc-fallback{display:none;flex-direction:column;height:100%}
+.bookcover.nocover .bc-fallback{display:flex}
 .tag{display:inline-block;background:var(--lime);color:var(--black);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:.6rem}
 .brand{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
 .stars{color:#d98a00;font-size:.95rem;margin:.4rem 0}

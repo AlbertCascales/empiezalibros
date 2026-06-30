@@ -42,6 +42,9 @@ p{margin-bottom:.85rem}
 .bc-title{font-family:'DM Serif Display',serif;font-size:1.2rem;line-height:1.18;margin-top:.7rem}
 .bc-author{font-size:.74rem;margin-top:auto;padding-top:.6rem;opacity:.92;font-style:italic}
 .bookcover.big .bc-title{font-size:1.7rem}
+.bookcover .bc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2}
+.bc-fallback{display:none;flex-direction:column;height:100%}
+.bookcover.nocover .bc-fallback{display:flex}
 .tag{display:inline-block;background:var(--lime);color:var(--black);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:.6rem}
 .brand{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green)}
 .stars{color:#d98a00;font-size:.95rem;margin:.4rem 0}
@@ -113,100 +116,142 @@ footer .logo span{color:var(--lime)}
 <p class="sub">14 libros de thriller y misterio reseñados para 2026.</p>
 <div class="grid"><a class="card" href="/thriller/juan-gomez-jurado-todo-arde/">
     <div class="card-cover"><div class="bookcover" style="--c1:#a82828;--c2:#5e1414">
-    <div class="bc-top">Juan Gómez-Jurado</div>
-    <div class="bc-title">Todo arde</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t1.jpg" alt="Todo arde — Juan Gómez-Jurado" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Juan Gómez-Jurado</div>
+      <div class="bc-title">Todo arde</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Juan Gómez-Jurado</div><div class="card-name">Todo arde</div><div class="card-meta">Thriller · 20,80€</div></div>
   </a><a class="card" href="/thriller/javier-castillo-el-cuco-de-cristal/">
     <div class="card-cover"><div class="bookcover" style="--c1:#2e4a6b;--c2:#16263a">
-    <div class="bc-top">Javier Castillo</div>
-    <div class="bc-title">El cuco de cristal</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t2.jpg" alt="El cuco de cristal — Javier Castillo" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Javier Castillo</div>
+      <div class="bc-title">El cuco de cristal</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Javier Castillo</div><div class="card-name">El cuco de cristal</div><div class="card-meta">Thriller · 21,75€</div></div>
   </a><a class="card" href="/thriller/carmen-mola-las-madres/">
     <div class="card-cover"><div class="bookcover" style="--c1:#3a2e4a;--c2:#1d1626">
-    <div class="bc-top">Carmen Mola</div>
-    <div class="bc-title">Las madres</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t3.jpg" alt="Las madres — Carmen Mola" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Carmen Mola</div>
+      <div class="bc-title">Las madres</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Carmen Mola</div><div class="card-name">Las madres</div><div class="card-meta">Thriller · 21,75€</div></div>
   </a><a class="card" href="/thriller/juan-gomez-jurado-reina-roja/">
     <div class="card-cover"><div class="bookcover" style="--c1:#8a1f3d;--c2:#4e1122">
-    <div class="bc-top">Juan Gómez-Jurado</div>
-    <div class="bc-title">Reina roja</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t4.jpg" alt="Reina roja — Juan Gómez-Jurado" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Juan Gómez-Jurado</div>
+      <div class="bc-title">Reina roja</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Juan Gómez-Jurado</div><div class="card-name">Reina roja</div><div class="card-meta">Thriller · 10,95€</div></div>
   </a><a class="card" href="/thriller/mikel-santiago-el-susurro-del-fuego/">
     <div class="card-cover"><div class="bookcover" style="--c1:#5c3a1f;--c2:#332010">
-    <div class="bc-top">Mikel Santiago</div>
-    <div class="bc-title">El susurro del fuego</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t5.jpg" alt="El susurro del fuego — Mikel Santiago" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Mikel Santiago</div>
+      <div class="bc-title">El susurro del fuego</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Mikel Santiago</div><div class="card-name">El susurro del fuego</div><div class="card-meta">Thriller · 20,85€</div></div>
   </a><a class="card" href="/thriller/javier-castillo-la-chica-de-nieve/">
     <div class="card-cover"><div class="bookcover" style="--c1:#1f3a4a;--c2:#0f1f29">
-    <div class="bc-top">Javier Castillo</div>
-    <div class="bc-title">La chica de nieve</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t6.jpg" alt="La chica de nieve — Javier Castillo" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Javier Castillo</div>
+      <div class="bc-title">La chica de nieve</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Javier Castillo</div><div class="card-name">La chica de nieve</div><div class="card-meta">Thriller · 10,95€</div></div>
   </a><a class="card" href="/thriller/stieg-larsson-los-hombres-que-no-amaban-a-las-mujeres/">
     <div class="card-cover"><div class="bookcover" style="--c1:#1a2a1a;--c2:#0a140a">
-    <div class="bc-top">Stieg Larsson</div>
-    <div class="bc-title">Los hombres que no amaban a las mujeres</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t7.jpg" alt="Los hombres que no amaban a las mujeres — Stieg Larsson" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Stieg Larsson</div>
+      <div class="bc-title">Los hombres que no amaban a las mujeres</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Stieg Larsson</div><div class="card-name">Los hombres que no amaban a las mujeres</div><div class="card-meta">Thriller · 12,30€</div></div>
   </a><a class="card" href="/thriller/alex-michaelides-la-paciente-silenciosa/">
     <div class="card-cover"><div class="bookcover" style="--c1:#1f2a3a;--c2:#0f151d">
-    <div class="bc-top">Alex Michaelides</div>
-    <div class="bc-title">La paciente silenciosa</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t8.jpg" alt="La paciente silenciosa — Alex Michaelides" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Alex Michaelides</div>
+      <div class="bc-title">La paciente silenciosa</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Alex Michaelides</div><div class="card-name">La paciente silenciosa</div><div class="card-meta">Thriller · 18,90€</div></div>
   </a><a class="card" href="/thriller/gillian-flynn-perdida/">
     <div class="card-cover"><div class="bookcover" style="--c1:#3a1f2b;--c2:#1d0f16">
-    <div class="bc-top">Gillian Flynn</div>
-    <div class="bc-title">Perdida</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t9.jpg" alt="Perdida — Gillian Flynn" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Gillian Flynn</div>
+      <div class="bc-title">Perdida</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Gillian Flynn</div><div class="card-name">Perdida</div><div class="card-meta">Thriller · 10,40€</div></div>
   </a><a class="card" href="/thriller/john-katzenbach-el-psicoanalista/">
     <div class="card-cover"><div class="bookcover" style="--c1:#2a2a2a;--c2:#141414">
-    <div class="bc-top">John Katzenbach</div>
-    <div class="bc-title">El psicoanalista</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t10.jpg" alt="El psicoanalista — John Katzenbach" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">John Katzenbach</div>
+      <div class="bc-title">El psicoanalista</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">John Katzenbach</div><div class="card-name">El psicoanalista</div><div class="card-meta">Thriller · 11,35€</div></div>
   </a><a class="card" href="/thriller/joel-dicker-la-verdad-sobre-el-caso-harry-quebert/">
     <div class="card-cover"><div class="bookcover" style="--c1:#2b3a3a;--c2:#151d1d">
-    <div class="bc-top">Joël Dicker</div>
-    <div class="bc-title">La verdad sobre el caso Harry Quebert</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t11.jpg" alt="La verdad sobre el caso Harry Quebert — Joël Dicker" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Joël Dicker</div>
+      <div class="bc-title">La verdad sobre el caso Harry Quebert</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Joël Dicker</div><div class="card-name">La verdad sobre el caso Harry Quebert</div><div class="card-meta">Thriller · 13,20€</div></div>
   </a><a class="card" href="/thriller/carmen-mola-la-novia-gitana/">
     <div class="card-cover"><div class="bookcover" style="--c1:#4a1f2b;--c2:#260f16">
-    <div class="bc-top">Carmen Mola</div>
-    <div class="bc-title">La novia gitana</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t12.jpg" alt="La novia gitana — Carmen Mola" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Carmen Mola</div>
+      <div class="bc-title">La novia gitana</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Carmen Mola</div><div class="card-name">La novia gitana</div><div class="card-meta">Thriller · 10,90€</div></div>
   </a><a class="card" href="/thriller/javier-castillo-el-dia-que-se-perdio-la-cordura/">
     <div class="card-cover"><div class="bookcover" style="--c1:#1f1f3a;--c2:#0f0f1d">
-    <div class="bc-top">Javier Castillo</div>
-    <div class="bc-title">El día que se perdió la cordura</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t13.jpg" alt="El día que se perdió la cordura — Javier Castillo" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Javier Castillo</div>
+      <div class="bc-title">El día que se perdió la cordura</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Javier Castillo</div><div class="card-name">El día que se perdió la cordura</div><div class="card-meta">Thriller · 10,40€</div></div>
   </a><a class="card" href="/thriller/thomas-harris-el-silencio-de-los-corderos/">
     <div class="card-cover"><div class="bookcover" style="--c1:#2b2b1f;--c2:#15150f">
-    <div class="bc-top">Thomas Harris</div>
-    <div class="bc-title">El silencio de los corderos</div>
-    <div class="bc-author">Thriller</div>
+    <img class="bc-img" src="/img/covers/t14.jpg" alt="El silencio de los corderos — Thomas Harris" loading="lazy" onerror="this.closest('.bookcover').classList.add('nocover');this.remove();">
+    <div class="bc-fallback">
+      <div class="bc-top">Thomas Harris</div>
+      <div class="bc-title">El silencio de los corderos</div>
+      <div class="bc-author">Thriller</div>
+    </div>
   </div></div>
     <div class="card-b"><div class="brand">Thomas Harris</div><div class="card-name">El silencio de los corderos</div><div class="card-meta">Thriller · 11,35€</div></div>
   </a></div>
