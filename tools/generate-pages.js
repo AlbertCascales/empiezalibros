@@ -93,7 +93,7 @@ function bookCover(p, big) {
 // ---------- 3. Plantilla base (CSS + cascarón) ----------
 const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--green:#8a1c24;--green-l:#f7ebec;--green-d:#5c1018;--lime:#e0454d;--black:#1a1010;--white:#fff;--gray-1:#f6f3ef;--gray-2:#e9e4dc;--gray-3:#b3aaa0;--gray-4:#6b6259;--text:#221c16}
+:root{--green:#6e1722;--green-l:#f5e9eb;--green-d:#4a0d15;--lime:#9e2a3a;--black:#1a1010;--white:#fff;--gray-1:#f6f3ef;--gray-2:#e9e4dc;--gray-3:#b3aaa0;--gray-4:#6b6259;--text:#221c16}
 body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);font-size:16px;line-height:1.7}
 a{color:var(--green);text-decoration:none}
 a:hover{text-decoration:underline}
@@ -143,7 +143,7 @@ p{margin-bottom:.85rem}
 .cta-box .price{margin-top:0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1.5rem 0}
 .card{border:1.5px solid var(--gray-2);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
-.card:hover{box-shadow:0 8px 28px rgba(138,28,36,.18);transform:translateY(-2px);text-decoration:none}
+.card:hover{box-shadow:0 8px 28px rgba(110,23,34,.18);transform:translateY(-2px);text-decoration:none}
 .card-cover{height:210px}
 .card-b{padding:.85rem 1rem 1.1rem}
 .card-b .brand{font-size:.66rem}
