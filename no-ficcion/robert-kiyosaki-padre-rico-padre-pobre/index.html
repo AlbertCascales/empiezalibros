@@ -6,6 +6,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" sizes="any">
 <link rel="apple-touch-icon" href="/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="EmpiezaLibros — Novedades" href="/rss.xml">
 <title>Padre rico, padre pobre, de Robert Kiyosaki: sinopsis y reseña | EmpiezaLibros</title>
 <meta name="description" content="Reseña y sinopsis de «Padre rico, padre pobre» de Robert Kiyosaki (Finanzas). Las lecciones financieras que el autor aprendió de dos figuras paternas…">
 <meta name="robots" content="index, follow">
@@ -89,6 +90,13 @@ p{margin-bottom:.85rem}
 footer{background:var(--black);color:var(--gray-3);padding:2.25rem 1.5rem;text-align:center;font-size:.8rem;line-height:1.7;margin-top:2rem}
 footer .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--white)}
 footer .logo span{color:var(--lime)}
+.newsletter{background:var(--green);color:#fff;border-radius:16px;padding:2.25rem 1.75rem;text-align:center;margin:2.5rem 0}
+.newsletter h3{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.5rem;color:#fff}
+.newsletter p{opacity:.92;margin-bottom:1.1rem;font-size:.92rem;max-width:460px;margin-left:auto;margin-right:auto}
+.newsletter-form{display:flex;gap:.5rem;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.newsletter-form input{flex:1;min-width:190px;border:none;border-radius:8px;padding:.75rem 1rem;font-size:.92rem;font-family:inherit;color:var(--text)}
+.newsletter-form button{background:var(--lime);color:var(--black);border:none;border-radius:8px;padding:.75rem 1.4rem;font-weight:700;cursor:pointer;font-family:inherit;font-size:.92rem}
+.newsletter small{display:block;margin-top:.7rem;opacity:.7;font-size:.68rem}
 @media(max-width:640px){.hero{grid-template-columns:1fr}.hero-cover{max-width:220px;margin:0 auto}.specs,.pc{grid-template-columns:1fr}}
 </style>
 <script type="application/ld+json">
@@ -243,9 +251,23 @@ footer .logo span{color:var(--lime)}
   </section>
 
 </main>
+<div class="wrap" style="padding-top:0">
+<section class="newsletter">
+<h3>📩 No te pierdas las novedades literarias</h3>
+<p>Cada semana, una selección de los mejores libros y reseñas. Sin spam.</p>
+<form class="newsletter-form" action="https://assets.mailerlite.com/jsonp/2480900/forms/REEMPLAZA_FORM_ID/subscribe" method="post" target="_blank">
+<input type="email" name="fields[email]" placeholder="Tu email" required aria-label="Email">
+<button type="submit">Suscribirme</button>
+<input type="hidden" name="ml-submit" value="1">
+<input type="hidden" name="anticsrf" value="true">
+</form>
+<small>Te puedes dar de baja cuando quieras. Lee nuestra <a href="/privacidad/" style="color:var(--lime)">política de privacidad</a>.</small>
+</section>
+</div>
 <footer>
 <div class="logo">Empieza<span>Libros</span></div>
 <p>Reseñas honestas y novedades literarias · Actualizadas en 2026.</p>
+<p style="margin-top:.6rem"><a href="/sobre-nosotros/" style="color:var(--gray-3)">Sobre nosotros</a> · <a href="/contacto/" style="color:var(--gray-3)">Contacto</a> · <a href="/privacidad/" style="color:var(--gray-3)">Privacidad</a></p>
 <p class="disclosure">Como Afiliado de Amazon, EmpiezaLibros obtiene ingresos por las compras adscritas que cumplan los requisitos aplicables.</p>
 </footer>
 </body>

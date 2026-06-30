@@ -19,6 +19,10 @@ const SITE = 'https://empiezalibros.es';
 const STORE_ID = 'albertomart09-21';
 const BRAND_NAME = 'EmpiezaLibros';
 const TODAY = '2026-06-30';
+const CONTACT_EMAIL = 'contacto@empiezalibros.es';
+// ⚠️ Crea un formulario propio para EmpiezaLibros en MailerLite y pega aquí su URL de acción.
+// (También está en index.html, en el formulario de la home.)
+const MAILERLITE_ACTION = 'https://assets.mailerlite.com/jsonp/2480900/forms/REEMPLAZA_FORM_ID/subscribe';
 
 // ---------- 1. Extraer los datos desde index.html ----------
 const indexSrc = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
@@ -161,6 +165,13 @@ p{margin-bottom:.85rem}
 footer{background:var(--black);color:var(--gray-3);padding:2.25rem 1.5rem;text-align:center;font-size:.8rem;line-height:1.7;margin-top:2rem}
 footer .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--white)}
 footer .logo span{color:var(--lime)}
+.newsletter{background:var(--green);color:#fff;border-radius:16px;padding:2.25rem 1.75rem;text-align:center;margin:2.5rem 0}
+.newsletter h3{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.5rem;color:#fff}
+.newsletter p{opacity:.92;margin-bottom:1.1rem;font-size:.92rem;max-width:460px;margin-left:auto;margin-right:auto}
+.newsletter-form{display:flex;gap:.5rem;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.newsletter-form input{flex:1;min-width:190px;border:none;border-radius:8px;padding:.75rem 1rem;font-size:.92rem;font-family:inherit;color:var(--text)}
+.newsletter-form button{background:var(--lime);color:var(--black);border:none;border-radius:8px;padding:.75rem 1.4rem;font-weight:700;cursor:pointer;font-family:inherit;font-size:.92rem}
+.newsletter small{display:block;margin-top:.7rem;opacity:.7;font-size:.68rem}
 @media(max-width:640px){.hero{grid-template-columns:1fr}.hero-cover{max-width:220px;margin:0 auto}.specs,.pc{grid-template-columns:1fr}}
 `;
 
@@ -174,6 +185,7 @@ function shell({ title, description, canonical, jsonLd, body }) {
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.png" sizes="any">
 <link rel="apple-touch-icon" href="/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="EmpiezaLibros — Novedades" href="/rss.xml">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <meta name="robots" content="index, follow">
@@ -198,9 +210,23 @@ ${ld}
 <main class="wrap">
 ${body}
 </main>
+<div class="wrap" style="padding-top:0">
+<section class="newsletter">
+<h3>📩 No te pierdas las novedades literarias</h3>
+<p>Cada semana, una selección de los mejores libros y reseñas. Sin spam.</p>
+<form class="newsletter-form" action="${MAILERLITE_ACTION}" method="post" target="_blank">
+<input type="email" name="fields[email]" placeholder="Tu email" required aria-label="Email">
+<button type="submit">Suscribirme</button>
+<input type="hidden" name="ml-submit" value="1">
+<input type="hidden" name="anticsrf" value="true">
+</form>
+<small>Te puedes dar de baja cuando quieras. Lee nuestra <a href="/privacidad/" style="color:var(--lime)">política de privacidad</a>.</small>
+</section>
+</div>
 <footer>
 <div class="logo">Empieza<span>Libros</span></div>
 <p>Reseñas honestas y novedades literarias · Actualizadas en 2026.</p>
+<p style="margin-top:.6rem"><a href="/sobre-nosotros/" style="color:var(--gray-3)">Sobre nosotros</a> · <a href="/contacto/" style="color:var(--gray-3)">Contacto</a> · <a href="/privacidad/" style="color:var(--gray-3)">Privacidad</a></p>
 <p class="disclosure">Como Afiliado de Amazon, ${BRAND_NAME} obtiene ingresos por las compras adscritas que cumplan los requisitos aplicables.</p>
 </footer>
 </body>
@@ -414,6 +440,61 @@ for (const id of Object.keys(guides)) {
   writePage(page.url, page.html); allUrls.push(page.url); count++;
 }
 
+// ---------- 7b. Páginas estáticas (confianza / E-E-A-T / legal) ----------
+const staticPages = [
+  {
+    url: '/sobre-nosotros/', h1: 'Sobre EmpiezaLibros',
+    title: `Sobre nosotros | ${BRAND_NAME}`,
+    description: 'Quiénes somos y cómo reseñamos libros en EmpiezaLibros: sinopsis claras y opiniones honestas para ayudarte a elegir tu próxima lectura.',
+    bodyHtml: `
+<p>${BRAND_NAME} nace para ayudarte a <strong>elegir bien tu próxima lectura</strong> sin perderte entre miles de novedades y opiniones contradictorias.</p>
+<h2>Qué hacemos</h2>
+<p>Reseñamos novelas, thrillers, no ficción y romantasy, y los resumimos en fichas claras: de qué va el libro (sinopsis sin destripes), para quién es, sus puntos fuertes y débiles, y un veredicto directo. Nuestro objetivo es que aciertes y disfrutes de la lectura.</p>
+<h2>Cómo trabajamos</h2>
+<p>Seleccionamos los libros por su calidad, repercusión y la valoración de los lectores. Priorizamos la honestidad: si un libro no nos parece para todos los públicos, lo decimos.</p>
+<h2>Transparencia</h2>
+<p>EmpiezaLibros se financia mediante enlaces de afiliado de Amazon: si compras a través de nuestros enlaces, podemos recibir una pequeña comisión <strong>sin coste adicional para ti</strong>. Esto nunca condiciona nuestras recomendaciones.</p>
+<p style="color:var(--gray-4);font-size:.85rem;margin-top:1.5rem">¿Tienes dudas o sugerencias? Escríbenos desde la página de <a href="/contacto/">contacto</a>.</p>`
+  },
+  {
+    url: '/contacto/', h1: 'Contacto',
+    title: `Contacto | ${BRAND_NAME}`,
+    description: 'Ponte en contacto con el equipo de EmpiezaLibros para dudas, sugerencias, recomendaciones de libros o colaboraciones.',
+    bodyHtml: `
+<p>¿Quieres recomendarnos un libro, tienes una duda o una propuesta de colaboración? Estaremos encantados de leerte.</p>
+<h2>Email</h2>
+<p>Escríbenos a <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a> y te responderemos lo antes posible.</p>
+<p style="color:var(--gray-4);font-size:.85rem;margin-top:1.5rem">Normalmente respondemos en un plazo de 24-48 horas.</p>`
+  },
+  {
+    url: '/privacidad/', h1: 'Política de privacidad',
+    title: `Política de privacidad | ${BRAND_NAME}`,
+    description: 'Política de privacidad de EmpiezaLibros: qué datos tratamos, newsletter, enlaces de afiliado de Amazon y analítica web.',
+    bodyHtml: `
+<p style="color:var(--gray-4);font-size:.85rem"><em>Última actualización: junio de 2026. Esta página es una plantilla orientativa; revísala y adáptala a tu caso antes de publicarla definitivamente.</em></p>
+<h2>Responsable</h2>
+<p>El responsable de este sitio web (${BRAND_NAME}, ${SITE}) trata los datos conforme al Reglamento General de Protección de Datos (RGPD).</p>
+<h2>Datos que tratamos</h2>
+<p>Este sitio es informativo. Solo recogemos datos personales si te suscribes voluntariamente a nuestra newsletter (tu dirección de email), que gestionamos a través de la plataforma MailerLite con el único fin de enviarte novedades y recomendaciones de libros.</p>
+<h2>Newsletter</h2>
+<p>Puedes darte de baja en cualquier momento con el enlace incluido en cada email. Al suscribirte, tus datos se tratan según la política de privacidad de MailerLite, nuestro proveedor de envío.</p>
+<h2>Analítica web</h2>
+<p>Usamos analítica que mide las visitas de forma agregada para mejorar el contenido, sin identificarte de forma individual.</p>
+<h2>Enlaces de afiliado</h2>
+<p>${BRAND_NAME} participa en el programa de afiliados de Amazon. Algunos enlaces dirigen a Amazon y, si realizas una compra, podemos recibir una comisión sin coste adicional para ti. Al hacer clic, Amazon aplica su propia política de privacidad y de cookies.</p>
+<h2>Tus derechos</h2>
+<p>Puedes ejercer tus derechos de acceso, rectificación o supresión escribiendo a <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>`
+  }
+];
+for (const sp of staticPages) {
+  const body = `${crumbs([{ name: 'Inicio', url: '/' }, { name: sp.h1, url: sp.url }])}
+<h1>${esc(sp.h1)}</h1>
+${sp.bodyHtml}`;
+  const jsonLd = [breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: sp.h1, url: sp.url }])];
+  writePage(sp.url, shell({ title: sp.title, description: sp.description, canonical: SITE + sp.url, jsonLd, body }));
+  allUrls.push(sp.url); count++;
+}
+
 // ---------- 8. Sitemap ----------
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -427,5 +508,50 @@ ${allUrls.map(u => `  <url>
 `;
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);
 
-console.log(`Generadas ${count} páginas + sitemap con ${allUrls.length} URLs.`);
+// ---------- 9. Feed RSS (para el digest de newsletter por MailerLite) ----------
+const gItems = Object.keys(guides).reverse().map(id => ({
+  title: guides[id].title, url: guidePath(id), cat: 'Guía',
+  desc: truncate(stripHtml(guides[id].body), 220)
+}));
+const pItems = [];
+for (const catKey of Object.keys(CATS)) {
+  const cat = CATS[catKey];
+  cat.arr.slice().reverse().forEach(p => pItems.push({
+    title: `${p.name} — ${p.brand}`, url: productPath(cat.dir, p), cat: cat.sing,
+    desc: truncate(stripHtml(p.desc), 200) + ` Precio orientativo: ${p.price}€.`
+  }));
+}
+// Intercala guías y libros (lo más nuevo arriba), tope 40
+const feedItems = [];
+for (let i = 0; i < Math.max(gItems.length, pItems.length); i++) {
+  if (gItems[i]) feedItems.push(gItems[i]);
+  if (pItems[i]) feedItems.push(pItems[i]);
+}
+const now = Date.now();
+const rssItems = feedItems.slice(0, 40).map((it, i) => {
+  const pub = new Date(now - i * 3600 * 1000).toUTCString();
+  return `  <item>
+    <title>${esc(it.title)}</title>
+    <link>${SITE}${it.url}</link>
+    <guid isPermaLink="true">${SITE}${it.url}</guid>
+    <category>${esc(it.cat)}</category>
+    <pubDate>${pub}</pubDate>
+    <description>${esc(it.desc)}</description>
+  </item>`;
+}).join('\n');
+const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>EmpiezaLibros — Novedades de libros 2026</title>
+  <link>${SITE}/</link>
+  <description>Nuevas reseñas de novela, thriller, no ficción, romantasy y guías de lectura.</description>
+  <language>es-ES</language>
+  <atom:link href="${SITE}/rss.xml" rel="self" type="application/rss+xml"/>
+${rssItems}
+</channel>
+</rss>
+`;
+fs.writeFileSync(path.join(ROOT, 'rss.xml'), rss);
+
+console.log(`Generadas ${count} páginas + sitemap con ${allUrls.length} URLs + RSS con ${Math.min(feedItems.length, 40)} items.`);
 console.log(`Libros: novelas=${novelas.length} thriller=${thriller.length} noficcion=${desarrollo.length} romantasy=${romantasy.length} | guías=${Object.keys(guides).length}`);
