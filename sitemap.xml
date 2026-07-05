@@ -103,6 +103,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/novelas/javier-cercas-terra-alta/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/novelas/arturo-perez-reverte-el-italiano/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/novelas/aldous-huxley-un-mundo-feliz/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/thriller/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -199,6 +217,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/thriller/freida-mcfadden-la-asistenta/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/thriller/dan-brown-el-codigo-da-vinci/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/no-ficcion/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -289,6 +319,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/no-ficcion/irene-vallejo-el-infinito-en-un-junco/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/no-ficcion/miguel-ruiz-los-cuatro-acuerdos/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/romantasy/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -374,6 +416,24 @@
   </url>
   <url>
     <loc>https://empiezalibros.es/romantasy/kiera-cass-la-seleccion/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/romantasy/rebecca-yarros-alas-de-onix/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/romantasy/sarah-j-maas-una-corte-de-alas-y-ruina/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/romantasy/j-r-r-tolkien-el-hobbit/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
