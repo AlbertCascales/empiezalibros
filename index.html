@@ -1285,7 +1285,11 @@ function renderAll(){
 
 // Libro destacado
 function renderFeatured(){
-  const p = novelas[0];
+  // El libro del momento rota cada 2 días entre toda la colección.
+  // Es determinista según la fecha: todos los visitantes ven el mismo.
+  const pool = [...novelas, ...thriller, ...desarrollo, ...romantasy];
+  const periodo = Math.floor(Date.now() / (1000 * 60 * 60 * 24 * 2)); // nº de periodos de 2 días desde 1970
+  const p = pool[periodo % pool.length];
   const box = document.getElementById('featuredBox');
   box.onclick = (e) => { if (!e.target.closest('a')) location.href = bookPageUrl(p); };
   box.innerHTML = `
