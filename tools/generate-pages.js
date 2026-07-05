@@ -76,8 +76,8 @@ function stars(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
 const CATS = {
   novelas:   { dir: 'novelas',    arr: novelas,    sing: 'Novela',    label: 'Novela y ficción',   hubTitle: 'Mejores novelas 2026: novedades, sinopsis y reseñas' },
   thriller:  { dir: 'thriller',   arr: thriller,   sing: 'Thriller',  label: 'Thriller y misterio', hubTitle: 'Mejores thrillers y novela negra 2026: sinopsis y reseñas' },
-  desarrollo:{ dir: 'no-ficcion', arr: desarrollo, sing: 'Ensayo',    label: 'No ficción',          hubTitle: 'Mejores libros de no ficción y desarrollo personal 2026' },
-  romantasy: { dir: 'romantasy',  arr: romantasy,  sing: 'Romantasy', label: 'Romantasy',           hubTitle: 'Mejor romantasy y fantasía 2026: sinopsis y reseñas' },
+  desarrollo:{ dir: 'no-ficcion', arr: desarrollo, sing: 'Ensayo',    label: 'Desarrollo personal', hubTitle: 'Mejores libros de desarrollo personal 2026: reseñas y recomendaciones' },
+  romantasy: { dir: 'romantasy',  arr: romantasy,  sing: 'Romance',   label: 'Romance',             hubTitle: 'Mejor romance y fantasía 2026: sinopsis y reseñas' },
 };
 
 function productSlug(p) { return slugify(p.brand + ' ' + p.name); }
