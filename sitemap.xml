@@ -439,6 +439,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/romantasy/sarah-j-maas-una-corte-de-plata-y-ceniza/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/guias/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -488,6 +494,12 @@
   </url>
   <url>
     <loc>https://empiezalibros.es/guias/novela-historica-espanola-las-imprescindibles/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/guias/si-te-gusto-acotar-que-leer-despues/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
