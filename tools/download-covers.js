@@ -109,6 +109,7 @@ const OVERRIDES = {
   n10: 'title=Where the Crawdads Sing&author=Delia Owens',
   d9:  'title=Rich Dad Poor Dad&author=Robert Kiyosaki',
   r6:  'title=Divine Rivals&author=Rebecca Ross',
+  r18: 'title=A Court of Silver Flames&author=Sarah J. Maas',
 };
 
 async function findCandidates(book) {
