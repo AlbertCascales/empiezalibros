@@ -337,6 +337,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/no-ficcion/rafael-santandreu-sin-miedo/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/romantasy/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -512,6 +518,12 @@
   </url>
   <url>
     <loc>https://empiezalibros.es/guias/ciencia-ficcion-distopica-las-novelas-imprescindibles-para-empezar/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/guias/los-mejores-libros-para-gestionar-la-ansiedad/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
