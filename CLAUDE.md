@@ -26,11 +26,16 @@ No ficción → Desarrollo personal) **pero las URLs siguen siendo las antiguas*
 | Script | Qué hace |
 |---|---|
 | `generate-pages.js` | Regenera todas las páginas y el sitemap desde `index.html`. Ejecutar tras cada cambio de contenido. |
-| `download-covers.js` | Descarga las portadas que falten a `img/covers/`. Algunos libros necesitan un alias del título original para encontrar la portada. |
-| `telegram-post.js` | Publica en el canal `@Empiezalibros`. `book <id>` publica un libro concreto; `backfill` publica el siguiente de la cola. |
+| `download-covers.js` | Descarga las portadas que falten a `img/covers/`. Algunos libros necesitan un alias del título original (mapa `OVERRIDES`) porque Open Library no indexa la edición española. |
+| `telegram-post.js` | Publica en el canal `@Empiezalibros`. `book <id>` publica un libro concreto; `backfill` publica el pendiente más antiguo. |
 
 `telegram-post.js` es de **ruta fija a propósito**: existe para que las rutinas programadas no
 improvisen `node -e "..."`, que disparaba aprobaciones de permisos cada día.
+
+`backfill` no usa una cola fija: guarda solo la lista de **ya publicados** (en `estado.json`) y en cada
+ejecución recalcula el catálogo de `index.html` para coger el primer pendiente. Así todo lo que se
+añada a la web entra solo. (El modelo anterior era una cola congelada y los libros nuevos nunca
+habrían entrado.)
 
 ## Secretos
 
@@ -39,12 +44,35 @@ Nunca imprimirlos ni commitearlos. MailerLite es la cuenta 2480900. Afiliación 
 
 ## Rutinas programadas
 
-En `C:\Users\marti\.claude\scheduled-tasks\` (cada una con su `SKILL.md`):
-`empiezalibros-contenido-auto`, `empiezalibros-telegram-backfill` (estado en `estado.json`),
-`empiezalibros-newsletter-auto`, `empiezalibros-reddit-monitor`.
+En `C:\Users\marti\.claude\scheduled-tasks\` (cada una con su `SKILL.md`). Solo hay **dos activas**:
 
-La rutina de web y la de Telegram son **independientes**: Telegram publica de una cola dinámica de
-pendientes (lo que está en la web y aún no se ha publicado), no lo generado ese mismo día.
+| Rutina | Hora | Qué hace |
+|---|---|---|
+| `empiezalibros-contenido-auto` | 04:00 diario | Solo web: añade 1 libro + 1 guía que falten, portada, regenera y hace push. **No toca Telegram.** |
+| `empiezalibros-telegram-backfill` | 05:00 diario | Solo Telegram: publica 1 pendiente. Estado en su `estado.json`. **No toca git.** |
+
+Las dos son **independientes**: Telegram publica el pendiente más antiguo de la web, no lo generado
+ese mismo día. Como la web crece 1/día y Telegram publica 1/día, el desfase no se cierra nunca —
+es intencional y asumido.
+
+Existen carpetas de `empiezalibros-newsletter-auto` y `empiezalibros-reddit-monitor`, pero esas
+rutinas están **eliminadas** del programador (al borrarlas se conserva el `SKILL.md` en disco).
+La carpeta suelta no significa que la rutina exista: comprobar siempre contra el programador.
+
+## Trampas que ya nos mordieron (leer antes de tocar nada de esto)
+
+- **Cloudflare Pages no da 404 en rutas inexistentes**: devuelve **HTTP 200 con el HTML de la web**.
+  Por eso una portada que falta "responde 200" y Telegram falla al mandarla como foto. La existencia
+  de una portada se comprueba SIEMPRE con `fs.existsSync` en local, **nunca por HTTP**.
+- **Patrones que fuerzan aprobación manual de permisos**, por diseño y sin importar la allowlist:
+  `cd <ruta> && git ...` y cualquier sustitución de comandos `$(...)` (p. ej. here-docs en el mensaje
+  de commit). Por eso las rutinas ejecutan git directo (su raíz ya es este proyecto) y hacen commits
+  con mensaje de **una sola línea**. Si una rutina empieza a pedir permisos cada día, es casi seguro
+  uno de estos dos.
+- **La redirección `www` → dominio raíz no está en el código**: es una *Redirect Rule* del panel de
+  Cloudflare. Con Pages no se puede hacer por host desde `_redirects`.
+- Los permisos amplios de las rutinas están en `.claude/settings.local.json` (no se commitea, está en
+  `.gitignore`).
 
 ## Convenciones
 
