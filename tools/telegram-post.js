@@ -132,52 +132,62 @@ async function cmdBook(id) {
   else { console.error('ERROR Telegram:', r.error_code, r.description); process.exit(1); }
 }
 
-// ---------- Sembrado (backfill) ----------
-function buildQueue() {
-  const libros = [...novelas, ...thriller, ...desarrollo, ...romantasy].map((b) => ({ type: 'libro', id: b.id }));
-  const gs = Object.keys(guides).map((k) => ({ type: 'guia', key: k }));
-  const queue = []; let gi = 0;
-  for (let i = 0; i < libros.length; i++) { queue.push(libros[i]); if ((i + 1) % 4 === 0 && gi < gs.length) queue.push(gs[gi++]); }
-  while (gi < gs.length) queue.push(gs[gi++]);
-  return queue;
+// ---------- Publicación del pendiente más antiguo (independiente de la generación) ----------
+// Modelo: se guarda SOLO la lista de lo ya publicado ("publicados").
+// En cada ejecución se recalcula qué hay en la web y se publica el primer pendiente.
+// Así los libros/guías añadidos en cualquier momento entran automáticamente.
+
+function loadState() {
+  if (!fs.existsSync(BACKFILL_STATE)) return { publicados: [] };
+  try {
+    const s = JSON.parse(fs.readFileSync(BACKFILL_STATE, 'utf8'));
+    if (Array.isArray(s.publicados)) return s;
+    // Migración desde el formato antiguo { queue, index }
+    if (Array.isArray(s.queue) && typeof s.index === 'number') {
+      return { publicados: s.queue.slice(0, s.index).map((it) => (it.type === 'libro' ? 'libro:' + it.id : 'guia:' + it.key)) };
+    }
+  } catch (e) { /* estado corrupto: empezar de cero */ }
+  return { publicados: [] };
+}
+function saveState(state) {
+  fs.mkdirSync(path.dirname(BACKFILL_STATE), { recursive: true });
+  fs.writeFileSync(BACKFILL_STATE, JSON.stringify(state, null, 2));
+}
+
+// Todo lo que existe hoy en la web, en orden estable (libros por categoría + guías)
+function currentCatalog() {
+  const items = [];
+  for (const k of Object.keys(ARRAYS)) {
+    for (const b of ARRAYS[k].arr) items.push({ type: 'libro', id: b.id, key: 'libro:' + b.id });
+  }
+  for (const g of Object.keys(guides)) items.push({ type: 'guia', gkey: g, key: 'guia:' + g });
+  return items;
 }
 
 async function cmdBackfill() {
+  const state = loadState();
+  const done = new Set(state.publicados);
+  const pendientes = currentCatalog().filter((it) => !done.has(it.key));
+
+  if (!pendientes.length) {
+    console.log('Nada pendiente: los ' + currentCatalog().length + ' elementos de la web ya están publicados en Telegram.');
+    return;
+  }
+
+  const item = pendientes[0]; // el más antiguo pendiente
   const token = readToken();
-  let state;
-  if (fs.existsSync(BACKFILL_STATE)) {
-    state = JSON.parse(fs.readFileSync(BACKFILL_STATE, 'utf8'));
-  } else {
-    state = { queue: buildQueue(), index: 0 };
-    fs.writeFileSync(BACKFILL_STATE, JSON.stringify(state, null, 2));
-    console.log('Cola creada:', state.queue.length, 'elementos');
-  }
 
-  // Busca el siguiente elemento válido
-  let item = null;
-  while (state.index < state.queue.length) {
-    const it = state.queue[state.index];
-    if (it.type === 'libro' && findBook(it.id)) { item = it; break; }
-    if (it.type === 'guia' && guides[it.key]) { item = it; break; }
-    state.index++; // elemento ya inexistente (renombrado/eliminado): saltar
-  }
-  fs.writeFileSync(BACKFILL_STATE, JSON.stringify(state, null, 2));
-
-  if (!item) { console.log('Sembrado completado: no queda nada por publicar.'); return; }
-
-  let r;
-  if (item.type === 'libro') {
-    r = await postBook(token, item.id);
-  } else {
-    r = await api(token, 'sendMessage', { chat_id: CHANNEL, text: guideMessage(guides[item.key]), parse_mode: 'HTML', disable_web_page_preview: false });
-  }
+  const r = item.type === 'libro'
+    ? await postBook(token, item.id)
+    : await api(token, 'sendMessage', { chat_id: CHANNEL, text: guideMessage(guides[item.gkey]), parse_mode: 'HTML', disable_web_page_preview: false });
 
   if (r.ok) {
-    state.index++;
-    fs.writeFileSync(BACKFILL_STATE, JSON.stringify(state, null, 2));
-    console.log('OK publicado #' + state.index + '/' + state.queue.length + ' — quedan ' + (state.queue.length - state.index));
+    state.publicados.push(item.key);
+    saveState(state);
+    const total = currentCatalog().length;
+    console.log('OK publicado ' + item.key + ' — ' + state.publicados.length + '/' + total + ' (quedan ' + (pendientes.length - 1) + ' pendientes)');
   } else {
-    console.error('ERROR Telegram:', r.error_code, r.description, '(no avanzo el índice)');
+    console.error('ERROR Telegram:', r.error_code, r.description, '(no se marca como publicado, se reintentará)');
     process.exit(1);
   }
 }
