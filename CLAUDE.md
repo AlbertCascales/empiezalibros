@@ -57,3 +57,13 @@ pendientes (lo que está en la web y aún no se ha publicado), no lo generado es
 
 `empiezapadel.es` (en `Downloads/padelzone`) es el mismo patrón aplicado a pádel — si algo aquí
 cambia de forma estructural, probablemente aplique allí también.
+
+## Mantenimiento de este fichero
+
+Si un cambio contradice algo que este fichero afirma (rutas, flujo de despliegue, scripts, secretos,
+decisiones con historia), **actualízalo en el mismo commit que el cambio**. Un CLAUDE.md
+desactualizado es peor que no tenerlo: se cree sin verificar y lleva a actuar sobre supuestos falsos.
+
+**No es un changelog.** No se anota aquí el contenido añadido ni el trabajo de cada sesión: solo lo
+estructural, lo que no se deduce leyendo el código, y lo que costó descubrir una vez y no debería
+costar dos. Si supera las ~120 líneas, recortar lo que ya sea evidente desde el propio código.
