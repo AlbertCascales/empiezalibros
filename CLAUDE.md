@@ -90,6 +90,12 @@ La carpeta suelta no significa que la rutina exista: comprobar siempre contra el
 
 ## Convenciones
 
+- **`stars` es la nota editorial y no hay recuento de opiniones.** Existía un campo `reviews` con una
+  cifra inventada, que se mostraba como "(1.840 opiniones)": afirmaba que N personas reales habían
+  valorado el libro. Se eliminó de los 76 libros y **no se vuelve a añadir** en ninguna forma. El
+  JSON-LD usa `review` (una reseña, autor `Organization`), que sí es legítimo para una opinión propia;
+  lo ilegítimo es `aggregateRating`, que significa "promedio de N usuarios" — si alguien propone
+  ponerlo para ganar estrellas en los resultados, la respuesta es no. Mismo criterio en empiezapadel.
 - Commits en español, en imperativo, describiendo el efecto para el usuario ("Añadir X y guía sobre Y").
 - El "libro del momento" rota cada 2 días, determinista por fecha.
 - `_headers` fija caché larga de imágenes y cabeceras de seguridad (convención de Cloudflare Pages).
