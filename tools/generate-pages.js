@@ -18,7 +18,12 @@ const ROOT = path.join(__dirname, '..');
 const SITE = 'https://empiezalibros.es';
 const STORE_ID = 'albertomart09-21';
 const BRAND_NAME = 'EmpiezaLibros';
-const TODAY = '2026-06-30';
+// Fecha de publicación del sitio. lastmod de las páginas estáticas (legal, sobre, contacto),
+// que no cambian con el contenido.
+const SITE_LAUNCH = '2026-06-30';
+// Reserva para contenido sin `added`. Cada libro y cada guía llevan su propia fecha en
+// index.html; si falta, se avisa por consola y se usa hoy.
+const TODAY = new Date().toISOString().slice(0, 10);
 const CONTACT_EMAIL = 'contacto@empiezalibros.es';
 // Acción del formulario de newsletter de EmpiezaLibros en MailerLite (cuenta 2480900).
 // (También está en index.html, en el formulario de la home.)
@@ -68,6 +73,18 @@ function esc(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 function stripHtml(s) { return String(s).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim(); }
+
+// Fecha en que se añadió un libro o una guía. Es la que va al <lastmod> del sitemap: Google la
+// usa para decidir a qué re-rastrear, así que tiene que ser la real, no la de la regeneración
+// (si todo el sitemap se marca "modificado hoy" cada noche, la señal deja de valer).
+const missingAdded = [];
+function addedOf(item, label) {
+  if (/^\d{4}-\d{2}-\d{2}$/.test(item && item.added)) return item.added;
+  missingAdded.push(label);
+  return TODAY;
+}
+// lastmod de un hub: la fecha de lo más reciente que cuelga de él.
+const newestOf = (dates) => dates.slice().sort().pop() || SITE_LAUNCH;
 function truncate(s, n) { s = s.trim(); return s.length <= n ? s : s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…'; }
 function priceNum(p) { return String(p).replace(/\./g, '').replace(',', '.'); }
 function amazonUrl(query) { return `https://www.amazon.es/s?k=${encodeURIComponent(query)}&tag=${STORE_ID}`; }
@@ -356,7 +373,7 @@ function renderGuidePage(id) {
       image: SITE + '/img/og-cover.jpg',
       author: { '@type': 'Organization', name: BRAND_NAME },
       publisher: { '@type': 'Organization', name: BRAND_NAME },
-      datePublished: TODAY, dateModified: TODAY,
+      datePublished: addedOf(g, 'guia ' + id), dateModified: addedOf(g, 'guia ' + id),
       mainEntityOfPage: canonical
     },
     breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: 'Guías', url: '/guias/' }, { name: g.title, url }])
@@ -421,24 +438,41 @@ function writePage(url, html) {
   fs.writeFileSync(path.join(dir, 'index.html'), html);
 }
 
-const allUrls = ['/'];
+// Cada entrada: { url, lastmod }. La home se rellena al final, con la fecha de lo más nuevo
+// que haya en todo el sitio.
+const allUrls = [];
 let count = 0;
 
+const allDates = [];
 for (const catKey of Object.keys(CATS)) {
+  const catDates = CATS[catKey].arr.map(p => addedOf(p, `${catKey}/${p.id}`));
+  allDates.push(...catDates);
+
   const hub = renderProductHub(catKey);
-  writePage(hub.url, hub.html); allUrls.push(hub.url); count++;
-  for (const p of CATS[catKey].arr) {
+  writePage(hub.url, hub.html);
+  allUrls.push({ url: hub.url, lastmod: newestOf(catDates) }); count++;
+
+  CATS[catKey].arr.forEach((p, i) => {
     const page = renderProductPage(catKey, p);
-    writePage(page.url, page.html); allUrls.push(page.url); count++;
-  }
+    writePage(page.url, page.html);
+    allUrls.push({ url: page.url, lastmod: catDates[i] }); count++;
+  });
 }
 
+const guideDates = Object.keys(guides).map(id => addedOf(guides[id], 'guia ' + id));
+allDates.push(...guideDates);
+
 const gh = renderGuidesHub();
-writePage(gh.url, gh.html); allUrls.push(gh.url); count++;
-for (const id of Object.keys(guides)) {
+writePage(gh.url, gh.html);
+allUrls.push({ url: gh.url, lastmod: newestOf(guideDates) }); count++;
+
+Object.keys(guides).forEach((id, i) => {
   const page = renderGuidePage(id);
-  writePage(page.url, page.html); allUrls.push(page.url); count++;
-}
+  writePage(page.url, page.html);
+  allUrls.push({ url: page.url, lastmod: guideDates[i] }); count++;
+});
+
+allUrls.unshift({ url: '/', lastmod: newestOf(allDates) });
 
 // ---------- 7b. Páginas estáticas (confianza / E-E-A-T / legal) ----------
 const staticPages = [
@@ -492,17 +526,17 @@ for (const sp of staticPages) {
 ${sp.bodyHtml}`;
   const jsonLd = [breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: sp.h1, url: sp.url }])];
   writePage(sp.url, shell({ title: sp.title, description: sp.description, canonical: SITE + sp.url, jsonLd, body }));
-  allUrls.push(sp.url); count++;
+  allUrls.push({ url: sp.url, lastmod: SITE_LAUNCH }); count++;
 }
 
 // ---------- 8. Sitemap ----------
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allUrls.map(u => `  <url>
-    <loc>${SITE}${u}</loc>
-    <lastmod>${TODAY}</lastmod>
+${allUrls.map(({ url, lastmod }) => `  <url>
+    <loc>${SITE}${url}</loc>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>${u === '/' ? '1.0' : '0.8'}</priority>
+    <priority>${url === '/' ? '1.0' : '0.8'}</priority>
   </url>`).join('\n')}
 </urlset>
 `;
@@ -555,3 +589,7 @@ fs.writeFileSync(path.join(ROOT, 'rss.xml'), rss);
 
 console.log(`Generadas ${count} páginas + sitemap con ${allUrls.length} URLs + RSS con ${Math.min(feedItems.length, 40)} items.`);
 console.log(`Libros: novelas=${novelas.length} thriller=${thriller.length} noficcion=${desarrollo.length} romantasy=${romantasy.length} | guías=${Object.keys(guides).length}`);
+if (missingAdded.length) {
+  console.log(`\nAVISO: ${missingAdded.length} sin campo "added" en index.html; se ha usado ${TODAY}.`);
+  console.log(`  ${[...new Set(missingAdded)].join(', ')}`);
+}

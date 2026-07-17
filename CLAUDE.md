@@ -17,6 +17,12 @@ genera todo lo demás:
 **Para añadir contenido: se edita `index.html` y se ejecuta `node tools/generate-pages.js`.** Nunca
 editar a mano las páginas generadas — el generador las sobrescribe.
 
+Cada libro y cada guía llevan un campo **`added: 'AAAA-MM-DD'`**: la fecha en que se añadió. Alimenta
+el `<lastmod>` del sitemap y el `datePublished` del JSON-LD. Se escribe **una vez y no se toca nunca
+más** — actualizarlo le dice a Google que la página cambió cuando no lo ha hecho. Los hubs y la home
+derivan su `lastmod` de lo más reciente que cuelga de ellos; las páginas estáticas usan `SITE_LAUNCH`.
+Si un libro llega sin `added`, el generador no falla: usa hoy y lo avisa por consola al terminar.
+
 Ojo con las etiquetas: las categorías se renombraron en la interfaz (Romantasy → Romance,
 No ficción → Desarrollo personal) **pero las URLs siguen siendo las antiguas** (`/romantasy/`,
 `/no-ficcion/`). Es intencional, para no romper el SEO.
@@ -71,6 +77,14 @@ La carpeta suelta no significa que la rutina exista: comprobar siempre contra el
   uno de estos dos.
 - **La redirección `www` → dominio raíz no está en el código**: es una *Redirect Rule* del panel de
   Cloudflare. Con Pages no se puede hacer por host desde `_redirects`.
+- **El `robots.txt` que se sirve no es el del repo.** Cloudflare le antepone un bloque *Managed
+  content* con `Content-Signal` y `Disallow` a los bots de IA (GPTBot, ClaudeBot, CCBot, Google-Extended…).
+  Google Search no se ve afectado (`search=yes`, `Allow: /`), pero por eso un `WebFetch` al dominio
+  responde **403**: lo bloquea Cloudflare, no el sitio. Para comprobar cabeceras, usar `curl` con UA
+  de Googlebot.
+- `TODAY` **era una constante fija** (`'2026-06-30'`, el día que nació el sitio) y congelaba el
+  `lastmod` de las 101 URLs. Ahora existe `added` por página; `TODAY` solo es la reserva de quien
+  llegue sin fecha. No volver a estampar una fecha global en el sitemap.
 - Los permisos amplios de las rutinas están en `.claude/settings.local.json` (no se commitea, está en
   `.gitignore`).
 
