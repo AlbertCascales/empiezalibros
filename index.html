@@ -220,10 +220,9 @@
 </div>
 
 <div class="stats-bar">
-  <div class="stat"><div class="stat-n">56+</div><div class="stat-l">Libros reseñados</div></div>
+  <div class="stat"><div class="stat-n" id="statLibros">76</div><div class="stat-l">Libros reseñados</div></div>
   <div class="stat"><div class="stat-n">2026</div><div class="stat-l">Novedades actualizadas</div></div>
   <div class="stat"><div class="stat-n">4 géneros</div><div class="stat-l">Para todos los gustos</div></div>
-  <div class="stat"><div class="stat-n">+8.000</div><div class="stat-l">Lectores al mes</div></div>
 </div>
 
 <main>
@@ -239,19 +238,19 @@
     <div class="section-header"><h2>Explorar por género</h2></div>
     <div class="cat-grid">
       <a class="cat-card" href="/novelas/">
-        <div class="cat-icon">📖</div><div class="cat-name">Novela y ficción</div><div class="cat-count">14 reseñas</div>
+        <div class="cat-icon">📖</div><div class="cat-name">Novela y ficción</div><div class="cat-count" id="countNovelas">21 reseñas</div>
       </a>
       <a class="cat-card" href="/thriller/">
-        <div class="cat-icon">🔎</div><div class="cat-name">Thriller y misterio</div><div class="cat-count">14 reseñas</div>
+        <div class="cat-icon">🔎</div><div class="cat-name">Thriller y misterio</div><div class="cat-count" id="countThriller">19 reseñas</div>
       </a>
       <a class="cat-card" href="/no-ficcion/">
-        <div class="cat-icon">💡</div><div class="cat-name">Desarrollo personal</div><div class="cat-count">16 reseñas</div>
+        <div class="cat-icon">💡</div><div class="cat-name">Desarrollo personal</div><div class="cat-count" id="countDesarrollo">17 reseñas</div>
       </a>
       <a class="cat-card" href="/romantasy/">
-        <div class="cat-icon">🐉</div><div class="cat-name">Romance</div><div class="cat-count">17 reseñas</div>
+        <div class="cat-icon">🐉</div><div class="cat-name">Romance</div><div class="cat-count" id="countRomantasy">19 reseñas</div>
       </a>
       <a class="cat-card" href="/guias/">
-        <div class="cat-icon">🧭</div><div class="cat-name">Guías de lectura</div><div class="cat-count">6 artículos</div>
+        <div class="cat-icon">🧭</div><div class="cat-name">Guías de lectura</div><div class="cat-count" id="countGuias">16 artículos</div>
       </a>
     </div>
   </section>
@@ -1523,6 +1522,24 @@ function renderAll(){
   renderGrid(thriller,  'thrillerGrid');
   renderGrid(desarrollo,'desarrolloGrid');
   renderGrid(romantasy, 'romantasyGrid');
+  renderStats();
+}
+
+// Los contadores de la home se cuentan desde los arrays. Escritos a mano se quedaban atrás:
+// la barra decía 56 con 76 libros publicados, y las tarjetas de género iban hasta 7 por debajo.
+// Los valores del HTML son solo el respaldo para quien no ejecute JS: al añadir contenido no
+// hace falta tocarlos, pero si se editan a mano, que sean los reales.
+function renderStats(){
+  const set = (id, texto) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = texto;
+  };
+  set('statLibros', novelas.length + thriller.length + desarrollo.length + romantasy.length);
+  set('countNovelas',    `${novelas.length} reseñas`);
+  set('countThriller',   `${thriller.length} reseñas`);
+  set('countDesarrollo', `${desarrollo.length} reseñas`);
+  set('countRomantasy',  `${romantasy.length} reseñas`);
+  set('countGuias',      `${Object.keys(guides).length} artículos`);
 }
 
 // Libro destacado
