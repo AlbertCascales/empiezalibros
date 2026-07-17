@@ -133,6 +133,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/novelas/haruki-murakami-tokio-blues-norwegian-wood/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/thriller/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -572,6 +578,12 @@
   </url>
   <url>
     <loc>https://empiezalibros.es/guias/libros-cortos-para-reengancharte-a-la-lectura/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/guias/haruki-murakami-por-donde-empezar-a-leer-al-autor-japones-de-culto/</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
