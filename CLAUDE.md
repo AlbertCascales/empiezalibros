@@ -34,6 +34,7 @@ No ficción → Desarrollo personal) **pero las URLs siguen siendo las antiguas*
 | `generate-pages.js` | Regenera todas las páginas y el sitemap desde `index.html`. Ejecutar tras cada cambio de contenido. |
 | `download-covers.js` | Descarga las portadas que falten a `img/covers/`. Algunos libros necesitan un alias del título original (mapa `OVERRIDES`) porque Open Library no indexa la edición española. |
 | `telegram-post.js` | Publica en el canal `@Empiezalibros`. `book <id>` publica un libro concreto; `backfill` publica el pendiente más antiguo. |
+| `gsc-report.js` | Informe de Search Console (solo lectura). `--perf` rendimiento (rápido, 2 llamadas); `--index` estado URL a URL (~110 llamadas, lento, con reintentos); sin flag, ambos. Sin dependencias: JWT RS256 con módulos nativos. |
 
 `telegram-post.js` es de **ruta fija a propósito**: existe para que las rutinas programadas no
 improvisen `node -e "..."`, que disparaba aprobaciones de permisos cada día.
@@ -45,8 +46,15 @@ habrían entrado.)
 
 ## Secretos
 
-Fuera del repo, en `C:\Users\marti\.empiezalibros-secrets\`: `telegram.key`, `mailerlite.key`.
-Nunca imprimirlos ni commitearlos. MailerLite es la cuenta 2480900. Afiliación Amazon: `albertomart09-21`.
+Fuera del repo, en `C:\Users\marti\.empiezalibros-secrets\`: `telegram.key`, `mailerlite.key` y
+`gsc-service-account.json` (cuenta de servicio de Google, lectura de Search Console; la cuenta
+`gsc-lector@empiezalibros-gsc.iam.gserviceaccount.com` está añadida como usuario en la propiedad, que
+es **de dominio**: `sc-domain:empiezalibros.es`). Nunca imprimirlos ni commitearlos. Los scripts los
+leen solos de esa ruta; no hace falta pasarlos por el chat. MailerLite es la cuenta 2480900.
+Afiliación Amazon: `albertomart09-21`.
+
+La Search Console API se habilita una vez en el proyecto Cloud `empiezalibros-gsc` (número 1058034996183);
+si `gsc-report.js` devuelve 403 "API has not been used", es que se deshabilitó.
 
 ## Rutinas programadas
 
