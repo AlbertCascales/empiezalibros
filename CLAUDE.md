@@ -58,7 +58,8 @@ si `gsc-report.js` devuelve 403 "API has not been used", es que se deshabilitó.
 
 ## Rutinas programadas
 
-En `C:\Users\marti\.claude\scheduled-tasks\` (cada una con su `SKILL.md`). Solo hay **dos activas**:
+En `C:\Users\marti\.claude\scheduled-tasks\` (cada una con su `SKILL.md`). Hay dos, ambas **pausadas
+ahora mismo** (`enabled: false`, desde el 23/07/2026):
 
 | Rutina | Hora | Qué hace |
 |---|---|---|
@@ -66,8 +67,15 @@ En `C:\Users\marti\.claude\scheduled-tasks\` (cada una con su `SKILL.md`). Solo 
 | `empiezalibros-telegram-backfill` | 05:00 diario | Solo Telegram: publica 1 pendiente. Estado en su `estado.json`. **No toca git.** |
 
 Las dos son **independientes**: Telegram publica el pendiente más antiguo de la web, no lo generado
-ese mismo día. Como la web crece 1/día y Telegram publica 1/día, el desfase no se cierra nunca —
-es intencional y asumido.
+ese mismo día. Cuando están activas la web crece 1/día y Telegram publica 1/día, y el desfase no se
+cierra nunca — es intencional y asumido.
+
+**Por qué pausadas:** con la web recién creada, Google no rastreaba parte de las URLs (presupuesto de
+rastreo). Seguir publicando 1/día reparte ese presupuesto entre más páginas y frena la indexación. Se
+pausaron para que Google digiera lo que ya hay. Se reactivan (a mano, `enabled: true` en el programador)
+cuando la indexación se recupere — medir con `node tools/gsc-report.js --index`. Ojo: la pausa NO es
+condicional, el programador no la reactiva solo. El estado real manda siempre sobre esta nota; si al
+leer esto ya están activas, es que alguien las reactivó y no actualizó aquí.
 
 Existen carpetas de `empiezalibros-newsletter-auto` y `empiezalibros-reddit-monitor`, pero esas
 rutinas están **eliminadas** del programador (al borrarlas se conserva el `SKILL.md` en disco).
