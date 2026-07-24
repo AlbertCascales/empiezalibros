@@ -418,15 +418,20 @@ function renderGuidesHub() {
   const canonical = SITE + url;
   const title = `Guías de lectura 2026 | ${BRAND_NAME}`;
   const description = 'Todas las guías de lectura: por dónde empezar, qué leer según tu ánimo, los más vendidos y cómo crear el hábito de leer.';
-  const cards = Object.keys(guides).map(k => `<a class="card" href="${guidePath(k)}" style="padding:1.1rem 1.25rem">
-    <div class="brand">${esc(guides[k].cat)}</div>
-    <div class="card-name" style="margin-top:.3rem">${esc(guides[k].title)}</div>
-    <div class="card-meta">${esc(guides[k].meta)}</div>
-  </a>`).join('');
+  const cards = Object.keys(guides).map(k => {
+    const g = guides[k];
+    const hook = truncate(stripHtml(g.body), 120);   // primera línea como gancho
+    return `<a class="card" href="${guidePath(k)}" style="padding:1.1rem 1.25rem">
+    <div class="brand">${esc(g.cat)}</div>
+    <div class="card-name" style="margin-top:.3rem">${esc(g.title)}</div>
+    <div style="font-size:.85rem;color:var(--gray-4);line-height:1.45;margin:.45rem 0 .55rem">${esc(hook)}</div>
+    <div class="card-meta">${esc(g.meta)}</div>
+  </a>`;
+  }).join('');
   const body = `
 ${crumbs([{ name: 'Inicio', url: '/' }, { name: 'Guías', url }])}
 <h1>Guías de lectura 2026</h1>
-<p class="sub">${Object.keys(guides).length} guías para ayudarte a elegir tu próximo libro.</p>
+<p class="sub">Por dónde empezar cada autor y saga, y qué leer según lo que te apetezca — sin destriparte nada.</p>
 <div class="grid">${cards}</div>`;
   const jsonLd = [breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: 'Guías', url }])];
   return { url, html: shell({ title, description, canonical, jsonLd, body }) };

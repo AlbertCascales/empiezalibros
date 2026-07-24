@@ -153,23 +153,20 @@
   .btn-amazon-lg { display: inline-flex; align-items: center; gap: 8px; background: #ff9900; color: var(--black); border: none; border-radius: 10px; padding: 0.85rem 1.75rem; font-size: 0.95rem; font-weight: 700; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: background 0.2s; }
   .btn-amazon-lg:hover { background: #e68900; }
 
-  /* CATEGORIES */
-  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
-  .cat-card { background: var(--gray-1); border-radius: 12px; padding: 1.25rem 1rem; text-align: center; cursor: pointer; transition: background 0.2s, transform 0.2s; border: 1.5px solid transparent; text-decoration: none; display: block; }
-  .cat-card:hover { background: var(--green-l); border-color: var(--green); transform: translateY(-2px); }
-  .cat-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-  .cat-name { font-weight: 600; font-size: 0.88rem; color: var(--black); }
-  .cat-count { font-size: 0.72rem; color: var(--gray-3); margin-top: 2px; }
-
   /* GUIDES */
+  .section-sub { color: var(--gray-4); font-size: 0.92rem; line-height: 1.5; margin: -0.4rem 0 1.1rem; max-width: 62ch; }
   .guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
   .guide-card.guide-hidden { display: none; }
-  .guide-card { border: 1.5px solid var(--gray-2); border-radius: 12px; padding: 1.25rem; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s; }
-  .guide-card:hover { border-color: var(--green); box-shadow: var(--shadow); }
-  .guide-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 0.5rem; }
-  .guide-title { font-family: 'DM Serif Display', serif; font-size: 1rem; line-height: 1.35; margin-bottom: 0.5rem; }
-  .guide-meta { font-size: 0.75rem; color: var(--gray-3); }
-  .guide-arrow { font-size: 0.8rem; color: var(--green); margin-top: 0.5rem; font-weight: 600; }
+  .guide-card { position: relative; display: flex; flex-direction: column; background: var(--gray-1); border: 1.5px solid var(--gray-2); border-radius: 14px; padding: 1.25rem 1.25rem 1.1rem; cursor: pointer; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+  .guide-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.25s; }
+  .guide-card:hover { border-color: var(--green); box-shadow: var(--shadow); transform: translateY(-3px); }
+  .guide-card:hover::before { transform: scaleX(1); }
+  .guide-top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
+  .guide-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+  .guide-time { flex-shrink: 0; font-size: 0.68rem; font-weight: 600; color: var(--gray-3); background: var(--gray-2); border-radius: 20px; padding: 0.15rem 0.55rem; }
+  .guide-title { font-family: 'DM Serif Display', serif; font-size: 1.08rem; line-height: 1.3; margin-bottom: 0.45rem; color: var(--black); }
+  .guide-hook { font-size: 0.82rem; line-height: 1.45; color: var(--gray-4); margin-bottom: 0.9rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .guide-arrow { margin-top: auto; font-size: 0.8rem; color: var(--green); font-weight: 700; }
 
   /* FOOTER */
   footer { background: var(--black); color: var(--gray-3); padding: 2.5rem 2rem; text-align: center; font-size: 0.8rem; line-height: 1.7; border-top: 2px solid #1a1410; }
@@ -233,38 +230,23 @@
     <div class="featured-product" id="featuredBox"></div>
   </section>
 
-  <!-- CATEGORÍAS -->
-  <section>
-    <div class="section-header"><h2>Explorar por género</h2></div>
-    <div class="cat-grid">
-      <a class="cat-card" href="/thriller/">
-        <div class="cat-icon">🔎</div><div class="cat-name">Thriller, misterio y suspense</div><div class="cat-count" id="countThriller">23 reseñas</div>
-      </a>
-      <a class="cat-card" href="/novelas/">
-        <div class="cat-icon">🛰️</div><div class="cat-name">Distopía y ciencia ficción</div><div class="cat-count" id="countNovelas">2 reseñas</div>
-      </a>
-      <a class="cat-card" href="/guias/">
-        <div class="cat-icon">🧭</div><div class="cat-name">Guías: por dónde empezar</div><div class="cat-count" id="countGuias">11 artículos</div>
-      </a>
-    </div>
-  </section>
-
   <!-- THRILLER -->
   <section id="thriller">
     <div class="section-header"><h2>🔎 Thriller, misterio y suspense</h2><a href="/thriller/">Ver todos →</a></div>
     <div class="product-grid" id="thrillerGrid"></div>
   </section>
 
+  <!-- GUÍAS -->
+  <section id="guias">
+    <div class="section-header"><h2>🧭 Guías: por dónde empezar</h2><a href="/guias/">Ver todas →</a></div>
+    <p class="section-sub">Por dónde entrar a cada autor y saga, y qué leer según lo que te apetezca — sin destriparte nada.</p>
+    <div class="guides-grid" id="guidesGrid"></div>
+  </section>
+
   <!-- DISTOPÍA -->
   <section id="novelas">
     <div class="section-header"><h2>🛰️ Distopía y ciencia ficción</h2><a href="/novelas/">Ver todas →</a></div>
     <div class="product-grid" id="novelasGrid"></div>
-  </section>
-
-  <!-- GUÍAS -->
-  <section id="guias">
-    <div class="section-header"><h2>🧭 Guías de lectura</h2><a href="/guias/">Ver todas →</a></div>
-    <div class="guides-grid" id="guidesGrid"></div>
   </section>
 
   <!-- TELEGRAM -->
@@ -898,10 +880,13 @@ function renderGuides(){
   const grid = document.getElementById('guidesGrid');
   grid.innerHTML = Object.keys(guides).map(id => {
     const g = guides[id];
+    // Gancho: la primera frase del cuerpo, sin HTML, para que la tarjeta invite a entrar.
+    const hook = g.body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().replace(/^(.*?\.)\s.*/, '$1').slice(0, 130);
+    const mins = (g.meta.match(/(\d+)\s*min/) || [])[1];
     return `<div class="guide-card" onclick="location.href='${guidePageUrl(id)}'">
-      <div class="guide-cat">${g.cat}</div>
+      <div class="guide-top"><span class="guide-cat">${g.cat}</span>${mins ? `<span class="guide-time">${mins} min</span>` : ''}</div>
       <div class="guide-title">${g.title}</div>
-      <div class="guide-meta">${g.meta}</div>
+      <div class="guide-hook">${hook}</div>
       <div class="guide-arrow">Leer guía →</div>
     </div>`;
   }).join('');
