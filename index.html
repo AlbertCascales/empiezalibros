@@ -243,12 +243,6 @@
     <div class="guides-grid" id="guidesGrid"></div>
   </section>
 
-  <!-- DISTOPÍA -->
-  <section id="novelas">
-    <div class="section-header"><h2>🛰️ Distopía y ciencia ficción</h2><a href="/novelas/">Ver todas →</a></div>
-    <div class="product-grid" id="novelasGrid"></div>
-  </section>
-
   <!-- TELEGRAM -->
   <section>
     <div class="telegram-cta">
@@ -299,30 +293,7 @@ function amazonUrl(query){return 'https://www.amazon.es/s?k='+encodeURIComponent
 /* ===== DATOS: cada libro tiene autor (brand), título (name), género (level),
    sinopsis (desc), ficha (specs), valoración, y query para Amazon ===== */
 
-const novelas = [
-  {
-    id: 'n18', added: '2026-07-05', c1: '#4a4a1f', c2: '#26260f',
-    brand: 'Aldous Huxley', name: 'Un mundo feliz', level: 'Novela',
-    stars: 5, price: '10,40', badge: null,
-    desc: 'En un futuro donde la humanidad ha sido programada para ser feliz mediante la genética y las drogas, un hombre cuestiona ese paraíso artificial. La distopía clásica más lúcida y perturbadora del siglo XX.',
-    specs: { Autor: 'Aldous Huxley', Editorial: 'Debolsillo', Páginas: '256', Año: '1932', Género: 'Distopía / Clásico' },
-    pros: ['Visionaria y muy actual', 'Lectura obligada del género', 'Breve e intensa'],
-    cons: ['Lenguaje de su época', 'Más tesis que trama'],
-    verdict: 'Junto con 1984, la gran distopía de referencia. Imprescindible para entender los debates sobre tecnología y libertad.',
-    query: 'Un mundo feliz Aldous Huxley'
-  },
-  {
-    id: 'n19', added: '2026-07-09', c1: '#33352e', c2: '#15160f',
-    brand: 'George Orwell', name: '1984', level: 'Novela',
-    stars: 5, price: '10,95', badge: null,
-    desc: 'Winston Smith trabaja reescribiendo la historia para el Partido en una Oceanía gobernada por el Gran Hermano, donde hasta los pensamientos están vigilados. Cuando se atreve a amar y a pensar por su cuenta, descubre hasta dónde llega el poder totalitario. La novela que dio nombre a conceptos como "Gran Hermano" o "doblepensar".',
-    specs: { Autor: 'George Orwell', Editorial: 'Debolsillo', Páginas: '352', Año: '1949', Género: 'Distopía / Clásico' },
-    pros: ['El clásico distópico más influyente y citado', 'Prosa directa que engancha desde el primer capítulo', 'Vigente en cualquier debate sobre vigilancia y manipulación'],
-    cons: ['Final deliberadamente duro', 'Tramos centrales con largos pasajes ensayísticos'],
-    verdict: 'La distopía por excelencia y probablemente la novela más citada del siglo XX. Si solo vas a leer una de ciencia ficción en tu vida, es esta.',
-    query: '1984 George Orwell'
-  }
-];
+const novelas = [];
 
 const thriller = [
   {
@@ -577,6 +548,28 @@ const thriller = [
     cons: ['Romance idealizado para algunos', 'Ritmo contemplativo'],
     verdict: 'Reverte en su terreno: aventura, historia y amor con rigor. Ideal para amantes de la novela histórica.',
     query: 'El italiano Arturo Pérez-Reverte'
+  },
+  {
+    id: 'n18', added: '2026-07-05', c1: '#4a4a1f', c2: '#26260f',
+    brand: 'Aldous Huxley', name: 'Un mundo feliz', level: 'Distopía',
+    stars: 5, price: '10,40', badge: null,
+    desc: 'En un futuro donde la humanidad ha sido programada para ser feliz mediante la genética y las drogas, un hombre cuestiona ese paraíso artificial. La distopía clásica más lúcida y perturbadora del siglo XX.',
+    specs: { Autor: 'Aldous Huxley', Editorial: 'Debolsillo', Páginas: '256', Año: '1932', Género: 'Distopía / Clásico' },
+    pros: ['Visionaria y muy actual', 'Lectura obligada del género', 'Breve e intensa'],
+    cons: ['Lenguaje de su época', 'Más tesis que trama'],
+    verdict: 'Junto con 1984, la gran distopía de referencia. Imprescindible para entender los debates sobre tecnología y libertad.',
+    query: 'Un mundo feliz Aldous Huxley'
+  },
+  {
+    id: 'n19', added: '2026-07-09', c1: '#33352e', c2: '#15160f',
+    brand: 'George Orwell', name: '1984', level: 'Distopía',
+    stars: 5, price: '10,95', badge: null,
+    desc: 'Winston Smith trabaja reescribiendo la historia para el Partido en una Oceanía gobernada por el Gran Hermano, donde hasta los pensamientos están vigilados. Cuando se atreve a amar y a pensar por su cuenta, descubre hasta dónde llega el poder totalitario. La novela que dio nombre a conceptos como "Gran Hermano" o "doblepensar".',
+    specs: { Autor: 'George Orwell', Editorial: 'Debolsillo', Páginas: '352', Año: '1949', Género: 'Distopía / Clásico' },
+    pros: ['El clásico distópico más influyente y citado', 'Prosa directa que engancha desde el primer capítulo', 'Vigente en cualquier debate sobre vigilancia y manipulación'],
+    cons: ['Final deliberadamente duro', 'Tramos centrales con largos pasajes ensayísticos'],
+    verdict: 'La distopía por excelencia y probablemente la novela más citada del siglo XX. Si solo vas a leer una de ciencia ficción en tu vida, es esta.',
+    query: '1984 George Orwell'
   }
 ];
 
@@ -826,10 +819,7 @@ function renderGrid(arr, gridId){
 }
 
 function renderAll(){
-  renderGrid(novelas,   'novelasGrid');
-  renderGrid(thriller,  'thrillerGrid');
-  renderGrid(desarrollo,'desarrolloGrid');
-  renderGrid(romantasy, 'romantasyGrid');
+  renderGrid(thriller, 'thrillerGrid');
   renderStats();
 }
 
@@ -842,9 +832,8 @@ function renderStats(){
     const el = document.getElementById(id);
     if (el) el.textContent = texto;
   };
-  set('statLibros', novelas.length + thriller.length + desarrollo.length + romantasy.length);
+  set('statLibros', thriller.length);
   set('countThriller',   `${thriller.length} reseñas`);
-  set('countNovelas',    `${novelas.length} reseñas`);
   set('countGuias',      `${Object.keys(guides).length} artículos`);
 }
 
@@ -852,7 +841,7 @@ function renderStats(){
 function renderFeatured(){
   // El libro del momento rota cada 2 días entre toda la colección.
   // Es determinista según la fecha: todos los visitantes ven el mismo.
-  const pool = [...novelas, ...thriller, ...desarrollo, ...romantasy];
+  const pool = [...thriller];
   const periodo = Math.floor(Date.now() / (1000 * 60 * 60 * 24 * 2)); // nº de periodos de 2 días desde 1970
   const p = pool[periodo % pool.length];
   const box = document.getElementById('featuredBox');
@@ -903,7 +892,6 @@ function filterProducts(){
 
   const sections = [
     { arr: thriller,   gridId: 'thrillerGrid',   sectionId: 'thriller' },
-    { arr: novelas,    gridId: 'novelasGrid',    sectionId: 'novelas' },
   ];
 
   let firstHit = null;

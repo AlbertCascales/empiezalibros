@@ -151,19 +151,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://empiezalibros.es/novelas/</loc>
-    <lastmod>2026-07-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://empiezalibros.es/novelas/aldous-huxley-un-mundo-feliz/</loc>
+    <loc>https://empiezalibros.es/thriller/aldous-huxley-un-mundo-feliz/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://empiezalibros.es/novelas/george-orwell-1984/</loc>
+    <loc>https://empiezalibros.es/thriller/george-orwell-1984/</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

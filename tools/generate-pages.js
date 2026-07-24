@@ -3,9 +3,9 @@
  *
  * Lee los datos de libros y guías que viven dentro de index.html
  * (única fuente de la verdad) y genera:
- *   - /thriller/<slug>/, /novelas/<slug>/ (distopía)                    (reseña de cada libro)
+ *   - /thriller/<slug>/                                                 (reseña de cada libro)
  *   - /guias/<slug>/index.html                                          (cada guía)
- *   - /thriller/, /novelas/ (distopía), /guias/                          (hubs)
+ *   - /thriller/, /guias/                                               (hubs)
  *   - sitemap.xml                                                        (con todas las URLs)
  *
  * Uso:  node tools/generate-pages.js
@@ -90,12 +90,11 @@ function priceNum(p) { return String(p).replace(/\./g, '').replace(',', '.'); }
 function amazonUrl(query) { return `https://www.amazon.es/s?k=${encodeURIComponent(query)}&tag=${STORE_ID}`; }
 function stars(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
 
-// La web se centra en thriller/misterio/suspense; novelas sobrevive solo como el núcleo
-// distópico (1984, Un mundo feliz), que ya rankea. Desarrollo y romantasy se podaron
-// (sus arrays quedan vacíos en index.html y sus URLs viejas van por _redirects).
+// La web es de un solo vertical: thriller/misterio/suspense. Los dos distópicos que ya
+// rankeaban (1984, Un mundo feliz) viven DENTRO del array `thriller` con level 'Distopía'.
+// novelas/desarrollo/romantasy quedan vacíos en index.html y sus URLs viejas van por _redirects.
 const CATS = {
   thriller:  { dir: 'thriller',   arr: thriller,   sing: 'Thriller',  label: 'Thriller, misterio y suspense', hubTitle: 'Thriller, misterio y suspense: por dónde empezar · reseñas honestas' },
-  novelas:   { dir: 'novelas',    arr: novelas,    sing: 'Distopía',  label: 'Distopía y ciencia ficción',    hubTitle: 'Distopía y ciencia ficción: novelas imprescindibles para empezar' },
 };
 
 function productSlug(p) { return slugify(p.brand + ' ' + p.name); }
@@ -594,7 +593,7 @@ ${rssItems}
 fs.writeFileSync(path.join(ROOT, 'rss.xml'), rss);
 
 console.log(`Generadas ${count} páginas + sitemap con ${allUrls.length} URLs + RSS con ${Math.min(feedItems.length, 40)} items.`);
-console.log(`Libros: thriller=${thriller.length} distopía(novelas)=${novelas.length} | guías=${Object.keys(guides).length}`);
+console.log(`Libros: thriller=${thriller.length} (incl. 2 distópicos) | guías=${Object.keys(guides).length}`);
 if (missingAdded.length) {
   console.log(`\nAVISO: ${missingAdded.length} sin campo "added" en index.html; se ha usado ${TODAY}.`);
   console.log(`  ${[...new Set(missingAdded)].join(', ')}`);

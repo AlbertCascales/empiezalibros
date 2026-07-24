@@ -3,6 +3,7 @@
 # - Libros, hubs y guías podados -> home o hub de guías.
 # Cloudflare sirve 200 con el HTML del sitio en rutas inexistentes, así que estas
 # rutas SIN redirección darían un soft-404: por eso van todas aquí.
+/novelas/ / 301
 /novelas/david-ucles-la-peninsula-de-las-casas-vacias/ / 301
 /novelas/sonsoles-onega-las-hijas-de-la-criada/ / 301
 /novelas/arturo-perez-reverte-el-problema-final/ /thriller/arturo-perez-reverte-el-problema-final/ 301
@@ -20,6 +21,8 @@
 /novelas/maria-duenas-el-tiempo-entre-costuras/ / 301
 /novelas/javier-cercas-terra-alta/ /thriller/javier-cercas-terra-alta/ 301
 /novelas/arturo-perez-reverte-el-italiano/ /thriller/arturo-perez-reverte-el-italiano/ 301
+/novelas/aldous-huxley-un-mundo-feliz/ /thriller/aldous-huxley-un-mundo-feliz/ 301
+/novelas/george-orwell-1984/ /thriller/george-orwell-1984/ 301
 /novelas/albert-camus-el-extranjero/ / 301
 /novelas/haruki-murakami-tokio-blues-norwegian-wood/ / 301
 /novelas/ken-follett-los-pilares-de-la-tierra/ / 301
