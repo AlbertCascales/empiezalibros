@@ -3,9 +3,9 @@
  *
  * Lee los datos de libros y guías que viven dentro de index.html
  * (única fuente de la verdad) y genera:
- *   - /novelas/<slug>/, /thriller/..., /no-ficcion/..., /romantasy/...  (reseña de cada libro)
+ *   - /thriller/<slug>/, /novelas/<slug>/ (distopía)                    (reseña de cada libro)
  *   - /guias/<slug>/index.html                                          (cada guía)
- *   - /novelas/index.html, /thriller/, /no-ficcion/, /romantasy/, /guias/  (hubs por género)
+ *   - /thriller/, /novelas/ (distopía), /guias/                          (hubs)
  *   - sitemap.xml                                                        (con todas las URLs)
  *
  * Uso:  node tools/generate-pages.js
@@ -90,11 +90,12 @@ function priceNum(p) { return String(p).replace(/\./g, '').replace(',', '.'); }
 function amazonUrl(query) { return `https://www.amazon.es/s?k=${encodeURIComponent(query)}&tag=${STORE_ID}`; }
 function stars(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
 
+// La web se centra en thriller/misterio/suspense; novelas sobrevive solo como el núcleo
+// distópico (1984, Un mundo feliz), que ya rankea. Desarrollo y romantasy se podaron
+// (sus arrays quedan vacíos en index.html y sus URLs viejas van por _redirects).
 const CATS = {
-  novelas:   { dir: 'novelas',    arr: novelas,    sing: 'Novela',    label: 'Novela y ficción',   hubTitle: 'Mejores novelas 2026: novedades, sinopsis y reseñas' },
-  thriller:  { dir: 'thriller',   arr: thriller,   sing: 'Thriller',  label: 'Thriller y misterio', hubTitle: 'Mejores thrillers y novela negra 2026: sinopsis y reseñas' },
-  desarrollo:{ dir: 'no-ficcion', arr: desarrollo, sing: 'Ensayo',    label: 'Desarrollo personal', hubTitle: 'Mejores libros de desarrollo personal 2026: reseñas y recomendaciones' },
-  romantasy: { dir: 'romantasy',  arr: romantasy,  sing: 'Romance',   label: 'Romance',             hubTitle: 'Mejor romance y fantasía 2026: sinopsis y reseñas' },
+  thriller:  { dir: 'thriller',   arr: thriller,   sing: 'Thriller',  label: 'Thriller, misterio y suspense', hubTitle: 'Thriller, misterio y suspense: por dónde empezar · reseñas honestas' },
+  novelas:   { dir: 'novelas',    arr: novelas,    sing: 'Distopía',  label: 'Distopía y ciencia ficción',    hubTitle: 'Distopía y ciencia ficción: novelas imprescindibles para empezar' },
 };
 
 function productSlug(p) { return slugify(p.brand + ' ' + p.name); }
@@ -269,8 +270,8 @@ function renderProductPage(catKey, p) {
   const canonical = SITE + url;
   const aff = amazonUrl(p.query);
   const fullName = `${p.name}`;
-  const title = `${p.name}, de ${p.brand}: sinopsis y reseña | ${BRAND_NAME}`;
-  const description = truncate(`Reseña y sinopsis de «${p.name}» de ${p.brand} (${p.level}). ${stripHtml(p.desc)}`, 158);
+  const title = `${p.name}, de ${p.brand}: ¿merece la pena? Reseña y sinopsis | ${BRAND_NAME}`;
+  const description = truncate(`De qué trata «${p.name}» de ${p.brand}: reseña honesta, si es para ti y por dónde empezar. ${stripHtml(p.desc)}`, 158);
 
   const specsHtml = Object.entries(p.specs).map(([k, v]) =>
     `<div class="spec"><b>${esc(k)}</b>${esc(v)}</div>`).join('');
@@ -312,30 +313,30 @@ function renderProductPage(catKey, p) {
 ${crumbs([{ name: 'Inicio', url: '/' }, { name: cat.label, url: `/${cat.dir}/` }, { name: fullName, url }])}
 <div class="brand">${esc(p.brand)}</div>
 <h1>${esc(p.name)}</h1>
-<p class="sub">Sinopsis, reseña y dónde comprarlo — ${esc(p.level)}</p>
+<p class="sub">De qué trata, si es para ti y por dónde empezar — ${esc(p.level)}</p>
 <div class="hero">
   <div class="hero-cover">${bookCover(p, true)}</div>
   <div>
     ${p.badge === 'top' ? '<span class="tag">Bestseller</span>' : ''}${p.badge === 'new' ? '<span class="tag">Novedad 2026</span>' : ''}
-    <div class="stars">${stars(p.stars)} <span>Valoración de ${BRAND_NAME}</span></div>
+    <div class="stars">${stars(p.stars)} <span>Nuestra valoración honesta</span></div>
     <div class="price">${esc(p.price)} €<small>Precio orientativo en Amazon.es</small></div>
     <a class="btn block" href="${aff}" target="_blank" rel="sponsored noopener">🛒 Ver precio en Amazon</a>
   </div>
 </div>
 
-<h2>Sinopsis</h2>
+<h2>De qué trata</h2>
 <p>${esc(p.desc)}</p>
 
 <h2>Ficha del libro</h2>
 <div class="specs">${specsHtml}</div>
 
-<h2>Lo mejor y lo peor</h2>
+<h2>¿Es para ti?</h2>
 <div class="pc">
   <div class="pros"><h4>A favor</h4><ul>${prosHtml}</ul></div>
   <div class="cons"><h4>A tener en cuenta</h4><ul>${consHtml}</ul></div>
 </div>
 
-<div class="verdict"><b>Veredicto de ${BRAND_NAME}</b>${esc(p.verdict)}</div>
+<div class="verdict"><b>¿Deberías leerlo?</b>${esc(p.verdict)}</div>
 
 <div class="cta-box">
   <div class="price">${esc(p.price)} €<small>Precio orientativo en Amazon.es</small></div>
@@ -483,9 +484,9 @@ const staticPages = [
     bodyHtml: `
 <p>${BRAND_NAME} nace para ayudarte a <strong>elegir bien tu próxima lectura</strong> sin perderte entre miles de novedades y opiniones contradictorias.</p>
 <h2>Qué hacemos</h2>
-<p>Reseñamos novelas, thrillers, no ficción y romantasy, y los resumimos en fichas claras: de qué va el libro (sinopsis sin destripes), para quién es, sus puntos fuertes y débiles, y un veredicto directo. Nuestro objetivo es que aciertes y disfrutes de la lectura.</p>
+<p>Nos centramos en <strong>thriller, misterio y suspense</strong> —con algo de distopía y ciencia ficción— y resumimos cada libro en una ficha clara: de qué va (sin destripes), si es para ti, sus puntos fuertes y débiles, y por dónde empezar cada saga. Nuestro objetivo es que aciertes y disfrutes de la lectura.</p>
 <h2>Cómo trabajamos</h2>
-<p>Seleccionamos los libros por su calidad, repercusión y la valoración de los lectores. Priorizamos la honestidad: si un libro no nos parece para todos los públicos, lo decimos.</p>
+<p>La nota es nuestra opinión editorial, no un promedio de valoraciones de usuarios: no inventamos cifras de opiniones. Priorizamos la honestidad: si un libro no nos parece para todos los públicos, lo decimos.</p>
 <h2>Transparencia</h2>
 <p>EmpiezaLibros se financia mediante enlaces de afiliado de Amazon: si compras a través de nuestros enlaces, podemos recibir una pequeña comisión <strong>sin coste adicional para ti</strong>. Esto nunca condiciona nuestras recomendaciones.</p>
 <p style="color:var(--gray-4);font-size:.85rem;margin-top:1.5rem">¿Tienes dudas o sugerencias? Escríbenos desde la página de <a href="/contacto/">contacto</a>.</p>`
@@ -576,9 +577,9 @@ const rssItems = feedItems.slice(0, 40).map((it, i) => {
 const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>EmpiezaLibros — Novedades de libros 2026</title>
+  <title>EmpiezaLibros — Thriller, misterio y suspense</title>
   <link>${SITE}/</link>
-  <description>Nuevas reseñas de novela, thriller, no ficción, romantasy y guías de lectura.</description>
+  <description>Nuevas reseñas de thriller, misterio, suspense y distopía, y guías sobre por dónde empezar.</description>
   <language>es-ES</language>
   <atom:link href="${SITE}/rss.xml" rel="self" type="application/rss+xml"/>
 ${rssItems}
@@ -588,7 +589,7 @@ ${rssItems}
 fs.writeFileSync(path.join(ROOT, 'rss.xml'), rss);
 
 console.log(`Generadas ${count} páginas + sitemap con ${allUrls.length} URLs + RSS con ${Math.min(feedItems.length, 40)} items.`);
-console.log(`Libros: novelas=${novelas.length} thriller=${thriller.length} noficcion=${desarrollo.length} romantasy=${romantasy.length} | guías=${Object.keys(guides).length}`);
+console.log(`Libros: thriller=${thriller.length} distopía(novelas)=${novelas.length} | guías=${Object.keys(guides).length}`);
 if (missingAdded.length) {
   console.log(`\nAVISO: ${missingAdded.length} sin campo "added" en index.html; se ha usado ${TODAY}.`);
   console.log(`  ${[...new Set(missingAdded)].join(', ')}`);

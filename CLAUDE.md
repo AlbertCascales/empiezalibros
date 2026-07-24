@@ -9,9 +9,9 @@ Los datos de **libros y guías viven dentro de `index.html`**, en literales Java
 datos ni ficheros JSON de contenido. `tools/generate-pages.js` los extrae parseando `index.html` y
 genera todo lo demás:
 
-- `/novelas/<slug>/`, `/thriller/<slug>/`, `/no-ficcion/<slug>/`, `/romantasy/<slug>/` — ficha de cada libro
+- `/thriller/<slug>/` — ficha de cada libro; `/novelas/<slug>/` — solo el núcleo distópico
 - `/guias/<slug>/index.html` — cada guía
-- Los hubs de cada género y `/guias/index.html`
+- Los hubs `/thriller/`, `/novelas/` (distopía) y `/guias/index.html`
 - `sitemap.xml` con todas las URLs
 
 **Para añadir contenido: se edita `index.html` y se ejecuta `node tools/generate-pages.js`.** Nunca
@@ -23,9 +23,29 @@ más** — actualizarlo le dice a Google que la página cambió cuando no lo ha 
 derivan su `lastmod` de lo más reciente que cuelga de ellos; las páginas estáticas usan `SITE_LAUNCH`.
 Si un libro llega sin `added`, el generador no falla: usa hoy y lo avisa por consola al terminar.
 
-Ojo con las etiquetas: las categorías se renombraron en la interfaz (Romantasy → Romance,
-No ficción → Desarrollo personal) **pero las URLs siguen siendo las antiguas** (`/romantasy/`,
-`/no-ficcion/`). Es intencional, para no romper el SEO.
+## Nicho: thriller, misterio y suspense (23/07/2026)
+
+La web se **centró en thriller/misterio/suspense** tras ver en Search Console que ahí estaban sus
+mejores posiciones (Castillo, Gómez-Jurado, Pérez-Reverte…). Antes cubría 4 géneros y competía de
+frente con los gigantes en todos. Se decidió con datos de GSC (`gsc-report.js`).
+
+- **Núcleo:** array `thriller` (23 libros). Aquí va todo el contenido nuevo.
+- **Secundario que se conserva:** array `novelas`, reducido a **distopía/ci-fi** (`1984`, `Un mundo
+  feliz`), que ya rankeaba ("ciencia ficción distópica" en pos. 6). Su hub `/novelas/` se re-etiquetó
+  como "Distopía y ciencia ficción" (la URL sigue siendo `/novelas/`, no se rompe SEO).
+- **Podado:** desarrollo personal (`/no-ficcion/`) y romance/romantasy (`/romantasy/`) enteros, más las
+  novelas literarias que no rankeaban, y 11 guías fuera de nicho. Los arrays `desarrollo` y `romantasy`
+  quedan **vacíos** en `index.html` (el generador los sigue leyendo sin fallar) y ya no están en `CATS`.
+- **Tres libros se movieron** de `novelas` a `thriller` conservando su id (`n3` El problema final, `n16`
+  Terra Alta, `n17` El italiano). Por eso el array `thriller` tiene ids con prefijo `n`: es a propósito.
+- **`_redirects`** (raíz) redirige con 301 las ~73 URLs viejas: los 3 movidos a su nueva `/thriller/…`,
+  y libros/hubs/guías podados a home o a `/guias/`. Es **imprescindible**: Cloudflare sirve 200 en rutas
+  inexistentes (ver trampas), así que sin redirección quedarían soft-404. Se regenera comparando el
+  sitemap nuevo con el viejo si se vuelve a podar.
+- **Ángulo editorial:** cada ficha responde "¿debería leerlo? ¿es para mí? ¿por dónde entro?". La
+  plantilla usa encabezados "De qué trata" / "¿Es para ti?" / "¿Deberías leerlo?".
+
+(Ampliar el catálogo más adelante es la vía prevista; el nicho estrecho es el punto de partida, no un dogma.)
 
 ## Scripts (`tools/`)
 
