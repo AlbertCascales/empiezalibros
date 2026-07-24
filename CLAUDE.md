@@ -25,6 +25,11 @@ Si un libro llega sin `added`, el generador no falla: usa hoy y lo avisa por con
 
 ## Nicho: thriller, misterio y suspense (23/07/2026)
 
+**OBJETIVO (el norte de todo).** La web tiene un doble foco que guía TODAS las decisiones —contenido,
+copy, diseño, SEO—: **(1) el público es el lector que empieza o vuelve a leer** ("¿debería leerlo? ¿es
+para mí? ¿por dónde entro?"), y **(2) el género es thriller/misterio/suspense**. Cualquier cambio se
+mide contra ese doble foco: si no sirve al lector que arranca o no es de thriller, no entra.
+
 La web se **centró en thriller/misterio/suspense** tras ver en Search Console que ahí estaban sus
 mejores posiciones (Castillo, Gómez-Jurado, Pérez-Reverte…). Antes cubría 4 géneros y competía de
 frente con los gigantes en todos. Se decidió con datos de GSC (`gsc-report.js`).
