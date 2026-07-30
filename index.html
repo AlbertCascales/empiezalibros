@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" href="/favicon.png">
 <link rel="alternate" type="application/rss+xml" title="EmpiezaLibros — Novedades" href="/rss.xml">
 <title>Thriller y misterio: por dónde empezar · Reseñas honestas | EmpiezaLibros</title>
-<meta name="description" content="Thrillers, misterio y novela negra explicados para decidir: de qué va cada libro, si es para ti y por dónde empezar cada saga. Reseñas honestas, sin opiniones inventadas.">
+<meta name="description" content="Thrillers, misterio y novela negra explicados para decidir: de qué va cada libro, si es para ti y por dónde empezar cada saga. Reseñas honestas.">
 <meta name="robots" content="index, follow">
 
 <link rel="canonical" href="https://empiezalibros.es/">
@@ -18,7 +18,7 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:site_name" content="EmpiezaLibros">
 <meta property="og:title" content="Thriller y misterio: por dónde empezar · Reseñas honestas">
-<meta property="og:description" content="Thrillers y misterio explicados para decidir: de qué va cada libro, si es para ti y por dónde empezar cada saga. Sin opiniones inventadas.">
+<meta property="og:description" content="Thrillers y misterio explicados para decidir: de qué va cada libro, si es para ti y por dónde empezar cada saga.">
 <meta property="og:url" content="https://empiezalibros.es/">
 <meta property="og:image" content="https://empiezalibros.es/img/og-cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -812,7 +812,7 @@ function createCard(p){
   return div;
 }
 
-const PREVIEW = 6;
+const PREVIEW = 8;
 function renderGrid(arr, gridId){
   const grid = document.getElementById(gridId);
   if (!grid) return;
@@ -869,7 +869,7 @@ function renderFeatured(){
 // Guías
 function renderGuides(){
   const grid = document.getElementById('guidesGrid');
-  grid.innerHTML = Object.keys(guides).map(id => {
+  grid.innerHTML = Object.keys(guides).slice(0, 6).map(id => {
     const g = guides[id];
     // Gancho: la primera frase del cuerpo, sin HTML, para que la tarjeta invite a entrar.
     const hook = g.body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().replace(/^(.*?\.)\s.*/, '$1').slice(0, 130);
