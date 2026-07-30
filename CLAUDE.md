@@ -68,8 +68,10 @@ frente con los gigantes en todos. Se decidió con datos de GSC (`gsc-report.js`)
 FFmpeg, gratis, sin GPU). Voz/música vía sesión HeyGen (OAuth en `~/.heygen/`). La estética de marca
 (preset blockframe recoloreado a azul marino `#101a2b` / azul `#4d8fd6`) vive en
 `tools/video-assets/` (`frame.md` + `caption-skin.html`) y se versiona; los proyectos generados en
-`videos/` **no** (está en `.gitignore`). Publicar en TikTok es manual (no hay API gratis); estos
-vídeos NO son una rutina programada — se revisa gancho y voz cada vez.
+`videos/` **no** (está en `.gitignore`). La rutina `empiezalibros-tiktok-video` genera 1 vídeo cada
+3 días leyendo `plan-tiktok/calendario-tiktok.txt` (calendario máquina) y `plan-tiktok/generados.txt`
+(estado); el agente afina gancho y voz en cada ejecución. Publicar en TikTok sigue siendo **manual**
+(no hay API gratis).
 
 `telegram-post.js` es de **ruta fija a propósito**: existe para que las rutinas programadas no
 improvisen `node -e "..."`, que disparaba aprobaciones de permisos cada día.
@@ -93,15 +95,15 @@ si `gsc-report.js` devuelve 403 "API has not been used", es que se deshabilitó.
 
 ## Rutinas programadas
 
-En `C:\Users\marti\.claude\scheduled-tasks\` (cada una con su `SKILL.md`). Hay dos, ambas **pausadas
-ahora mismo** (`enabled: false`, desde el 23/07/2026):
+En `C:\Users\marti\.claude\scheduled-tasks\` (cada una con su `SKILL.md`):
 
-| Rutina | Hora | Qué hace |
-|---|---|---|
-| `empiezalibros-contenido-auto` | 04:00 diario | Solo web: añade 1 libro + 1 guía que falten, portada, regenera y hace push. **No toca Telegram.** |
-| `empiezalibros-telegram-backfill` | 05:00 diario | Solo Telegram: publica 1 pendiente. Estado en su `estado.json`. **No toca git.** |
+| Rutina | Hora | Estado | Qué hace |
+|---|---|---|---|
+| `empiezalibros-contenido-auto` | 04:00 diario | **pausada** (23/07/2026) | Solo web: añade 1 libro + 1 guía que falten, portada, regenera y hace push. **No toca Telegram.** |
+| `empiezalibros-telegram-backfill` | 05:00 diario | **pausada** (23/07/2026) | Solo Telegram: publica 1 pendiente. Estado en su `estado.json`. **No toca git.** |
+| `empiezalibros-tiktok-video` | 10:00 diario | **activa** (30/07/2026) | Genera el vídeo TikTok que toque según `plan-tiktok/calendario-tiktok.txt` (1 cada 3 días). Solo produce el MP4 en `videos/`; **no toca git ni Telegram** y **no sube a TikTok** (manual). En los días intermedios no hace nada. |
 
-Las dos son **independientes**: Telegram publica el pendiente más antiguo de la web, no lo generado
+Las dos primeras son **independientes**: Telegram publica el pendiente más antiguo de la web, no lo generado
 ese mismo día. Cuando están activas la web crece 1/día y Telegram publica 1/día, y el desfase no se
 cierra nunca — es intencional y asumido.
 

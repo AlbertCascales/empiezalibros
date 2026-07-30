@@ -91,4 +91,8 @@ sumar guías nuevas según crezca el catálogo.
   líneas de voz unidas con comas/`;`.
 - `videos/` está en `.gitignore` (proyectos grandes). Los activos de marca (`frame.md`,
   `caption-skin.html`) sí se versionan, en `tools/video-assets/`.
-- Estos vídeos son **manuales por diseño** (no una rutina programada): revisar gancho y voz cada vez.
+- **Automatizado**: la rutina `empiezalibros-tiktok-video` (10:00 diario) lee el calendario máquina
+  `plan-tiktok/calendario-tiktok.txt` + `plan-tiktok/generados.txt` y genera el vídeo que toque (1 cada
+  3 días; nada en los días intermedios). Genera el MP4 en `videos/`; la subida a TikTok sigue siendo
+  **manual**. El calendario máquina solo lleva las 11 guías existentes; al redactar las 6 nuevas, se
+  añaden sus bloques a `calendario-tiktok.txt`.

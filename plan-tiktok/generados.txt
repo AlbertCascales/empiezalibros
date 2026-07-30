@@ -1,0 +1,2 @@
+# Vídeos de TikTok ya generados (un número de vídeo por línea).
+# La tarea programada 'empiezalibros-tiktok-video' lee este fichero para saber cuáles quedan.

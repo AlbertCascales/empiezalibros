@@ -1,0 +1,115 @@
+╔══════════════════════════════════════════════════════════════════╗
+║   CALENDARIO TIKTOK · EmpiezaLibros                                ║
+║   1 vídeo cada 3 días · 11 vídeos · del 01/08/2026 al 31/08/2026   ║
+╚══════════════════════════════════════════════════════════════════╝
+
+Cómo usar este fichero:
+- Cada bloque es un vídeo, en orden de publicación (se front-cargan los autores
+  que mejor rankean en Search Console: Gómez-Jurado, King, Christie, novela negra).
+- Copia el texto entre las líneas «COPIAR ▼» y «▲» y pégalo tal cual en el caption
+  de TikTok (ya incluye los hashtags).
+- El link va en la BIO (empiezalibros.es); TikTok no deja links clicables en el vídeo.
+- El vídeo se genera desde su guía con:  node tools/scaffold-video.js <idGuía>
+- Solo hay guías que YA existen en index.html. Las 6 guías nuevas de
+  tools/video-assets/PLAN-tiktok.md (Javier Castillo, Carmen Mola, Pérez-Reverte,
+  thrillers con giro, thrillers psicológicos, novedades 2026) se AÑADEN a este
+  calendario cuando estén redactadas y generadas.
+
+BIO DE LA CUENTA (fíjala una vez):
+────────────────────────────────────────
+📚 Thriller, misterio y suspense sin spoilers
+¿Debería leerlo? ¿Por dónde empiezo? Te lo digo claro
+📩 Guías gratis 👇
+empiezalibros.es
+────────────────────────────────────────
+
+
+════════════════════════════════════════════════════════════════════
+VÍDEO 1 · 01/08/2026 · g22 — Gómez-Jurado, orden saga Reina Roja
+Landing: empiezalibros.es/guias/juan-gomez-jurado-por-donde-empezar-y-en-que-orden-leer-la-saga-reina-roja/
+COPIAR ▼
+¿Quieres leer a Gómez-Jurado pero no sabes por dónde empezar? El error nº1 es empezar por el libro equivocado y comerte spoilers de Antonia Scott 📚 Te digo el orden exacto. Guía completa GRATIS en la bio 👇
+
+#libros #booktok #librostiktok #thriller #reinaroja #gomezjurado #antoniascott #librosrecomendados #quéleer #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 2 · 04/08/2026 · g13 — Stephen King, por dónde empezar
+Landing: empiezalibros.es/guias/stephen-king-por-donde-empezar-a-leer-al-maestro-del-terror/
+COPIAR ▼
+Stephen King tiene 60+ libros y NO deberías empezar por el más famoso 📕 Te digo cuál es la mejor puerta de entrada al maestro del terror (y cuál dejar para más tarde). Guía gratis en la bio 👇
+
+#libros #booktok #stephenking #terror #librostiktok #miedo #librosdeterror #librosrecomendados #quéleer #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 3 · 07/08/2026 · g12 — Agatha Christie, por dónde empezar
+Landing: empiezalibros.es/guias/agatha-christie-por-donde-empezar-a-leer-a-la-reina-del-misterio/
+COPIAR ▼
+Agatha Christie escribió 66 novelas: ¿por cuál empiezas? 🕵️ Te digo los 3 imprescindibles para engancharte a la reina del misterio sin agobiarte. Guía completa gratis en la bio 👇
+
+#libros #booktok #agathachristie #misterio #librostiktok #novelanegra #whodunit #librosrecomendados #quéleer #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 4 · 10/08/2026 · g4 — Novela negra española, por dónde empezar
+Landing: empiezalibros.es/guias/novela-negra-espanola-por-donde-empezar/
+COPIAR ▼
+La novela negra española está en su mejor momento y no es solo Gómez-Jurado 🖤 Te doy la puerta de entrada perfecta si empiezas con el género. Guía gratis en la bio 👇
+
+#libros #booktok #novelanegra #librosespañoles #librostiktok #thriller #misterio #librosrecomendados #quéleer #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 5 · 13/08/2026 · g10 — Ciencia ficción distópica imprescindible
+Landing: empiezalibros.es/guias/ciencia-ficcion-distopica-las-novelas-imprescindibles-para-empezar/
+COPIAR ▼
+1984 o Un mundo feliz: ¿por cuál empiezas la distopía? 👁️ Dos clásicos que dan MÁS miedo hoy que cuando se escribieron. Te digo cuál leer primero. Guía gratis en la bio 👇
+
+#libros #booktok #distopia #1984 #unmundofeliz #cienciaficcion #librostiktok #librosrecomendados #quéleer #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 6 · 16/08/2026 · g15 — Libros cortos para reengancharte
+Landing: empiezalibros.es/guias/libros-cortos-para-reengancharte-a-la-lectura/
+COPIAR ▼
+¿Llevas meses sin terminar un libro? 📖 Empieza por uno CORTO que se lee de una sentada y te devuelve las ganas. Te doy los mejores. Guía gratis en la bio 👇
+
+#libros #booktok #librostiktok #librescortos #leer #habitodelectura #librosrecomendados #quéleer #lectura #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 7 · 19/08/2026 · g1 — Mejores libros para empezar a leer
+Landing: empiezalibros.es/guias/los-mejores-libros-para-empezar-a-leer-en-2026/
+COPIAR ▼
+Si quieres retomar la lectura en 2026, NO empieces por un tocho de 800 páginas 📚 Te doy los libros que enganchan desde la primera página. Guía gratis en la bio 👇
+
+#libros #booktok #librostiktok #leer2026 #empezaraleer #lectura #librosrecomendados #quéleer #habitodelectura #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 8 · 22/08/2026 · g6 — Cómo crear el hábito de leer
+Landing: empiezalibros.es/guias/como-crear-el-habito-de-leer-y-no-abandonarlo/
+COPIAR ▼
+No lees más por falta de tiempo, sino por 3 errores que tienen fácil arreglo 📖 Te digo cómo crear el hábito de leer y no abandonarlo a la semana. Guía gratis en la bio 👇
+
+#libros #booktok #habitodelectura #leermas #librostiktok #leer #lectura #productividad #librosrecomendados #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 9 · 25/08/2026 · g2 — Qué leer según tu estado de ánimo
+Landing: empiezalibros.es/guias/como-elegir-tu-proxima-lectura-segun-tu-estado-de-animo/
+COPIAR ▼
+No sabes qué leer porque estás eligiendo mal 🎭 Elige por cómo te sientes HOY y aciertas siempre. Te doy el libro para cada estado de ánimo. Guía gratis en la bio 👇
+
+#libros #booktok #quéleer #librostiktok #lectura #librosrecomendados #leer #recomendaciones #booktokespañol #lecturas
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 10 · 28/08/2026 · g3 — Los más vendidos de 2025
+Landing: empiezalibros.es/guias/los-libros-mas-vendidos-de-2025-que-tienes-que-leer/
+COPIAR ▼
+Los libros más vendidos de 2025 que TODOS están leyendo 📚 ¿Merecen la pena o es puro hype? Te lo digo sin filtros. Guía completa gratis en la bio 👇
+
+#libros #booktok #librostiktok #masvendidos #bestseller #librosrecomendados #quéleer #lectura #libros2025 #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
+VÍDEO 11 · 31/08/2026 · g7 — Libros para leer en la playa
+Landing: empiezalibros.es/guias/los-mejores-libros-para-leer-en-la-playa-este-verano-2026/
+COPIAR ▼
+El libro perfecto para la playa: engancha, no pesa y no te deja soltar la toalla ☀️📖 Te doy los mejores para este verano. Guía gratis en la bio 👇
+
+#libros #booktok #librosdeverano #playa #librostiktok #verano2026 #lecturadeverano #librosrecomendados #quéleer #booktokespañol
+▲
+════════════════════════════════════════════════════════════════════
