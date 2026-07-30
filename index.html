@@ -243,7 +243,7 @@
     <div class="guides-grid" id="guidesGrid"></div>
   </section>
 
-  <!-- TELEGRAM -->
+  <!-- TELEGRAM (oculto: canal y backend siguen activos, solo no se muestra en la web)
   <section>
     <div class="telegram-cta">
       <div class="tg-icon">📣</div>
@@ -254,8 +254,9 @@
       <a class="tg-btn" href="https://t.me/Empiezalibros" target="_blank" rel="noopener">✈️ Unirme al canal</a>
     </div>
   </section>
+  -->
 
-  <!-- NEWSLETTER -->
+  <!-- NEWSLETTER (oculto: formulario MailerLite sigue activo, solo no se muestra en la web)
   <section>
     <div class="newsletter">
       <h3>📩 No te pierdas las novedades literarias</h3>
@@ -269,13 +270,14 @@
       <small>Te puedes dar de baja cuando quieras. Lee nuestra <a href="/privacidad/" style="color:var(--lime)">política de privacidad</a>.</small>
     </div>
   </section>
+  -->
 
 </main>
 
 <footer>
   <div class="footer-logo">Empieza<span>Libros</span></div>
   <p>Reseñas honestas y novedades literarias. Actualizadas en 2026.</p>
-  <p style="margin-top:.6rem;font-size:.8rem"><a href="/sobre-nosotros/" style="color:var(--gray-3)">Sobre nosotros</a> · <a href="/contacto/" style="color:var(--gray-3)">Contacto</a> · <a href="/privacidad/" style="color:var(--gray-3)">Privacidad</a> · <a href="https://t.me/Empiezalibros" target="_blank" rel="noopener" style="color:var(--lime)">📣 Telegram</a></p>
+  <p style="margin-top:.6rem;font-size:.8rem"><a href="/sobre-nosotros/" style="color:var(--gray-3)">Sobre nosotros</a> · <a href="/contacto/" style="color:var(--gray-3)">Contacto</a> · <a href="/privacidad/" style="color:var(--gray-3)">Privacidad</a></p>
   <p class="affiliate-disclaimer">Como Afiliado de Amazon, EmpiezaLibros obtiene ingresos por las compras adscritas que cumplan los requisitos aplicables.</p>
 </footer>
 
@@ -582,51 +584,51 @@ const guides = {
     added: '2026-06-30',
     cat: 'Guía de lectura', meta: 'Actualizado junio 2026 · 7 min lectura',
     title: 'Los mejores libros para empezar a leer en 2026',
-    body: `<p>Volver a leer (o empezar de cero) cuesta menos de lo que parece si eliges el libro adecuado. La clave no es leer "lo importante", sino leer algo que no puedas soltar.</p>
+    body: `<p>Volver a leer (o empezar de cero) cuesta menos de lo que parece si eliges el libro adecuado. La clave no es leer "lo importante", sino leer algo que no puedas soltar. Y para eso no hay mejor puerta de entrada que el thriller.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Empieza por algo adictivo, no por un clásico</h4>
-<p>Si llevas tiempo sin leer, un thriller con capítulos cortos como <strong>Reina Roja</strong> o <strong>Todo arde</strong> de Juan Gómez-Jurado es perfecto: el ritmo te arrastra y recuperas el hábito sin esfuerzo.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Elige libros de menos de 350 páginas</h4>
-<p>Terminar un libro genera motivación. Títulos como <strong>La biblioteca de la medianoche</strong> o <strong>Cien cuyes</strong> se leen en pocos días y te dan ese empujón.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Lee lo que te apetece, sin culpa</h4>
-<p>Romantasy, autoayuda, novela negra... el "mejor" género es el que te hace querer volver a las páginas. No hay lecturas culpables.</p>`,
+<p>Si llevas tiempo sin leer, un thriller con capítulos cortos como <strong>Reina roja</strong> o <strong>Todo arde</strong> de Juan Gómez-Jurado es perfecto: el ritmo te arrastra y recuperas el hábito sin esfuerzo.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Elige libros que se lean rápido</h4>
+<p>Terminar un libro genera motivación. Thrillers como <strong>La paciente silenciosa</strong> o <strong>La asistenta</strong> se devoran en pocos días gracias a sus capítulos cortos y su giro final, y te dan ese empujón para seguir.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Déjate llevar por el gancho, no por el prestigio</h4>
+<p>Un misterio de habitación cerrada como <strong>Diez negritos</strong>, un giro imposible como el de <strong>Perdida</strong> o el terror psicológico de <strong>El resplandor</strong>: el "mejor" libro es el que te hace querer volver a las páginas. No hay lecturas culpables.</p>`,
     links: [
-      { text: 'Ver los más vendidos en Amazon', query: 'libros más vendidos 2026' },
-      { text: 'Reina Roja – ideal para reengancharte', query: 'Reina roja Juan Gómez-Jurado' }
+      { text: 'Reina roja – ideal para reengancharte', query: 'Reina roja Juan Gómez-Jurado' },
+      { text: 'La paciente silenciosa en Amazon', query: 'La paciente silenciosa Alex Michaelides' }
     ]
   },
   g2: {
     added: '2026-06-30',
     cat: 'Recomendaciones', meta: 'Actualizado junio 2026 · 6 min lectura',
-    title: 'Cómo elegir tu próxima lectura según tu estado de ánimo',
-    body: `<p>No siempre apetece el mismo tipo de libro. Elegir según cómo te sientes es la forma más fiable de acertar.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">😩 Necesitas evadirte</h4>
-<p>Romantasy y fantasía: <strong>Alas de sangre</strong> o <strong>Una corte de rosas y espinas</strong> te transportan a otro mundo en una sola tarde.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">⚡ Quieres adrenalina</h4>
-<p>Thriller puro: <strong>El cuco de cristal</strong> o <strong>Todo arde</strong>, con giros y capítulos que no te dejan apagar la luz.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🌱 Buscas reflexionar o mejorar</h4>
-<p>No ficción: <strong>Hábitos atómicos</strong> para ordenar tu vida o <strong>Sapiens</strong> para mirar el mundo con otra perspectiva.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">💛 Quieres emocionarte</h4>
-<p>Novela: <strong>Cien cuyes</strong> o <strong>Las hijas de la criada</strong>, historias que tocan el corazón.</p>`,
+    title: 'Elige tu próximo thriller según tu estado de ánimo',
+    body: `<p>No siempre apetece el mismo tipo de intriga. Elegir el thriller según cómo te sientes es la forma más fiable de acertar y no abandonarlo a la mitad.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">⚡ Quieres adrenalina pura</h4>
+<p>Capítulos cortos y ritmo trepidante: <strong>Todo arde</strong> de Juan Gómez-Jurado o <strong>El cuco de cristal</strong> de Javier Castillo no te dejan apagar la luz.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🧩 Te apetece un puzzle mental</h4>
+<p>Misterio clásico para resolver desde el sillón: <strong>Diez negritos</strong> de Agatha Christie o <strong>El problema final</strong> de Arturo Pérez-Reverte, puro enigma de habitación cerrada.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">😱 Buscas que te dé miedo de verdad</h4>
+<p>Terror y tensión que no se olvida: <strong>El resplandor</strong> de Stephen King o <strong>El silencio de los corderos</strong> de Thomas Harris.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🌀 Quieres un giro que no veas venir</h4>
+<p>Finales que lo cambian todo: <strong>La paciente silenciosa</strong> de Alex Michaelides o <strong>Perdida</strong> de Gillian Flynn.</p>`,
     links: [
-      { text: 'Explorar romantasy en Amazon', query: 'romantasy libros 2026' },
-      { text: 'Explorar thriller en Amazon', query: 'thriller novela negra 2026' }
+      { text: 'El cuco de cristal en Amazon', query: 'El cuco de cristal Javier Castillo' },
+      { text: 'La paciente silenciosa en Amazon', query: 'La paciente silenciosa Alex Michaelides' }
     ]
   },
   g3: {
     added: '2026-06-30',
     cat: 'Top ventas', meta: 'Actualizado junio 2026 · 8 min lectura',
-    title: 'Los libros más vendidos de 2025 que tienes que leer',
-    body: `<p>Estos son los títulos que han dominado las listas de ventas y que siguen siendo conversación obligada en 2026.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥇 La península de las casas vacías – David Uclés</h4>
-<p>El gran fenómeno de la narrativa española reciente: realismo mágico sobre la Guerra Civil que ha conquistado a crítica y lectores.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥈 Alas de sangre – Rebecca Yarros</h4>
-<p>La romantasy de dragones que ha creado una legión de lectores nuevos en todo el mundo.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥉 Todo arde – Juan Gómez-Jurado</h4>
-<p>El thriller patrio más comentado, con una protagonista que reúne a un comando de mujeres imparables.</p>
-<p style="margin-top:1rem;">Completan la lista <strong>Las hijas de la criada</strong>, <strong>El cuco de cristal</strong> y <strong>Hábitos atómicos</strong>, que se mantiene siempre en lo más alto de no ficción.</p>`,
+    title: 'Los thrillers más vendidos que tienes que leer',
+    body: `<p>Estos son los thrillers que han dominado las listas de ventas y que siguen siendo conversación obligada entre los lectores del género.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥇 Todo arde – Juan Gómez-Jurado</h4>
+<p>El thriller patrio más comentado de los últimos años, con una protagonista que reúne a un comando de mujeres imparables. Adicción pura desde la primera página.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥈 La asistenta – Freida McFadden</h4>
+<p>El fenómeno del thriller doméstico: una limpiadora, una casa perfecta y un giro que se ha recomendado de boca en boca en todo el mundo.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🥉 El cuco de cristal – Javier Castillo</h4>
+<p>El maestro español del giro imposible: un misterio con vueltas de tuerca pensadas para sorprenderte hasta la última línea.</p>
+<p style="margin-top:1rem;">Completan la lista <strong>Reina roja</strong>, el arranque de la saga de Antonia Scott, <strong>La chica de nieve</strong> y <strong>La paciente silenciosa</strong>, tres títulos que no faltan en ninguna estantería de thriller.</p>`,
     links: [
-      { text: 'Ver el top ventas en Amazon', query: 'libros más vendidos 2025' },
-      { text: 'La península de las casas vacías', query: 'La península de las casas vacías David Uclés' }
+      { text: 'Todo arde en Amazon', query: 'Todo arde Juan Gómez-Jurado' },
+      { text: 'La asistenta en Amazon', query: 'La asistenta Freida McFadden' }
     ]
   },
   g4: {
@@ -648,32 +650,32 @@ const guides = {
   g6: {
     added: '2026-06-30',
     cat: 'Hábito de lectura', meta: 'Actualizado mayo 2026 · 6 min lectura',
-    title: 'Cómo crear el hábito de leer (y no abandonarlo)',
-    body: `<p>Leer más no es cuestión de fuerza de voluntad, sino de sistema. Estos trucos funcionan de verdad.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Asocia la lectura a un momento fijo</h4>
-<p>10 minutos antes de dormir o con el café de la mañana. Vincularlo a algo que ya haces cada día (como enseña <strong>Hábitos atómicos</strong>) es la base de todo.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Ten siempre el libro a la vista</h4>
+    title: 'Cómo crear el hábito de leer (empezando por thrillers que enganchan)',
+    body: `<p>Leer más no es cuestión de fuerza de voluntad, sino de sistema... y de elegir bien el primer libro. Un thriller que no puedas soltar hace la mitad del trabajo. Estos trucos funcionan de verdad.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">1. Empieza por algo que no puedas soltar</h4>
+<p>Un thriller de capítulos cortos como <strong>Reina roja</strong> de Juan Gómez-Jurado o <strong>La asistenta</strong> de Freida McFadden crea el "solo un capítulo más" que te devuelve el hábito sin esfuerzo.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">2. Asocia la lectura a un momento fijo</h4>
+<p>10 minutos antes de dormir o con el café de la mañana. Vincularlo a algo que ya haces cada día es la base de todo; el gancho del thriller hace el resto.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Ten siempre el libro a la vista</h4>
 <p>En la mesilla, en el bolso, en el móvil. Cuanto menos esfuerzo cueste empezar, más leerás.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">3. Permítete abandonar libros</h4>
-<p>Si un libro te aburre, déjalo. Forzarte mata el hábito. Pasa al siguiente sin remordimientos.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. Marca pequeñas metas</h4>
-<p>Un libro al mes son 12 al año. No necesitas más para considerarte lector.</p>`,
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">4. Permítete abandonar libros</h4>
+<p>Si un libro te aburre, déjalo y pasa al siguiente sin remordimientos. Un giro como el de <strong>La paciente silenciosa</strong> demuestra que el problema casi nunca eres tú: es el libro equivocado.</p>`,
     links: [
-      { text: 'Hábitos atómicos en Amazon', query: 'Hábitos atómicos James Clear' },
-      { text: 'Ver e-readers Kindle en Amazon', query: 'Kindle ereader' }
+      { text: 'Reina roja en Amazon', query: 'Reina roja Juan Gómez-Jurado' },
+      { text: 'La asistenta en Amazon', query: 'La asistenta Freida McFadden' }
     ]
   },
   g7: {
     added: '2026-06-30',
     cat: 'Verano', meta: 'Actualizado junio 2026 · 7 min lectura',
-    title: 'Los mejores libros para leer en la playa este verano 2026',
-    body: `<p>El verano es la excusa perfecta para darte un atracón de lectura. Aquí tienes la selección más completa según lo que te apetece: adrenalina, evasión o emoción, con opciones para todos los gustos.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🏖️ Para devorar bajo el sol: thrillers de ritmo trepidante</h4>
-<p>El género ideal para la playa: capítulos cortos que no te dejan parar. <strong>La chica del tren</strong> de Paula Hawkins es la apuesta segura, con una narradora poco fiable y un giro final demoledor. Si prefieres algo más reciente y en español, <strong>Reina Roja</strong> de Juan Gómez-Jurado no tiene rival: addicción pura desde la primera página. Para giros imposibles, <strong>El cuco de cristal</strong> de Javier Castillo es otra garantía de noches sin dormir en el hotel.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🐉 Para perderte en otro mundo: romantasy y fantasía</h4>
-<p>Si quieres desconectar de verdad, la fantasía te transporta donde el sol no abrasa. <strong>Alas de sangre</strong> de Rebecca Yarros tiene todo lo que pide el verano: acción, romance y dragones. Si ya la leíste, sigue con <strong>Alas de hierro</strong> o da el salto a <strong>Una corte de rosas y espinas</strong> de Sarah J. Maas, el clásico moderno del romantasy. Para algo más tranquilo y emotivo, <strong>Promesas crueles</strong> de Rebecca Ross es perfecta: epistolar, tierna y se lee en dos tardes.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">📖 Para terminar en dos sentadas: novelas cortas y emotivas</h4>
-<p>Si tienes poco tiempo o quieres terminar algo antes de que acaben las vacaciones, apuesta por libros de menos de 350 páginas. <strong>Cien cuyes</strong> de Gustavo Rodríguez (232 páginas) es una pequeña joya sobre la dignidad que deja poso. <strong>La biblioteca de la medianoche</strong> de Matt Haig (320 páginas) es la lectura reconfortante perfecta para volver a casa con buen sabor de boca. <strong>Pequeñas cosas como estas</strong> de Claire Keegan (128 páginas) se despacha en una tarde y te acompaña días.</p>
+    title: 'Los mejores thrillers para leer en la playa este verano 2026',
+    body: `<p>El verano es la excusa perfecta para darte un atracón de intriga. El thriller es el género ideal para la playa: capítulos cortos que no te dejan parar y giros que comentar en la sombrilla. Aquí tienes la selección según lo que te apetezca.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🏖️ Para devorar bajo el sol: ritmo trepidante</h4>
+<p><strong>La chica del tren</strong> de Paula Hawkins es la apuesta segura, con una narradora poco fiable y un giro final demoledor. Si prefieres algo en español, <strong>Reina roja</strong> de Juan Gómez-Jurado no tiene rival: adicción pura desde la primera página.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🌀 Para giros imposibles</h4>
+<p><strong>El cuco de cristal</strong> de Javier Castillo es garantía de noches sin dormir en el hotel, y <strong>La asistenta</strong> de Freida McFadden esconde una vuelta de tuerca que no verás venir.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">🌙 Para la última noche de vacaciones: tensión psicológica</h4>
+<p><strong>La paciente silenciosa</strong> de Alex Michaelides y <strong>En plena noche</strong> de Mikel Santiago cierran el verano con el pulso acelerado.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">💡 ¿Papel o ebook en la playa?</h4>
 <p>El ebook gana en practicidad: pesa poco, no se estropea con la brisa, y en un Kindle la pantalla sin reflejos se lee incluso bajo el sol de agosto. Si prefieres papel, elige edición de bolsillo (Booket, Debolsillo, Suma) para no llevar un ladrillo en la mochila.</p>`,
     links: [
@@ -738,19 +740,19 @@ const guides = {
   g15: {
     added: '2026-07-16',
     cat: 'Hábito de lectura', meta: 'Actualizado julio 2026 · 6 min lectura',
-    title: 'Libros cortos para reengancharte a la lectura',
-    body: `<p>Si llevas meses (o años) sin terminar un libro, el problema casi nunca es la falta de tiempo: es empezar por algo demasiado largo o denso. Un libro corto que sí terminas hace más por tu hábito lector que diez que abandonas a la mitad. Aquí van las mejores opciones según cuánto quieras arriesgar.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Menos de 150 páginas: el mínimo compromiso</h4>
-<p><strong>El extranjero</strong> de Albert Camus (128 páginas) es el ejemplo perfecto: una novela breve, seca y sin relleno que se lee en una sola tarde y sin embargo se queda dando vueltas en la cabeza semanas después. <strong>Pequeñas cosas como estas</strong> de Claire Keegan (128 páginas) funciona igual: una historia mínima en extensión pero enorme en lo que cuenta, ideal si quieres terminar un libro este mismo fin de semana.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Entre 200 y 250 páginas: ya con algo más de trama</h4>
-<p>Si el libro anterior te supo a poco, <strong>Cien cuyes</strong> de Gustavo Rodríguez (232 páginas) da un paso más: personajes que evolucionan, una trama con recorrido y la misma sensación de "esto se lee rápido" que necesitas para no abandonar.</p>
-<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Por qué la brevedad ayuda (y no es "leer menos")</h4>
-<p>Terminar un libro genera la motivación que empezar uno no da. Un libro corto bien elegido no es un premio de consolación: autores como Camus o Keegan escriben precisamente así, sin una palabra de más, porque la brevedad es una decisión literaria, no una limitación.</p>
+    title: 'Thrillers cortos y adictivos para reengancharte a la lectura',
+    body: `<p>Si llevas meses (o años) sin terminar un libro, el problema casi nunca es la falta de tiempo: es empezar por algo demasiado largo o denso. Un thriller de capítulos cortos que sí terminas hace más por tu hábito lector que diez novelas que abandonas a la mitad. Aquí van las mejores opciones según cuánto quieras arriesgar.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">El mínimo compromiso: un giro y a por el siguiente</h4>
+<p><strong>La asistenta</strong> de Freida McFadden es el ejemplo perfecto: capítulos brevísimos, un misterio doméstico y un giro que te empuja a seguir pasando páginas casi sin darte cuenta. Se lee en un par de tardes y te devuelve las ganas de leer.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Un paso más: tensión psicológica que engancha</h4>
+<p>Si el anterior te supo a poco, <strong>La paciente silenciosa</strong> de Alex Michaelides da el salto: una trama con más recorrido pero el mismo "esto se lee solo", con un final que justifica cada página.</p>
+<h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">Si quieres misterio puro y contenido</h4>
+<p><strong>El problema final</strong> de Arturo Pérez-Reverte es un homenaje al misterio de habitación cerrada: elegante, autoconclusivo y perfecto para terminar un libro este mismo fin de semana.</p>
 <h4 style="margin:1rem 0 0.4rem;color:var(--black);font-family:'DM Serif Display',serif;">El truco para no volver a atascarte</h4>
-<p>Encadena dos o tres libros cortos antes de atreverte con algo de 500 páginas. Cuando ya llevas dos libros terminados en un mes, el libro largo deja de dar respeto: ya has demostrado (a ti mismo) que puedes acabar lo que empiezas.</p>`,
+<p>Encadena dos o tres thrillers cortos antes de atreverte con algo de 500 páginas. Cuando ya llevas dos libros terminados en un mes, el libro largo deja de dar respeto: ya has demostrado (a ti mismo) que puedes acabar lo que empiezas.</p>`,
     links: [
-      { text: 'El extranjero en Amazon', query: 'El extranjero Albert Camus' },
-      { text: 'Pequeñas cosas como estas en Amazon', query: 'Pequeñas cosas como estas Claire Keegan' }
+      { text: 'La asistenta en Amazon', query: 'La asistenta Freida McFadden' },
+      { text: 'La paciente silenciosa en Amazon', query: 'La paciente silenciosa Alex Michaelides' }
     ]
   },
   g22: {

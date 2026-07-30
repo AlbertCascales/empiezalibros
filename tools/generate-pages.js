@@ -227,6 +227,7 @@ ${ld}
 <main class="wrap">
 ${body}
 </main>
+<!-- NEWSLETTER oculto (formulario MailerLite sigue activo, solo no se muestra en la web)
 <div class="wrap" style="padding-top:0">
 <section class="newsletter">
 <h3>📩 No te pierdas las novedades literarias</h3>
@@ -240,10 +241,11 @@ ${body}
 <small>Te puedes dar de baja cuando quieras. Lee nuestra <a href="/privacidad/" style="color:var(--lime)">política de privacidad</a>.</small>
 </section>
 </div>
+-->
 <footer>
 <div class="logo">Empieza<span>Libros</span></div>
 <p>Reseñas honestas y novedades literarias · Actualizadas en 2026.</p>
-<p style="margin-top:.6rem"><a href="/sobre-nosotros/" style="color:var(--gray-3)">Sobre nosotros</a> · <a href="/contacto/" style="color:var(--gray-3)">Contacto</a> · <a href="/privacidad/" style="color:var(--gray-3)">Privacidad</a> · <a href="https://t.me/Empiezalibros" target="_blank" rel="noopener" style="color:var(--lime)">📣 Telegram</a></p>
+<p style="margin-top:.6rem"><a href="/sobre-nosotros/" style="color:var(--gray-3)">Sobre nosotros</a> · <a href="/contacto/" style="color:var(--gray-3)">Contacto</a> · <a href="/privacidad/" style="color:var(--gray-3)">Privacidad</a></p>
 <p class="disclosure">Como Afiliado de Amazon, ${BRAND_NAME} obtiene ingresos por las compras adscritas que cumplan los requisitos aplicables.</p>
 </footer>
 </body>

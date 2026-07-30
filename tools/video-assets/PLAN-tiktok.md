@@ -15,15 +15,16 @@ cerrado con CTA a `empiezalibros.es`. Doble foco de la web (manda en el copy): *
 | g12 | Agatha Christie: por dónde empezar | ✅ misterio | **Alta** |
 | g4  | Novela negra española: por dónde empezar | ✅ novela negra | **Alta** |
 | g10 | Ciencia ficción distópica imprescindibles | ✅ (1984/Un mundo feliz, keyword pos.6) | Media |
-| g15 | Libros cortos para reengancharte | ⚪ entrada (cross-sell thriller) | Media |
-| g1  | Mejores libros para empezar a leer 2026 | ⚪ entrada | Media |
-| g6  | Cómo crear el hábito de leer | ⚪ entrada | Media |
-| g2  | Elegir lectura según estado de ánimo | ⚪ entrada | Baja |
-| g3  | Los más vendidos de 2025 | ⚪ general | Baja |
-| g7  | Libros para la playa verano 2026 | ⚪ estacional | Estacional (verano) |
+| g15 | Thrillers cortos para reengancharte | ✅ thriller (reenfocada) | Media |
+| g1  | Mejores libros para empezar a leer 2026 | ✅ entrada 100% thriller (reenfocada) | Media |
+| g6  | Hábito de leer empezando por thrillers | ✅ entrada thriller (reenfocada) | Media |
+| g2  | Elige tu thriller según tu ánimo | ✅ thriller (reenfocada) | Baja |
+| g3  | Los thrillers más vendidos | ✅ thriller (reenfocada) | Baja |
+| g7  | Thrillers para la playa verano 2026 | ✅ thriller (reenfocada) | Estacional (verano) |
 
-Las ⚪ de "entrada" siguen sirviendo: el público de la web es el lector que arranca, así que atraen y
-luego cruzan hacia el thriller. Las estacionales solo se publican en temporada.
+Las 11 guías son ya 100% thriller/misterio: las 6 que eran de entrada u off-nicho (g1, g2, g3, g6, g7,
+g15) se reescribieron en clave thriller (30/07/2026) para que todas sirvan al doble foco y al guion de
+vídeo. Las estacionales solo se publican en temporada.
 
 ## Guías nuevas a crear (autores/temas que YA tienen fichas en la web)
 
