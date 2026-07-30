@@ -3,3 +3,6 @@ Thumbs.db
 node_modules/
 *.log
 reddit-radar/
+
+# Proyectos de video generados (grandes; los activos de marca viven en tools/video-assets/)
+videos/

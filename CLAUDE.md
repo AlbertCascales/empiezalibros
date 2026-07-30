@@ -62,6 +62,14 @@ frente con los gigantes en todos. Se decidió con datos de GSC (`gsc-report.js`)
 | `download-covers.js` | Descarga las portadas que falten a `img/covers/`. Algunos libros necesitan un alias del título original (mapa `OVERRIDES`) porque Open Library no indexa la edición española. |
 | `telegram-post.js` | Publica en el canal `@Empiezalibros`. `book <id>` publica un libro concreto; `backfill` publica el pendiente más antiguo. |
 | `gsc-report.js` | Informe de Search Console (solo lectura). `--perf` rendimiento (rápido, 2 llamadas); `--index` estado URL a URL (~110 llamadas, lento, con reintentos); sin flag, ambos. Sin dependencias: JWT RS256 con módulos nativos. |
+| `scaffold-video.js` | `node tools/scaffold-video.js <idGuía>` genera en `videos/<slug>/` un proyecto de vídeo TikTok (HyperFrames faceless-explainer) con storyboard+guion+diseño ya rellenos desde la guía (gancho + N puntos + CTA, estética blockframe azul marino/azul, voz Mateo). `--list` lista guías. NO produce el MP4 solo: los frames los construye un agente (workers HyperFrames); el script imprime los pasos restantes (voz→frames→ensamblar→render). Repasar gancho/VO (son borrador). Réplica del montaje de empiezapadel; ver memoria [[tiktok-video-pipeline]] y el calendario en `tools/video-assets/PLAN-tiktok.md`. |
+
+`scaffold-video.js` no genera vídeo con IA: HyperFrames renderiza HTML/CSS→MP4 (Chrome headless +
+FFmpeg, gratis, sin GPU). Voz/música vía sesión HeyGen (OAuth en `~/.heygen/`). La estética de marca
+(preset blockframe recoloreado a azul marino `#101a2b` / azul `#4d8fd6`) vive en
+`tools/video-assets/` (`frame.md` + `caption-skin.html`) y se versiona; los proyectos generados en
+`videos/` **no** (está en `.gitignore`). Publicar en TikTok es manual (no hay API gratis); estos
+vídeos NO son una rutina programada — se revisa gancho y voz cada vez.
 
 `telegram-post.js` es de **ruta fija a propósito**: existe para que las rutinas programadas no
 improvisen `node -e "..."`, que disparaba aprobaciones de permisos cada día.
