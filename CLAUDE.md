@@ -101,7 +101,7 @@ En `C:\Users\marti\.claude\scheduled-tasks\` (cada una con su `SKILL.md`):
 |---|---|---|---|
 | `empiezalibros-contenido-auto` | 04:00 diario | **pausada** (23/07/2026) | Solo web: añade 1 libro + 1 guía que falten, portada, regenera y hace push. **No toca Telegram.** |
 | `empiezalibros-telegram-backfill` | 05:00 diario | **pausada** (23/07/2026) | Solo Telegram: publica 1 pendiente. Estado en su `estado.json`. **No toca git.** |
-| `empiezalibros-tiktok-video` | 10:00 diario | **activa** (30/07/2026) | Genera el vídeo TikTok que toque según `plan-tiktok/calendario-tiktok.txt` (1 cada 3 días). Solo produce el MP4 en `videos/`; **no toca git ni Telegram** y **no sube a TikTok** (manual). En los días intermedios no hace nada. |
+| `empiezalibros-tiktok-video` | 04:00 diario | **activa** (30/07/2026) | Genera el vídeo TikTok que toque según `plan-tiktok/calendario-tiktok.txt` (1 cada 3 días). Solo produce el MP4 en `videos/`; **no toca git ni Telegram** y **no sube a TikTok** (manual). En los días intermedios no hace nada. |
 
 Las dos primeras son **independientes**: Telegram publica el pendiente más antiguo de la web, no lo generado
 ese mismo día. Cuando están activas la web crece 1/día y Telegram publica 1/día, y el desfase no se
