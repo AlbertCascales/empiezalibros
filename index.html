@@ -156,7 +156,6 @@
   /* GUIDES */
   .section-sub { color: var(--gray-4); font-size: 0.92rem; line-height: 1.5; margin: -0.4rem 0 1.1rem; max-width: 62ch; }
   .guides-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
-  .guide-card.guide-hidden { display: none; }
   .guide-card { position: relative; display: flex; flex-direction: column; background: var(--gray-1); border: 1.5px solid var(--gray-2); border-radius: 14px; padding: 1.25rem 1.25rem 1.1rem; cursor: pointer; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
   .guide-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform 0.25s; }
   .guide-card:hover { border-color: var(--green); box-shadow: var(--shadow); transform: translateY(-3px); }
@@ -866,20 +865,31 @@ function renderFeatured(){
 }
 
 // Guías
-function renderGuides(){
+function guideCardHtml(id){
+  const g = guides[id];
+  // Gancho: la primera frase del cuerpo, sin HTML, para que la tarjeta invite a entrar.
+  const hook = g.body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().replace(/^(.*?\.)\s.*/, '$1').slice(0, 130);
+  const mins = (g.meta.match(/(\d+)\s*min/) || [])[1];
+  return `<div class="guide-card" onclick="location.href='${guidePageUrl(id)}'">
+    <div class="guide-top"><span class="guide-cat">${g.cat}</span>${mins ? `<span class="guide-time">${mins} min</span>` : ''}</div>
+    <div class="guide-title">${g.title}</div>
+    <div class="guide-hook">${hook}</div>
+    <div class="guide-arrow">Leer guía →</div>
+  </div>`;
+}
+
+function renderGuides(ids){
   const grid = document.getElementById('guidesGrid');
-  grid.innerHTML = Object.keys(guides).slice(0, 6).map(id => {
-    const g = guides[id];
-    // Gancho: la primera frase del cuerpo, sin HTML, para que la tarjeta invite a entrar.
-    const hook = g.body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().replace(/^(.*?\.)\s.*/, '$1').slice(0, 130);
-    const mins = (g.meta.match(/(\d+)\s*min/) || [])[1];
-    return `<div class="guide-card" onclick="location.href='${guidePageUrl(id)}'">
-      <div class="guide-top"><span class="guide-cat">${g.cat}</span>${mins ? `<span class="guide-time">${mins} min</span>` : ''}</div>
-      <div class="guide-title">${g.title}</div>
-      <div class="guide-hook">${hook}</div>
-      <div class="guide-arrow">Leer guía →</div>
-    </div>`;
-  }).join('');
+  ids = ids || Object.keys(guides).slice(0, 6);
+  grid.innerHTML = ids.map(guideCardHtml).join('');
+}
+
+// Texto buscable de cada guía: título + categoría + cuerpo completo (sin HTML) + textos de enlaces.
+// Así el buscador encuentra una guía por lo que dice dentro, no solo por su título.
+function guideSearchText(g){
+  const body = g.body.replace(/<[^>]+>/g, ' ');
+  const links = (g.links || []).map(l => l.text).join(' ');
+  return (g.title + ' ' + g.cat + ' ' + body + ' ' + links).replace(/\s+/g, ' ').toLowerCase();
 }
 
 renderFeatured();
@@ -909,7 +919,9 @@ function filterProducts(){
     }
   });
 
-  filterGuides(q);
+  const guideHit = filterGuides(q);
+  // Si no hubo libro pero sí guía, baja a la sección de guías.
+  if (!firstHit && guideHit) firstHit = document.getElementById('guias');
 
   if (firstHit && window._searchScrollPending){
     firstHit.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -918,11 +930,17 @@ function filterProducts(){
 }
 
 function filterGuides(q){
-  const cards = document.querySelectorAll('.guide-card');
-  cards.forEach(card => {
-    const text = card.textContent.toLowerCase();
-    card.classList.toggle('guide-hidden', !!q && !text.includes(q));
-  });
+  const grid = document.getElementById('guidesGrid');
+  if (!grid) return false;
+  if (!q){ renderGuides(); return false; }
+  // Busca en TODAS las guías por su contenido completo, no solo en las 6 del preview.
+  const matched = Object.keys(guides).filter(id => guideSearchText(guides[id]).includes(q));
+  if (matched.length){
+    renderGuides(matched);
+    return true;
+  }
+  grid.innerHTML = '<p style="color:var(--gray-4);padding:0.5rem 0;font-size:0.85rem;">Sin resultados</p>';
+  return false;
 }
 </script>
 </body>
