@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://empiezalibros.es/</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://empiezalibros.es/thriller/</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -163,8 +163,26 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/thriller/domingo-villar-ojos-de-agua/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/thriller/domingo-villar-la-playa-de-los-ahogados/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/thriller/domingo-villar-el-ultimo-barco/</loc>
+    <lastmod>2026-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/guias/</loc>
-    <lastmod>2026-07-23</lastmod>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -231,6 +249,12 @@
   <url>
     <loc>https://empiezalibros.es/guias/juan-gomez-jurado-por-donde-empezar-y-en-que-orden-leer-la-saga-reina-roja/</loc>
     <lastmod>2026-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/guias/domingo-villar-por-donde-empezar-y-en-que-orden-leer-al-inspector-leo-caldas/</loc>
+    <lastmod>2026-08-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
