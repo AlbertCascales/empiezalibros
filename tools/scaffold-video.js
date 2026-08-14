@@ -190,7 +190,7 @@ music: "tense minimal mystery underscore, intriga contenida, sin voz"
 
 ## Frame 1 — Gancho
 - scene: Título-gancho a pantalla completa
-- voiceover: "EDITAR gancho: engancha en 2s con el problema o la promesa de '${g.title}'."
+- voiceover: "EDITAR gancho: engancha en 2s. FÓRMULA QUE MEJOR RINDE (dato TikTok): número concreto + promesa de lista. P.ej. 'Agatha Christie escribió 66 novelas: te digo por cuál empezar'. Evita el problema abstracto ('no sabes por dónde')."
 - duration: 4s
 - transition_in: cut
 - status: outline
@@ -220,7 +220,7 @@ let script = `# SCRIPT — ${slug}
 ## Line 1 — Gancho (Frame 1)
 **Delivery:** Reto directo a cámara.
 
-    EDITAR: gancho de 1 frase que enganche en 2 segundos.
+    EDITAR: gancho de 1 frase, fórmula número + promesa de lista (ver Frame 1).
 `;
 
 points.forEach((p, i) => {
@@ -262,8 +262,8 @@ keyMessage: ${p.takeaway}
 const cta = N + 2;
 sb += `
 ## Frame ${cta} — CTA
-- scene: Wordmark EmpiezaLibros azul + URL empiezalibros.es
-- voiceover: "La guía completa, gratis, en empiezalibros punto es."
+- scene: Pregunta a comentarios + wordmark EmpiezaLibros azul (guía en la bio)
+- voiceover: "¿Por cuál empezarías tú? Cuéntamelo en comentarios. Y la guía entera, en la bio."
 - duration: 4s
 - transition_in: crossfade
 - status: outline
@@ -277,19 +277,19 @@ sb += `
 - src: compositions/frames/${String(cta).padStart(2, '0')}-cta.html
 
 Reproduce de titlecard-reveal: un movimiento contenido y hold. Azul marino/azul de marca.
-Scene 1 (0.0–1.4s): icono de libro + "EmpiezaLibros" (Libros en azul) slide-up al centro.
-Scene 2 (1.4–2.8s): "La guía completa, GRATIS" debajo; "GRATIS" en pill azul.
-Scene 3 (2.8–4.0s): "empiezalibros.es" subrayado en azul; hold.
+Scene 1 (0.0–1.4s): "¿Por cuál empezarías tú?" en DM Serif; slide-up al centro (comment-bait).
+Scene 2 (1.4–2.8s): icono de libro + "EmpiezaLibros" (Libros en azul) debajo.
+Scene 3 (2.8–4.0s): "Guía completa en la bio" en pill azul; hold. Cierre suave, sin URL grande.
 
-narrativeRole: Convertir la atención en tráfico a la web.
-keyMessage: La guía entera está gratis en empiezalibros.es.
+narrativeRole: Pedir el comentario (señal de algoritmo) y dejar la bio como puerta a la web.
+keyMessage: Comenta por cuál empezarías; la guía entera está en la bio.
 `;
 
 script += `
 ## Line ${cta} — CTA (Frame ${cta})
-**Delivery:** Cálido; "gratis" con énfasis.
+**Delivery:** Cálido; pregunta a cámara, luego cierre suave.
 
-    La guía completa, gratis, en empiezalibros punto es.
+    ¿Por cuál empezarías tú? Cuéntamelo en comentarios. Y la guía entera, en la bio.
 `;
 
 wr('STORYBOARD.md', sb);
