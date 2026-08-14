@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://empiezalibros.es/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://empiezalibros.es/thriller/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -181,8 +181,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/thriller/camilla-lackberg-la-princesa-de-hielo/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/guias/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -255,6 +261,12 @@
   <url>
     <loc>https://empiezalibros.es/guias/domingo-villar-por-donde-empezar-y-en-que-orden-leer-al-inspector-leo-caldas/</loc>
     <lastmod>2026-08-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/guias/novela-negra-nordica-por-donde-empezar/</loc>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
