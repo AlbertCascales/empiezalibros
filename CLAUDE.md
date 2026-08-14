@@ -99,20 +99,20 @@ En `C:\Users\marti\.claude\scheduled-tasks\` (cada una con su `SKILL.md`):
 
 | Rutina | Hora | Estado | Qué hace |
 |---|---|---|---|
-| `empiezalibros-contenido-auto` | 04:00 diario | **pausada** (23/07/2026) | Solo web: añade 1 libro + 1 guía que falten, portada, regenera y hace push. **No toca Telegram.** |
+| `empiezalibros-contenido-auto` | 04:00 cada 3 días | **activa** (14/08/2026) | Solo web: añade 1 libro + 1 guía que falten, portada, regenera y hace push. **No toca Telegram.** |
 | `empiezalibros-telegram-backfill` | 05:00 diario | **pausada** (23/07/2026) | Solo Telegram: publica 1 pendiente. Estado en su `estado.json`. **No toca git.** |
 | `empiezalibros-tiktok-video` | 04:00 diario | **activa** (30/07/2026) | Genera el vídeo TikTok que toque según `plan-tiktok/calendario-tiktok.txt` (1 cada 3 días). Solo produce el MP4 en `videos/`; **no toca git ni Telegram** y **no sube a TikTok** (manual). En los días intermedios no hace nada. |
 
-Las dos primeras son **independientes**: Telegram publica el pendiente más antiguo de la web, no lo generado
-ese mismo día. Cuando están activas la web crece 1/día y Telegram publica 1/día, y el desfase no se
-cierra nunca — es intencional y asumido.
+Las dos son **independientes**: Telegram publica el pendiente más antiguo de la web, no lo generado
+ese mismo día. `contenido-auto` añade 1 libro+guía cada 3 días; el desfase con Telegram (si se
+reactiva) no se cierra nunca — es intencional y asumido.
 
-**Por qué pausadas:** con la web recién creada, Google no rastreaba parte de las URLs (presupuesto de
-rastreo). Seguir publicando 1/día reparte ese presupuesto entre más páginas y frena la indexación. Se
-pausaron para que Google digiera lo que ya hay. Se reactivan (a mano, `enabled: true` en el programador)
-cuando la indexación se recupere — medir con `node tools/gsc-report.js --index`. Ojo: la pausa NO es
-condicional, el programador no la reactiva solo. El estado real manda siempre sobre esta nota; si al
-leer esto ya están activas, es que alguien las reactivó y no actualizó aquí.
+**Historia de la pausa:** con la web recién creada, Google no rastreaba parte de las URLs (presupuesto
+de rastreo), así que el 23/07/2026 se pausaron ambas para que Google digiriera lo que ya había. El
+14/08/2026 la indexación llegó al 100% (46/46, `node tools/gsc-report.js --index`) y se **reactivó
+`contenido-auto`, ya cada 3 días** (antes 1/día) para no volver a saturar el rastreo. `telegram-backfill`
+sigue **pausada**. La reactivación es a mano (`enabled: true` en el programador); el estado real manda
+siempre sobre esta nota.
 
 Existen carpetas de `empiezalibros-newsletter-auto` y `empiezalibros-reddit-monitor`, pero esas
 rutinas están **eliminadas** del programador (al borrarlas se conserva el `SKILL.md` en disco).
