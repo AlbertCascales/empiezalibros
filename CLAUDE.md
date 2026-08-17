@@ -149,6 +149,11 @@ La carpeta suelta no significa que la rutina exista: comprobar siempre contra el
   JSON-LD usa `review` (una reseña, autor `Organization`), que sí es legítimo para una opinión propia;
   lo ilegítimo es `aggregateRating`, que significa "promedio de N usuarios" — si alguien propone
   ponerlo para ganar estrellas en los resultados, la respuesta es no. Mismo criterio en empiezapadel.
+- **Si una guía o un vídeo nombra un libro concreto, ese libro debe existir como ficha propia**
+  (`/thriller/<slug>/`), no solo como texto con un enlace a Amazon: las fichas son las que capturan las
+  búsquedas de título+autor, y así los vídeos apuntan a la ficha y no a una landing genérica. Verificar
+  antes con WebSearch título, autor, año y orden de saga: en el sitio hermano un dato plausible pero
+  falso en una guía acabó en un vídeo de TikTok ya publicado (17/08/2026). Mismo criterio en empiezapadel.
 - Commits en español, en imperativo, describiendo el efecto para el usuario ("Añadir X y guía sobre Y").
 - El "libro del momento" rota cada 2 días, determinista por fecha.
 - `_headers` fija caché larga de imágenes y cabeceras de seguridad (convención de Cloudflare Pages).
