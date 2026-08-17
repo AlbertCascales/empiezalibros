@@ -87,7 +87,12 @@ function addedOf(item, label) {
 const newestOf = (dates) => dates.slice().sort().pop() || SITE_LAUNCH;
 function truncate(s, n) { s = s.trim(); return s.length <= n ? s : s.slice(0, n - 1).replace(/\s+\S*$/, '') + '…'; }
 function priceNum(p) { return String(p).replace(/\./g, '').replace(',', '.'); }
-function amazonUrl(query) { return `https://www.amazon.es/s?k=${encodeURIComponent(query)}&tag=${STORE_ID}`; }
+// Con asin válido enlaza directo a la ficha del producto; si falta, cae al buscador. El tag de
+// afiliado viaja igual en ambos casos: la comisión no cambia, el asin solo quita fricción.
+function amazonUrl(query, asin) {
+  if (asin && /^[A-Z0-9]{10}$/.test(asin)) return `https://www.amazon.es/dp/${asin}?tag=${STORE_ID}`;
+  return `https://www.amazon.es/s?k=${encodeURIComponent(query)}&tag=${STORE_ID}`;
+}
 function stars(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
 
 // La web es de un solo vertical: thriller/misterio/suspense. Los dos distópicos que ya
@@ -269,7 +274,7 @@ function renderProductPage(catKey, p) {
   const cat = CATS[catKey];
   const url = productPath(cat.dir, p);
   const canonical = SITE + url;
-  const aff = amazonUrl(p.query);
+  const aff = amazonUrl(p.query, p.asin);
   const fullName = `${p.name}`;
   const title = `${p.name}, de ${p.brand}: ¿merece la pena? Reseña y sinopsis | ${BRAND_NAME}`;
   const description = truncate(`De qué trata «${p.name}» de ${p.brand}: reseña honesta, si es para ti y por dónde empezar. ${stripHtml(p.desc)}`, 158);

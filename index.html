@@ -288,7 +288,13 @@ function elSlug(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''
 function bookCat(p){ if(novelas.includes(p))return 'novelas'; if(thriller.includes(p))return 'thriller'; if(desarrollo.includes(p))return 'no-ficcion'; return 'romantasy'; }
 function bookPageUrl(p){return '/'+bookCat(p)+'/'+elSlug(p.brand+' '+p.name)+'/';}
 function guidePageUrl(id){return '/guias/'+elSlug(guides[id].title)+'/';}
-function amazonUrl(query){return 'https://www.amazon.es/s?k='+encodeURIComponent(query)+'&tag='+STORE_ID;}
+// Con asin (10 caracteres alfanuméricos) enlaza directo a la ficha del producto; si falta, cae al
+// buscador de Amazon. El tag de afiliado viaja igual en ambos casos, así que la comisión no cambia:
+// el asin solo quita fricción (menos pasos hasta comprar y sin riesgo de mostrar otra edición).
+function amazonUrl(query, asin){
+  if(asin && /^[A-Z0-9]{10}$/.test(asin)) return 'https://www.amazon.es/dp/'+asin+'?tag='+STORE_ID;
+  return 'https://www.amazon.es/s?k='+encodeURIComponent(query)+'&tag='+STORE_ID;
+}
 
 /* ===== DATOS: cada libro tiene autor (brand), título (name), género (level),
    sinopsis (desc), ficha (specs), valoración, y query para Amazon ===== */
@@ -305,7 +311,7 @@ const thriller = [
     pros: ['Ritmo absolutamente frenético', 'Capítulos cortísimos y adictivos', 'Humor y emoción muy bien dosificados'],
     cons: ['Algo inverosímil por momentos', 'Primera parte de una bilogía'],
     verdict: 'El thriller más divertido de leer del panorama español. Imposible parar de pasar páginas.',
-    query: 'Todo arde Juan Gómez-Jurado'
+    query: 'Todo arde Juan Gómez-Jurado', asin: '8466672478'
   },
   {
     id: 't2', added: '2026-06-30', c1: '#2e4a6b', c2: '#16263a',
@@ -316,7 +322,7 @@ const thriller = [
     pros: ['Giros que no ves venir', 'Muy adictivo', 'Ideal para enganchar a no lectores'],
     cons: ['Algunas casualidades forzadas', 'Estilo sencillo'],
     verdict: 'Castillo vuelve a hacer de las suyas: un misterio cebolla que se devora en un fin de semana.',
-    query: 'El cuco de cristal Javier Castillo'
+    query: 'El cuco de cristal Javier Castillo', asin: '8491293558'
   },
   {
     id: 't3', added: '2026-06-30', c1: '#3a2e4a', c2: '#1d1626',
@@ -327,7 +333,7 @@ const thriller = [
     pros: ['Negra, dura y muy tensa', 'Personaje protagonista potentísimo', 'Trama bien construida'],
     cons: ['Violencia explícita', 'Mejor leer la saga en orden'],
     verdict: 'Novela negra dura, para estómagos curtidos. Es el cierre de la trilogía de Elena Blanco: no empieces por aquí, ve antes a «La novia gitana».',
-    query: 'Las madres Carmen Mola'
+    query: 'Las madres Carmen Mola', asin: '8420456020'
   },
   {
     id: 't4', added: '2026-06-30', c1: '#8a1f3d', c2: '#4e1122',
@@ -338,7 +344,7 @@ const thriller = [
     pros: ['Pareja protagonista inolvidable', 'Adictivo de principio a fin', 'Punto de entrada a una gran saga'],
     cons: ['Crea adicción a la trilogía', 'Algún tópico del género'],
     verdict: 'Si nunca has leído a Gómez-Jurado, empieza aquí. Después no podrás parar hasta acabar la saga.',
-    query: 'Reina roja Juan Gómez-Jurado'
+    query: 'Reina roja Juan Gómez-Jurado', asin: '8466664416'
   },
   {
     id: 't5', added: '2026-06-30', c1: '#5c3a1f', c2: '#332010',
@@ -349,7 +355,7 @@ const thriller = [
     pros: ['Ambientación vasca muy lograda', 'Misterio que engancha', 'Personajes con un pasado turbio'],
     cons: ['Extenso', 'Arranque pausado'],
     verdict: 'Thriller atmosférico ambientado en el ficticio Illumbe. Ideal si te gusta la intriga con poso y sentido del lugar.',
-    query: 'En plena noche Mikel Santiago'
+    query: 'En plena noche Mikel Santiago', asin: '846666968X'
   },
   {
     id: 't6', added: '2026-06-30', c1: '#1f3a4a', c2: '#0f1f29',
@@ -360,7 +366,7 @@ const thriller = [
     pros: ['Trama muy adictiva', 'Llevado a serie con éxito', 'Edición de bolsillo económica'],
     cons: ['Coincidencias poco creíbles', 'Estilo directo y simple'],
     verdict: 'El thriller comercial perfecto: rápido, lleno de giros y muy difícil de soltar.',
-    query: 'La chica de nieve Javier Castillo'
+    query: 'La chica de nieve Javier Castillo', asin: '8491292667'
   },
   {
     id: 't7', added: '2026-06-30', c1: '#1a2a1a', c2: '#0a140a',
@@ -371,7 +377,7 @@ const thriller = [
     pros: ['Lisbeth Salander, personaje icónico', 'Intriga muy bien tramada', 'Adicción a la saga'],
     cons: ['Arranque denso', 'Violencia explícita'],
     verdict: 'El thriller que definió la novela negra nórdica y la puerta de entrada a la saga Millennium. Lisbeth Salander es inolvidable.',
-    query: 'Los hombres que no amaban a las mujeres Stieg Larsson'
+    query: 'Los hombres que no amaban a las mujeres Stieg Larsson', asin: '8423363740'
   },
   {
     id: 't8', added: '2026-06-30', c1: '#1f2a3a', c2: '#0f151d',
@@ -382,7 +388,7 @@ const thriller = [
     pros: ['Giro final brutal', 'Muy adictivo', 'Ritmo perfecto'],
     cons: ['Personajes algo fríos', 'Mejor no leer spoilers'],
     verdict: 'Un debut con un final que no verás venir. De los thrillers más recomendados de los últimos años.',
-    query: 'La paciente silenciosa Alex Michaelides'
+    query: 'La paciente silenciosa Alex Michaelides', asin: '8466351930'
   },
   {
     id: 't9', added: '2026-06-30', c1: '#3a1f2b', c2: '#1d0f16',
@@ -393,7 +399,7 @@ const thriller = [
     pros: ['Estructura magistral', 'Personajes perturbadores', 'Crítica social mordaz'],
     cons: ['Personajes poco simpáticos', 'Final que divide'],
     verdict: 'Un retrato venenoso del matrimonio con un giro inolvidable. Thriller psicológico de primera.',
-    query: 'Perdida Gillian Flynn'
+    query: 'Perdida Gillian Flynn', asin: '8490328374'
   },
   {
     id: 't10', added: '2026-06-30', c1: '#2a2a2a', c2: '#141414',
@@ -404,7 +410,7 @@ const thriller = [
     pros: ['Premisa irresistible', 'Juego del gato y el ratón', 'Muy adictivo'],
     cons: ['Segunda mitad más floja para algunos', 'Extenso'],
     verdict: 'Uno de los thrillers más vendidos en español. Te atrapa desde la primera carta.',
-    query: 'El psicoanalista John Katzenbach'
+    query: 'El psicoanalista John Katzenbach', asin: '8466665072'
   },
   {
     id: 't11', added: '2026-06-30', c1: '#2b3a3a', c2: '#151d1d',
@@ -415,7 +421,7 @@ const thriller = [
     pros: ['Trama de muñecas rusas', 'Muy entretenido', 'Sobre la escritura misma'],
     cons: ['Largo', 'Algún giro inverosímil'],
     verdict: 'Un thriller adictivo y muy bien construido. Ideal para quien quiere intriga con sabor literario.',
-    query: 'La verdad sobre el caso Harry Quebert Joël Dicker'
+    query: 'La verdad sobre el caso Harry Quebert Joël Dicker', asin: '8466332286'
   },
   {
     id: 't12', added: '2026-06-30', c1: '#4a1f2b', c2: '#260f16',
@@ -426,7 +432,7 @@ const thriller = [
     pros: ['Inspectora compleja y adictiva', 'Trama oscura y potente', 'Inicio de gran saga'],
     cons: ['Violencia explícita', 'No apta para sensibles'],
     verdict: 'El arranque perfecto de la saga de Elena Blanco. Negra, intensa y muy difícil de soltar.',
-    query: 'La novia gitana Carmen Mola'
+    query: 'La novia gitana Carmen Mola', asin: '8466347178'
   },
   {
     id: 't13', added: '2026-06-30', c1: '#1f1f3a', c2: '#0f0f1d',
@@ -437,7 +443,7 @@ const thriller = [
     pros: ['Ritmo frenético', 'Giros constantes', 'Debut sorprendente'],
     cons: ['Tramas que se cruzan demasiado', 'Estilo directo'],
     verdict: 'El libro con el que estalló el fenómeno Castillo. Puro entretenimiento de giros.',
-    query: 'El día que se perdió la cordura Javier Castillo'
+    query: 'El día que se perdió la cordura Javier Castillo', asin: '8466346120'
   },
   {
     id: 't14', added: '2026-06-30', c1: '#2b2b1f', c2: '#15150f',
@@ -448,7 +454,7 @@ const thriller = [
     pros: ['Hannibal Lecter, villano legendario', 'Tensión insuperable', 'Clásico imprescindible'],
     cons: ['Escenas perturbadoras', 'Lenguaje de su época'],
     verdict: 'El thriller de asesinos en serie por excelencia. Si te gusta el género, es de lectura obligada.',
-    query: 'El silencio de los corderos Thomas Harris'
+    query: 'El silencio de los corderos Thomas Harris', asin: '8497599365'
   },
   {
     id: 't15', added: '2026-06-30', c1: '#2e3a4a', c2: '#141d26',
@@ -459,7 +465,7 @@ const thriller = [
     pros: ['Narradora poco fiable ejecutada a la perfección', 'Ritmo adictivo: no puedes soltarlo', 'Giro final impactante'],
     cons: ['Los primeros capítulos arran­can despacio', 'Protagonista que puede resultar repetitiva'],
     verdict: 'Uno de los thrillers más vendidos de la década a nivel mundial. Lectura perfecta para la playa o una tarde de lluvia.',
-    query: 'La chica del tren Paula Hawkins'
+    query: 'La chica del tren Paula Hawkins', asin: '8408193023'
   },
   {
     id: 't16', added: '2026-07-05', c1: '#3a1f2b', c2: '#1d0f16',
@@ -470,7 +476,7 @@ const thriller = [
     pros: ['Adictivo desde la primera página', 'Giro central inesperado', 'Se lee de una sentada'],
     cons: ['Personajes algo planos', 'Segunda mitad menos verosímil'],
     verdict: 'El thriller doméstico de moda: rápido, tramposo y muy entretenido. Perfecto para engancharse en un fin de semana.',
-    query: 'La asistenta Freida McFadden'
+    query: 'La asistenta Freida McFadden', asin: '8491294287'
   },
   {
     id: 't17', added: '2026-07-05', c1: '#2a2a2a', c2: '#141414',
@@ -481,7 +487,7 @@ const thriller = [
     pros: ['Ritmo trepidante', 'Enigmas y datos fascinantes', 'Fenómeno global por algo'],
     cons: ['Prosa funcional', 'Algún tópico del género'],
     verdict: 'El best seller que popularizó el thriller de conspiraciones. Es el segundo de Robert Langdon, pero se lee perfectamente solo: puedes empezar aquí.',
-    query: 'El código Da Vinci Dan Brown'
+    query: 'El código Da Vinci Dan Brown', asin: '8408095331'
   },
   {
     id: 't18', added: '2026-07-13', c1: '#5c1f1f', c2: '#2e0f0f',
@@ -492,7 +498,7 @@ const thriller = [
     pros: ['Mecanismo de intriga perfecto, sin un solo cabo suelto', 'Autoconclusiva: no requiere conocer a Poirot ni a Miss Marple', 'Se lee en una sola tarde y el final sigue sorprendiendo'],
     cons: ['Ambientación y lenguaje de los años 30', 'Sin subtramas: pura mecánica de misterio, sin grandes personajes secundarios'],
     verdict: 'El thriller de habitación cerrada por excelencia. Casi un siglo después, sigue siendo el libro con el que enganchar a alguien al género del misterio.',
-    query: 'Diez negritos Agatha Christie'
+    query: 'Diez negritos Agatha Christie', asin: '8467066628'
   },
   {
     id: 't19', added: '2026-07-13', c1: '#1a2836', c2: '#0a1420',
@@ -503,7 +509,7 @@ const thriller = [
     pros: ['Tensión psicológica que crece sin descanso, capítulo a capítulo', 'El Hotel Overlook funciona casi como un personaje más', 'La novela que definió el terror literario contemporáneo'],
     cons: ['Arranque pausado antes de que se desate la locura', 'Muy distinta de la película de Kubrick, lo que puede generar expectativas equivocadas'],
     verdict: 'La puerta de entrada perfecta a Stephen King: terror que nace de la mente humana más que de lo sobrenatural, con un clímax que no se olvida.',
-    query: 'El resplandor Stephen King'
+    query: 'El resplandor Stephen King', asin: '8490328722'
   },
   {
     id: 't20', added: '2026-07-23', c1: '#4a1f2b', c2: '#260f16',
@@ -514,7 +520,7 @@ const thriller = [
     pros: ['Sube el nivel de acción y tensión respecto a Reina roja', 'La dupla Antonia Scott / Jon Gutiérrez sigue siendo lo mejor de la saga', 'Capítulos cortos que se devoran en pocos días'],
     cons: ['Exige haber leído Reina roja antes', 'Algún giro se apoya en coincidencias propias del género'],
     verdict: 'La secuela que consolida la trilogía Reina Roja. Si Reina roja te enganchó, aquí sube la apuesta.',
-    query: 'Loba negra Juan Gómez-Jurado'
+    query: 'Loba negra Juan Gómez-Jurado', asin: '8466666494'
   },
   {
     id: 'n3', added: '2026-06-30', c1: '#2c3e50', c2: '#161f29',
@@ -525,7 +531,7 @@ const thriller = [
     pros: ['Homenaje brillante a Agatha Christie', 'Atmósfera y ritmo impecables', 'Diálogos muy cuidados'],
     cons: ['Trama clásica sin grandes sorpresas', 'Mejor si te gusta el género detective'],
     verdict: 'Un whodunit elegante y muy disfrutable. Reverte en estado puro para amantes del misterio de toda la vida.',
-    query: 'El problema final Arturo Pérez-Reverte'
+    query: 'El problema final Arturo Pérez-Reverte', asin: '8466378448'
   },
   {
     id: 'n16', added: '2026-07-05', c1: '#3a2b2b', c2: '#1d1414',
@@ -536,7 +542,7 @@ const thriller = [
     pros: ['Protagonista complejo y memorable', 'Buena mezcla de intriga y literatura', 'Inicio de una saga premiada'],
     cons: ['Ritmo pausado a ratos', 'Estructura con saltos temporales'],
     verdict: 'Un Premio Planeta que combina novela negra y reflexión moral. Gran puerta de entrada a la saga de Melchor Marín.',
-    query: 'Terra Alta Javier Cercas'
+    query: 'Terra Alta Javier Cercas', asin: '8408217844'
   },
   {
     id: 'n17', added: '2026-07-05', c1: '#2b3a4a', c2: '#151d26',
@@ -547,7 +553,7 @@ const thriller = [
     pros: ['Ambientación histórica magistral', 'Personajes bien construidos', 'Basada en hechos reales'],
     cons: ['Romance idealizado para algunos', 'Ritmo contemplativo'],
     verdict: 'Reverte en su terreno: aventura, historia y amor con rigor. Ideal para amantes de la novela histórica.',
-    query: 'El italiano Arturo Pérez-Reverte'
+    query: 'El italiano Arturo Pérez-Reverte', asin: '8466367349'
   },
   {
     id: 'n18', added: '2026-07-05', c1: '#4a4a1f', c2: '#26260f',
@@ -558,7 +564,7 @@ const thriller = [
     pros: ['Visionaria y muy actual', 'Lectura obligada del género', 'Breve e intensa'],
     cons: ['Lenguaje de su época', 'Más tesis que trama'],
     verdict: 'Junto con 1984, la gran distopía de referencia. Imprescindible para entender los debates sobre tecnología y libertad.',
-    query: 'Un mundo feliz Aldous Huxley'
+    query: 'Un mundo feliz Aldous Huxley', asin: '8497594258'
   },
   {
     id: 'n19', added: '2026-07-09', c1: '#33352e', c2: '#15160f',
@@ -569,7 +575,7 @@ const thriller = [
     pros: ['El clásico distópico más influyente y citado', 'Prosa directa que engancha desde el primer capítulo', 'Vigente en cualquier debate sobre vigilancia y manipulación'],
     cons: ['Final deliberadamente duro', 'Tramos centrales con largos pasajes ensayísticos'],
     verdict: 'La distopía por excelencia y probablemente la novela más citada del siglo XX. Si solo vas a leer una de ciencia ficción en tu vida, es esta.',
-    query: '1984 George Orwell'
+    query: '1984 George Orwell', asin: '8499890946'
   },
   {
     id: 't21', added: '2026-08-10', c1: '#1f4a52', c2: '#0f262b',
@@ -580,7 +586,7 @@ const thriller = [
     pros: ['Ambientación de Vigo y la ría magistral', 'La pareja Caldas–Estévez engancha desde el principio', 'Corta: puerta de entrada perfecta a la saga'],
     cons: ['Ritmo más pausado que el thriller de acción', 'Primera de una serie que crea adicción'],
     verdict: 'La puerta de entrada al inspector Leo Caldas. Novela negra atmosférica, con más sabor a lugar y a personaje que a giro imposible: si buscas eso, es una joya.',
-    query: 'Ojos de agua Domingo Villar'
+    query: 'Ojos de agua Domingo Villar', asin: '8417454918'
   },
   {
     id: 't22', added: '2026-08-10', c1: '#2a5a6b', c2: '#132a33',
@@ -591,7 +597,7 @@ const thriller = [
     pros: ['La mejor novela de Villar', 'Retrato soberbio de la Galicia marinera', 'Intriga que se cocina a fuego lento y atrapa'],
     cons: ['Ritmo contemplativo, sin prisa', 'Gana mucho leída tras Ojos de agua'],
     verdict: 'Una de las cimas de la novela negra española. Si solo vas a leer un Villar, que sea este; si vas a leer la saga, déjalo para después de Ojos de agua.',
-    query: 'La playa de los ahogados Domingo Villar'
+    query: 'La playa de los ahogados Domingo Villar', asin: '8417624260'
   },
   {
     id: 't23', added: '2026-08-10', c1: '#1a3a4f', c2: '#0c1c27',
@@ -602,7 +608,7 @@ const thriller = [
     pros: ['El caso más personal de Caldas', 'Vigo retratado como nunca', 'Cierre a la altura de la saga'],
     cons: ['Muy extensa: más de 700 páginas', 'Ritmo pausado marca de la casa'],
     verdict: 'La entrega más larga y ambiciosa de la serie. Enorme para quien ya quiere a Caldas; si es tu primer Villar, empieza por Ojos de agua y no por aquí.',
-    query: 'El último barco Domingo Villar'
+    query: 'El último barco Domingo Villar', asin: '8417624279'
   },
   {
     id: 't24', added: '2026-08-14', c1: '#26414f', c2: '#101f27',
@@ -613,7 +619,7 @@ const thriller = [
     pros: ['Ambientación gélida de la costa sueca muy bien lograda', 'Erica y Patrik, una pareja protagonista que engancha desde el arranque', 'Primera entrega de una saga larga con recorrido'],
     cons: ['Ritmo pausado, más cerca de la novela negra clásica que del thriller de acción', 'Alguna subtrama familiar se alarga'],
     verdict: 'Si vienes de Larsson y quieres novela negra nórdica menos oscura y más costumbrista, empieza aquí: es el primer libro de la saga Fjällbacka y sienta las bases de todo lo que viene después.',
-    query: 'La princesa de hielo Camilla Läckberg'
+    query: 'La princesa de hielo Camilla Läckberg', asin: '8496748529'
   },
   {
     id: 't25', added: '2026-08-15', c1: '#33283f', c2: '#170f20',
@@ -624,7 +630,7 @@ const thriller = [
     pros: ['Narradora poco fiable muy bien construida: dudas de ella tanto como los demás personajes', 'Atmósfera de encierro y paranoia que engancha desde el primer capítulo', 'El giro final obliga a repasar mentalmente todo lo leído'],
     cons: ['Primer tercio lento, antes de que arranque de verdad la intriga', 'Recuerda inevitablemente a "La chica del tren" en su planteamiento'],
     verdict: 'Si te gustó "La paciente silenciosa" o "La chica del tren", este es tu próximo thriller psicológico: misma narradora en la que no sabes si confiar y un giro final que sí sorprende. Es una novela independiente, sin saga: se lee de un tirón.',
-    query: 'La mujer en la ventana A.J. Finn'
+    query: 'La mujer en la ventana A.J. Finn', asin: '8466347445'
   }
 ];
 
@@ -913,7 +919,7 @@ function createCard(p){
       <div class="card-level">${p.level}</div>
       <div class="stars">${renderStars(p.stars)}<span>Nuestra valoración</span></div>
       <div class="card-price">${p.price} €<br><small>Precio orientativo Amazon.es</small></div>
-      <a class="btn-amazon" href="${amazonUrl(p.query)}" target="_blank" rel="sponsored noopener">🛒 Ver en Amazon</a>
+      <a class="btn-amazon" href="${amazonUrl(p.query, p.asin)}" target="_blank" rel="sponsored noopener">🛒 Ver en Amazon</a>
       <a href="${bookPageUrl(p)}" onclick="event.stopPropagation()" style="display:block;text-align:center;margin-top:.55rem;font-size:.8rem;font-weight:600;color:var(--green);text-decoration:none">Leer reseña completa →</a>
     </div>`;
   return div;
@@ -968,7 +974,7 @@ function renderFeatured(){
         <span class="spec-pill"><strong>Año:</strong> ${p.specs['Año']}</span>
       </div>
       <div class="featured-price">${p.price} €</div>
-      <a class="btn-amazon-lg" href="${amazonUrl(p.query)}" target="_blank" rel="sponsored noopener">🛒 Ver en Amazon</a>
+      <a class="btn-amazon-lg" href="${amazonUrl(p.query, p.asin)}" target="_blank" rel="sponsored noopener">🛒 Ver en Amazon</a>
       <a href="${bookPageUrl(p)}" style="display:inline-block;margin-top:0.75rem;margin-left:1rem;color:var(--green);font-weight:700;font-size:0.85rem;text-decoration:none">Leer reseña completa →</a>
     </div>`;
 }
