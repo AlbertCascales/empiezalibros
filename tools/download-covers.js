@@ -110,6 +110,7 @@ const OVERRIDES = {
   d9:  'title=Rich Dad Poor Dad&author=Robert Kiyosaki',
   r6:  'title=Divine Rivals&author=Rebecca Ross',
   r18: 'title=A Court of Silver Flames&author=Sarah J. Maas',
+  t29: 'isbn=9788466333122',
 };
 
 async function findCandidates(book) {
