@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node tools/gsc-report.js --index)",
+      "Bash(node tools/gsc-report.js --perf)"
+    ]
+  }
+}
