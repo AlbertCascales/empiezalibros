@@ -107,6 +107,13 @@ function productPath(catDir, p) { return `/${catDir}/${productSlug(p)}/`; }
 function guideSlug(id) { return slugify(guides[id].title); }
 function guidePath(id) { return `/guias/${guideSlug(id)}/`; }
 
+// Índice query -> ficha del libro. Sirve para que el bloque "Libros recomendados" de cada
+// guía enlace INTERNAMENTE a la ficha del libro que menciona (no solo a Amazon): así las
+// fichas capturan la búsqueda título+autor y Google las descubre desde guías ya rastreadas,
+// en vez de quedar colgando solo del hub /thriller/. Los libros sin ficha (queries genéricas)
+// siguen cayendo al enlace de Amazon.
+const bookByQuery = new Map(thriller.map(b => [b.query, b]));
+
 // Portada generada con CSS (sin imágenes externas)
 function bookCover(p, big) {
   return `<div class="bookcover${big ? ' big' : ''}" style="--c1:${p.c1};--c2:${p.c2}">
@@ -362,9 +369,15 @@ function renderGuidePage(id) {
   const title = `${g.title} | ${BRAND_NAME}`;
   const description = truncate(stripHtml(g.body), 158);
 
-  const linksHtml = (g.links || []).map(l =>
-    `<a class="btn block" style="margin-bottom:.6rem" href="${amazonUrl(l.query)}" target="_blank" rel="sponsored noopener">🛒 ${esc(l.text)}</a>`
-  ).join('');
+  const linksHtml = (g.links || []).map(l => {
+    const book = bookByQuery.get(l.query);
+    if (book) {
+      // La guía menciona un libro que tiene ficha: enlace interno (seguible) a la ficha,
+      // que es donde vive el botón de Amazon y donde se captura la búsqueda título+autor.
+      return `<a class="btn block" style="margin-bottom:.6rem" href="${productPath('thriller', book)}">📖 Leer la reseña de «${esc(book.name)}»</a>`;
+    }
+    return `<a class="btn block" style="margin-bottom:.6rem" href="${amazonUrl(l.query)}" target="_blank" rel="sponsored noopener">🛒 ${esc(l.text)}</a>`;
+  }).join('');
 
   const others = Object.keys(guides).filter(k => k !== id).slice(0, 6);
   const othersHtml = `
