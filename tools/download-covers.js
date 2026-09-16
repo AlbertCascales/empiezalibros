@@ -112,6 +112,7 @@ const OVERRIDES = {
   r18: 'title=A Court of Silver Flames&author=Sarah J. Maas',
   t29: 'isbn=9788466333122',
   t33: 'isbn=9788491293545',
+  t39: 'isbn=9788491045830',
 };
 
 async function findCandidates(book) {
