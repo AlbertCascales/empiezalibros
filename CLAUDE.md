@@ -34,7 +34,7 @@ La web se **centró en thriller/misterio/suspense** tras ver en Search Console q
 mejores posiciones (Castillo, Gómez-Jurado, Pérez-Reverte…). Antes cubría 4 géneros y competía de
 frente con los gigantes en todos. Se decidió con datos de GSC (`gsc-report.js`).
 
-- **Un solo vertical:** array `thriller` (25 libros), única categoría en `CATS`. Aquí va TODO el contenido
+- **Un solo vertical:** array `thriller` (crece con `contenido-auto`), única categoría en `CATS`. Aquí va TODO el contenido
   nuevo. No hay más secciones de libros: `novelas`, `desarrollo` y `romantasy` quedan **vacíos** en
   `index.html` (el generador los sigue leyendo sin fallar) y ya no están en `CATS`.
 - **Los 2 distópicos que rankeaban** (`1984`, `Un mundo feliz`, keyword "ciencia ficción distópica" en
