@@ -64,7 +64,7 @@ const guides     = evalLiteral(extractLiteral(indexSrc, 'const guides =', '{', '
 
 // ---------- 2. Utilidades ----------
 function slugify(s) {
-  return s.toLowerCase()
+  return s.toLowerCase().replace(/ø/g, 'o')
     .normalize('NFD').replace(/[̀-ͯ]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');

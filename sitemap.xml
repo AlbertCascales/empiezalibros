@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://empiezalibros.es/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://empiezalibros.es/thriller/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -277,8 +277,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/thriller/jo-nesbo-el-murcielago/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/guias/</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -435,6 +441,12 @@
   <url>
     <loc>https://empiezalibros.es/guias/thriller-domestico-que-es-y-los-mejores-libros-para-empezar/</loc>
     <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/guias/jo-nesbo-por-donde-empezar-y-en-que-orden-leer-la-saga-de-harry-hole/</loc>
+    <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
