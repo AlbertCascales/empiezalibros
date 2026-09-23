@@ -153,6 +153,7 @@ mk('capture/extracted'); mk('.hyperframes'); mk('compositions/frames'); mk('asse
 // estilo noir: referencia, fuentes locales y portadas reales
 const cp = (from, to) => { if (fs.existsSync(from)) { fs.copyFileSync(from, path.join(projDir, to)); return true; } return false; };
 cp(path.join(REF, 'noir', 'referencia-demo.html'), 'referencia-demo.html');
+cp(path.join(REF, 'noir', 'portada-plantilla.html'), 'cover.html');
 for (const f of fs.readdirSync(path.join(REF, 'fonts'))) cp(path.join(REF, 'fonts', f), 'assets/fonts/' + f);
 const missingCovers = [];
 new Set(points.flatMap((p) => p.books)).forEach((b) => {
