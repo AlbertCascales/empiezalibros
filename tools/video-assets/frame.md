@@ -64,6 +64,12 @@ Ninguna figura debe tapar más de ~40% del frame ni el caption.
   sobre el mismo elemento; nada de letterSpacing animado (usar scale/x)
 - el texto entra EN SU CUE de voz (timestamps de `audio_meta.json`), no antes ni 1s después
 
+## Fotograma 0 nunca vacío
+El primer fotograma es la miniatura que se ve antes de reproducir, y la portada por defecto en TikTok: debe mostrar ya el libro
+(entra desde z≈-700, no desde -2600) y la pill arriba, nunca un fondo oscuro vacío. Incidente del 23/09/2026: las
+tres demos «salían en negro» para el usuario porque el objeto aún estaba fuera de cuadro en t=0. Tras el render,
+compruébalo con `ffmpeg ... signalstats`: el YAVG del fotograma 0 no puede ser el de un fondo liso.
+
 ## Prohibido
 - inventar datos, portadas o premisas; usar la portada de otro libro; spoilers
 - emojis, bokeh genérico "IA", nav/cursores; contenido por debajo de y=1594

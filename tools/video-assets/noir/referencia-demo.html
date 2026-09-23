@@ -344,11 +344,11 @@
         });
 
         // ESCENA 1 (0–3s): el libro cae girando y aterriza; título letra a letra
-        tl.fromTo('#bookwrap', { z: -2600, y: -500, rotationX: 40 }, { z: 0, y: 0, rotationX: 8, duration: 1.2, ease: 'power3.out' }, 0);
+        tl.fromTo('#bookwrap', { z: -700, y: -160, rotationX: 22 }, { z: 0, y: 0, rotationX: 8, duration: 1.2, ease: 'power3.out' }, 0);
         tl.fromTo('#book', { rotationY: -600 }, { rotationY: -22, duration: 1.4, ease: 'power3.out' }, 0);
-        tl.fromTo('#shadow', { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.2, ease: 'power3.out' }, 0);
+        tl.fromTo('#shadow', { scale: 0.6, opacity: 0.5 }, { scale: 1, opacity: 1, duration: 1.2, ease: 'power3.out' }, 0);
         tl.to('#bookwrap', { y: 14, duration: 0.12, yoyo: true, repeat: 1, ease: 'power1.inOut' }, 1.2);
-        tl.fromTo('#pill', { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, 0.3);
+        tl.fromTo('#pill', { opacity: 1, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)' }, 0);
         tl.fromTo(q('#title .ch'), { opacity: 0, y: 120, rotationX: -90, filter: 'blur(12px)' },
           { opacity: 1, y: 0, rotationX: 0, filter: 'blur(0px)', duration: 0.6, stagger: 0.05, ease: 'back.out(1.6)' }, 1.2);
         tl.fromTo('#rule', { opacity: 1, scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: 'power2.inOut' }, 1.8);
