@@ -32,7 +32,7 @@ principle: cada libro se ve (portada real) · cada historia se ilustra (sin spoi
 ## Componentes
 - **Libro 3D** (`.bookwrap > .book > .front/.back/.spine/.pages/.top`, ver referencia): 440×671, grosor 64px,
   `.front` = portada real `assets/img/<idLibro>.jpg` con brillo diagonal; lomo con el título en vertical.
-  Entradas: cae desde z:-2600 girando rotationY -600→-22 y rebota al aterrizar (thock); en reposo gira
+  Entradas: cae desde z:-700 (visible ya en t=0) girando rotationY -600→-22 y rebota al aterrizar (thock); en reposo gira
   despacio (sine.inOut). Sombra elíptica bajo el libro que acompaña su escala/posición.
 - **Caption narrativo** (`.cap`): DM Serif 80px centrado en y≈1290, palabra a palabra (blur 8→0, y 50→0,
   stagger .07), con la parte clave en `<em>` rojo. Franja `.capfade` oscura detrás para legibilidad.
