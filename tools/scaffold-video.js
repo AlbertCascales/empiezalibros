@@ -8,8 +8,11 @@
  *
  * Qué genera en videos/<slug>/ :
  *   - BRIEF.md, capture/extracted/{visible-text.txt,tokens.json}
- *   - frame.md + .hyperframes/caption-skin.html  (copiados de tools/video-assets/,
- *     preset blockframe remix azul marino/azul; estética de marca EmpiezaLibros)
+ *   - frame.md + .hyperframes/caption-skin.html  (copiados de tools/video-assets/;
+ *     estilo "Noir 3D / motion comic" aprobado el 23/09/2026 — el blockframe azul
+ *     anterior queda en tools/video-assets/frame-blockframe.md)
+ *   - referencia-demo.html (composición de referencia del estilo), assets/fonts/ y
+ *     assets/img/<idLibro>.jpg (portada REAL de cada libro que nombra la guía)
  *   - STORYBOARD.md + SCRIPT.md  (listicle: gancho + N puntos + CTA, con el ESCENARIO
  *     COMPARTIDO ya escrito y las ventanas de plano por tiempos)
  *
@@ -29,8 +32,8 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const REF = path.join(ROOT, 'tools', 'video-assets'); // frame.md + caption-skin.html de marca
 const MAX_POINTS = 6;         // tope de puntos (frames de contenido) por vídeo
-const VOICE = '0077225a877e457db4572ccaf245910b'; // HeyGen "Narrator Mateo" (única voz ES)
-const SPEED = '1.12';         // ver memoria tiktok-video-pipeline: corrige las pausas de Mateo
+const VOICE = '3daec88b3c1a49b7a5e10a211426fc81'; // HeyGen "Fernando Sanz" (Mateo sonaba anglosajón)
+const SPEED = '1.5';          // ver memoria tiktok-video-pipeline
 
 // ---- extracción de guides desde index.html (mismo enfoque que generate-pages.js) ----
 const indexSrc = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
@@ -52,6 +55,17 @@ function extractLiteral(src, marker, open, close) {
   throw new Error('Literal sin cerrar: ' + marker);
 }
 const guides = new Function('return (' + extractLiteral(indexSrc, 'const guides =', '{', '}') + ')')();
+const books = ['thriller', 'novelas', 'desarrollo', 'romantasy'].flatMap((k) => {
+  try { return new Function('return (' + extractLiteral(indexSrc, 'const ' + k + ' =', '[', ']') + ')')(); }
+  catch (e) { return []; }
+});
+function norm(s) { return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim(); }
+// Libros de index.html que nombra un texto, en orden de aparición (título completo, >= 4 letras).
+function findBooks(text) {
+  const h = ' ' + norm(text) + ' ';
+  return books.filter((b) => b.name && norm(b.name).length >= 4 && h.includes(' ' + norm(b.name) + ' '))
+    .sort((a, b) => h.indexOf(' ' + norm(a.name) + ' ') - h.indexOf(' ' + norm(b.name) + ' '));
+}
 
 function slugify(s) {
   return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -89,7 +103,7 @@ function extractPoints(body) {
         // "1. Reina roja – Empieza aquí" → heading="Reina roja", takeaway="Empieza aquí"
         const m = it.match(/^(.*?)\s*[–\-—:]\s*(.+)$/);
         const heading = shortHeading(m ? m[1] : it);
-        return { heading, takeaway: m ? m[2].trim() : it };
+        return { heading, takeaway: m ? m[2].trim() : it, full: it };
       });
     }
   }
@@ -98,7 +112,7 @@ function extractPoints(body) {
   const re = /<h4[^>]*>(.*?)<\/h4>\s*<p[^>]*>(.*?)<\/p>/gis;
   let m;
   while ((m = re.exec(body)) && pts.length < MAX_POINTS) {
-    pts.push({ heading: shortHeading(m[1]) || stripHtml(m[1]), takeaway: firstSentence(m[2]) });
+    pts.push({ heading: shortHeading(m[1]) || stripHtml(m[1]), takeaway: firstSentence(m[2]), full: stripHtml(m[2]) });
   }
   return pts;
 }
@@ -119,6 +133,13 @@ if (!g) { console.error(`Guía "${id}" no existe. Usa --list.`); process.exit(1)
 
 const points = extractPoints(g.body);
 if (!points.length) { console.error('No se extrajeron puntos (¿la guía no tiene <h4>?).'); process.exit(1); }
+// Cada punto: libros que nombra su sección; el principal es el primero que no fue principal antes.
+const usados = new Set();
+points.forEach((p) => {
+  p.books = findBooks(p.heading + ' ' + (p.full || p.takeaway));
+  p.book = p.books.find((b) => !usados.has(b.id)) || null;
+  if (p.book) usados.add(p.book.id);
+});
 
 const slug = slugify(g.title).slice(0, 60);
 const projDir = path.join(ROOT, 'videos', slug);
@@ -127,7 +148,16 @@ if (fs.existsSync(projDir)) { console.error(`Ya existe ${path.relative(ROOT, pro
 // ------------------------------ escribir proyecto ------------------------------
 const mk = (p) => fs.mkdirSync(path.join(projDir, p), { recursive: true });
 const wr = (p, c) => fs.writeFileSync(path.join(projDir, p), c);
-mk('capture/extracted'); mk('.hyperframes'); mk('compositions/frames');
+mk('capture/extracted'); mk('.hyperframes'); mk('compositions/frames'); mk('assets/fonts'); mk('assets/img');
+
+// estilo noir: referencia, fuentes locales y portadas reales
+const cp = (from, to) => { if (fs.existsSync(from)) { fs.copyFileSync(from, path.join(projDir, to)); return true; } return false; };
+cp(path.join(REF, 'noir', 'referencia-demo.html'), 'referencia-demo.html');
+for (const f of fs.readdirSync(path.join(REF, 'fonts'))) cp(path.join(REF, 'fonts', f), 'assets/fonts/' + f);
+const missingCovers = [];
+new Set(points.flatMap((p) => p.books)).forEach((b) => {
+  if (!cp(path.join(ROOT, 'img', 'covers', b.id + '.jpg'), 'assets/img/' + b.id + '.jpg')) missingCovers.push(b.id);
+});
 
 // frame.md + caption-skin de la marca (tools/video-assets/)
 if (fs.existsSync(path.join(REF, 'frame.md'))) {
@@ -183,10 +213,11 @@ music: "tense minimal mystery underscore, intriga contenida, sin voz"
 ---
 
 ## Video direction
-- **palette** (frame.md): fondo azul marino #101a2b; azul #4d8fd6 = marca y dato clave; texto blanco. Número gigante DM Serif Display, cuerpo DM Sans. Tarjetas blancas con borde azul marino 4px + sombra dura (neobrutalismo). Nunca inventar colores.
-- **motion**: eases power3, VO-paced (cada pieza entra en su cue hablado; nada en t=0). Reposo con jitter mínimo.
-- **ESCENARIO COMPARTIDO (puntos)**: número gigante arriba-izq + pill "CLAVE" · titular del punto en blanco (entra) · tarjeta-clave azul que hace spring-pop debajo con el dato/consejo. Mismo molde, contenido distinto; transición push-slide UP entre puntos.
-- **negative list**: sin nav/cursores/chrome, sin bokeh ni degradados "AI", sin emojis. Contenido en el 83% superior (UI de TikTok tapa el borde inferior).
+- **estilo**: "Noir 3D / motion comic" — LEER frame.md y referencia-demo.html (en este proyecto) antes de construir nada y reutilizar su CSS/patrones (libro 3D, atmósfera, captions palabra a palabra, siluetas a contraluz).
+- **palette** (frame.md): noir #0c0809 + granate, texto crema #f3e9dc, acento rojo #ff5a7a; glow/lomo teñidos con c1/c2 de cada libro. Nunca inventar colores.
+- **motion**: eases power3/expo, VO-paced (cada pieza entra en su cue hablado). Reposo: libro girando despacio, polvo flotando, barrido de luz.
+- **ESCENARIO COMPARTIDO (puntos)**: pill "Nº X" arriba · libro 3D con su PORTADA REAL (assets/img/<id>.jpg) cae girando y aterriza (thock) · 1–2 viñetas de motion comic que ilustran la PREMISA del libro (sin spoilers; ver frame.md) · caption narrativo con la frase de la VO y la clave en rojo. Transición: el libro "se abre" hacia cámara o fundido corto.
+- **negative list**: sin nav/cursores/chrome, sin bokeh "IA", sin emojis, sin spoilers, sin portadas prestadas. Contenido en el 83% superior (UI de TikTok tapa el borde inferior).
 
 ## Frame 1 — Gancho
 - scene: Título-gancho a pantalla completa
@@ -199,12 +230,12 @@ music: "tense minimal mystery underscore, intriga contenida, sin voz"
 - beat: intriga
 - blueprint: kinetic-type-beats (Adapt)
 - focal: la frase-gancho
-- roles: frase = foreground · fondo azul marino dot-grid = background · pill = supporting
+- roles: frase = foreground · atmósfera noir (glow, barrido, polvo) = background · libros = supporting
 - src: compositions/frames/01-gancho.html
 
-Scene 1 (0.0–1.3s): entra una primera línea de contexto (DM Sans, upper, centrado alto). Fondo azul marino dot-grid azul ~12%.
-Scene 2 (1.3–2.7s): la línea-gancho hace scale-pop en DM Serif azul, dominando el centro.
-Scene 3 (2.7–4.0s): remate + hold quieto.
+Scene 1 (0.0–1.3s): atmósfera noir ya viva; entra la primera línea (Space Grotesk, pill arriba).
+Scene 2 (1.3–2.7s): la línea-gancho palabra a palabra en DM Serif crema con la clave en rojo; detrás, las portadas reales de los libros de la guía caen en abanico 3D.
+Scene 3 (2.7–4.0s): remate + hold con los libros girando despacio.
 
 narrativeRole: Abrir el hueco de curiosidad del tema.
 keyMessage: ${firstSentence(g.body, 80)}
@@ -228,7 +259,7 @@ points.forEach((p, i) => {
   const fid = String(n).padStart(2, '0');
   sb += `
 ## Frame ${n} — Punto ${i + 1}: ${p.heading}
-- scene: Número "${i + 1}"; "${upper(p.heading)}"; tarjeta azul con el consejo
+- scene: Nº ${i + 1} · ${p.book ? `libro 3D "${esc(p.book.name)}" · motion comic de su premisa` : `viñeta conceptual "${esc(p.heading)}"`} · caption
 - voiceover: "${esc(p.heading)}: ${esc(firstSentence(p.takeaway, 70))}"
 - duration: 6s
 - transition_in: push-slide UP
@@ -238,15 +269,17 @@ points.forEach((p, i) => {
 - beat: comprension
 - blueprint: kinetic-type-beats (Adapt)
 - focal: el titular "${upper(p.heading)}"
-- roles: número "${i + 1}" = supporting · titular = foreground · tarjeta azul = foreground · fondo = background
+- roles: libro 3D = foreground · viñeta motion comic = foreground · caption = foreground · atmósfera = background
 - sfx: thock, pop
 - src: compositions/frames/${fid}-punto-${i + 1}.html
+${p.books.length ? p.books.map((b) => `- libro${b === p.book ? ' PRINCIPAL' : ''}: id ${b.id} · "${esc(b.name)}" de ${esc(b.brand)} · portada assets/img/${b.id}.jpg · tinte c1 ${b.c1} / c2 ${b.c2}
+  premisa (ficha web; VERIFICAR con la sinopsis oficial antes de ilustrar): ${esc(stripHtml(b.desc || ''))}`).join('\n')
+  : `- libro: ninguno con ficha en esta sección. Si es un punto CONCEPTUAL, ilústralo con una viñeta de motion comic del concepto (sin libro 3D). Si nombra un libro concreto sin ficha, crea antes la ficha con datos verificados y su portada real.`}
 
-Usa el ESCENARIO COMPARTIDO. Adapt de kinetic-type-beats.
-Scene 1 (0.0–1.3s): "${i + 1}" gigante azul entra (scale-pop, thock) + pill "CLAVE".
-Scene 2 (1.3–3.4s): "${upper(p.heading)}" entra en blanco (centrado).
-Scene 3 (3.4–5.0s): tarjeta azul spring-pop con el consejo: "${esc(firstSentence(p.takeaway, 60))}".
-Scene 4 (5.0–6.0s): hold quieto.
+Usa el ESCENARIO COMPARTIDO (frame.md + referencia-demo.html).
+Scene 1 (0.0–1.3s): pill "Nº ${i + 1}" + el libro 3D cae girando con su portada real y aterriza (thock) mientras se dice el título.
+Scene 2 (1.3–4.4s): el libro "se abre" hacia cámara y entra la viñeta de motion comic de la premisa (1–2 golpes visuales, sin spoilers); caption palabra a palabra con la frase de la VO.
+Scene 3 (4.4–6.0s): vuelve el libro girando despacio + tag con "${esc(firstSentence(p.takeaway, 60))}"; hold.
 
 narrativeRole: Enseñar el punto ${i + 1} del tema.
 keyMessage: ${p.takeaway}
@@ -276,9 +309,9 @@ sb += `
 - sfx: soft-chime
 - src: compositions/frames/${String(cta).padStart(2, '0')}-cta.html
 
-Reproduce de titlecard-reveal: un movimiento contenido y hold. Azul marino/azul de marca.
+Reproduce de titlecard-reveal en estilo noir (frame.md): libros de la guía en fila girando, pregunta en DM Serif crema, wordmark con "Libros" en rojo.
 Scene 1 (0.0–1.4s): "¿Por cuál empezarías tú?" en DM Serif; slide-up al centro (comment-bait).
-Scene 2 (1.4–2.8s): icono de libro + "EmpiezaLibros" (Libros en azul) debajo.
+Scene 2 (1.4–2.8s): icono de libro + "EmpiezaLibros" (Libros en rojo #ff5a7a) debajo.
 Scene 3 (2.8–4.0s): "Guía completa en la bio" en pill azul; hold. Cierre suave, sin URL grande.
 
 narrativeRole: Pedir el comentario (señal de algoritmo) y dejar la bio como puerta a la web.
@@ -301,7 +334,8 @@ const SK = 'C:/Users/marti/.claude/skills/faceless-explainer/scripts';
 console.log(`✓ Proyecto creado: ${rel}
   guía: ${id} — "${g.title}"
   frames: 1 gancho + ${N} puntos + 1 CTA = ${N + 2}
-
+  libros por punto: ${points.map((p, i) => (i + 1) + ') ' + (p.books.length ? p.books.map((b) => b.id + ' ' + b.name).join(', ') : 'conceptual')).join(' · ')}
+${missingCovers.length ? '  ⚠ faltan portadas en img/covers/: ' + missingCovers.join(', ') + '\n' : ''}
 REVISA primero (borrador): el gancho (Frame 1 / Line 1) y las líneas de VO en SCRIPT.md.
 
 Luego, pasos de máquina/agente (desde ${rel}/):
@@ -312,5 +346,5 @@ Luego, pasos de máquina/agente (desde ${rel}/):
   4. Construir frames: despachar 1 worker por frame (Claude) con _role.md + su packet.
   5. Ensamblar:       node "${SK}/assemble-index.mjs" --storyboard ./STORYBOARD.md --hyperframes .
                       node "${SK}/transitions.mjs" inject --storyboard ./STORYBOARD.md --hyperframes .
-  6. Check + render:  npx hyperframes check  &&  npx hyperframes render --skill=faceless-explainer --quality high --output renders/video.mp4
+  6. Check + render:  npx hyperframes@0.8.63 check  &&  npx hyperframes@0.8.63 render --skill=faceless-explainer --quality high --output renders/video.mp4
 `);

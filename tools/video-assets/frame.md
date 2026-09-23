@@ -1,289 +1,69 @@
 ---
-version: alpha
-name: BlockFrame — Frame (video / frame layer)
+version: 1
+name: EmpiezaLibros — Noir 3D (motion comic)
 description: >
-  Video-first companion to BlockFrame's design.md. The unit is the frame (1920×1080). Atoms are
-  identical and sacred — 4px black borders + 8px hard offset shadows, the five-pastel candy palette
-  (pink/blue/green/yellow/cream) plus black/white/off-white, DM Serif Display 800–900 uppercase display +
-  Space Grotesk label chrome, square corners, label-pills, tilted decorations, star bursts, stripe
-  blocks, dot grids. Composition + frame scale rewritten. Motion out of scope.
-unit: the frame — 1920×1080 primary; 9:16 and 1:1 documented
-principle: atoms are sacred · composition is free · numbers come from the script
-
-colors:
-  black: "#101a2b"
-  white: "#ffffff"
-  offwhite: "#f4f6f8"
-  pink: "#e8eef6"
-  blue: "#dbe7f5"
-  green: "#cddff2"
-  yellow: "#4d8fd6"
-  cream: "#eef3fa"
-
-borders: { primary: "4px solid black", thin: "3px solid black" }
-shadows: { default: "8px 8px 0 black", small: "4px 4px 0 black", hover: "6px 6px 0 black", close-yellow: "12px 12px 0 yellow", close-white: "6px 6px 0 white" }
-
-typography:
-  # — reading + chrome ramp —
-  body:    { fontFamily: "DM Sans", cqw: 0.95, weight: 500, lineHeight: 1.6 }
-  card-title:{ fontFamily: "DM Serif Display", cqw: 1.15, weight: 700, upper: true, lineHeight: 1.2 }
-  label:   { fontFamily: "Space Grotesk", px: 13, weight: 600, tracking: "0.08em", upper: true }
-  counter: { fontFamily: "Space Grotesk", px: 14, weight: 700, tracking: "0.1em", upper: true }
-  # — display ramp (DM Serif Display 800–900, uppercase, negative tracking) —
-  heading-md:{ fontFamily: "DM Serif Display", cqw: 2.1, weight: 700, lineHeight: 1.1, tracking: "-0.01em", upper: true }
-  quote-text:{ fontFamily: "DM Serif Display", cqw: 2.7, weight: 900, lineHeight: 1.15, tracking: "-0.02em", upper: true }
-  stat-number:{ fontFamily: "DM Serif Display", cqw: 3.3, weight: 900, lineHeight: 1.0 }
-  heading-lg:{ fontFamily: "DM Serif Display", cqw: 3.3, weight: 800, lineHeight: 1.0, tracking: "-0.02em", upper: true }
-  close-title:{ fontFamily: "DM Serif Display", cqw: 4.2, weight: 900, lineHeight: 0.95, tracking: "-0.03em", upper: true }
-  heading-xl:{ fontFamily: "DM Serif Display", cqw: 5.0, weight: 900, lineHeight: 0.95, tracking: "-0.03em", upper: true }
-
-spacing:
-  slide-pad: "3.1cqw"   # 60px @1920
-  gap-md: "1.7cqw"
-
-components:
-  card-elevated:
-    backgroundColor: "{colors.white}"
-    border: "0.4cqw solid {colors.black}"
-    rounded: "0"
-    shadow: "0.8cqw 0.8cqw 0 {colors.black}"
-    description: "Primary card. Border/shadow coupled: 4px↔8px, 3px↔4px."
-  card-small:
-    backgroundColor: "{colors.white}"
-    border: "0.3cqw solid {colors.black}"
-    rounded: "0"
-    shadow: "0.4cqw 0.4cqw 0 {colors.black}"
-    description: "Stat cards, team cards, timeline steps."
-  label-pill:
-    border: "0.3cqw solid {colors.black}"
-    backgroundColor: "any pastel / {colors.white}"
-    rounded: "9999px"
-    shadow: "0.4cqw 0.4cqw 0 {colors.black}"
-    typography: "{typography.label}"
-    description: "The universal eyebrow — never plain text."
-  button-primary:
-    backgroundColor: "{colors.yellow}"
-    textColor: "{colors.black}"
-    border: "0.3cqw solid {colors.black}"
-    rounded: "0"
-    shadow: "0.4cqw 0.4cqw 0 {colors.black}"
-    typography: "DM Serif Display 700"
-    description: "The CTA."
-  star-burst:
-    backgroundColor: "any pastel"
-    border: "0.3cqw solid {colors.black}"
-    clip: "10-point clip-path star"
-    description: "Corner attention-grabber."
-  stripe-block:
-    backgroundImage: "45° {colors.black} + pastel diagonal stripes"
-    border: "0.3cqw solid {colors.black}"
-    description: "Poster decoration."
-  bg-dot-grid:
-    backgroundImage: "radial-dot ~1.2px dots, 24px grid, {colors.black}"
-    description: "Faint corner/ground overlay."
-  tilt-deco:
-    transform: "rotate(±2°–12°)"
-    description: "Rotated rectangle/badge/star. Stat cards alternate −2/+2°. The grid-puncture signature."
-  stat-deco-dot:
-    backgroundColor: "any pastel"
-    border: "2px solid {colors.black}"
-    rounded: "50%"
-    size: "12px"
-    description: "The ONLY round shape, pinned to stat cards."
-  close-frame:
-    backgroundColor: "{colors.black}"
-    textColor: "{colors.white}"
-    border: "0.4cqw solid {colors.white}"
-    rounded: "0"
-    shadow: "1.2cqw 1.2cqw 0 {colors.yellow}"
-    description: "Inverted closer — the only colored shadow."
+  Estilo de vídeo aprobado por el usuario el 23/09/2026 (demo "Reina roja"). Sustituye al blockframe
+  azul (guardado en frame-blockframe.md). Ambiente de thriller: fondo noir granate/negro, libros en 3D
+  con su PORTADA REAL girando, y escenas de "motion comic" (ilustración SVG/CSS animada) que cuentan la
+  PREMISA de cada libro sin spoilers. Referencia viva, copiada en el proyecto:
+  `referencia-demo.html` — leerla antes de construir cualquier frame y reutilizar su CSS/patrones.
+unit: 1080×1920 vertical · contenido en el 83% superior (y ≤ 1594px)
+principle: cada libro se ve (portada real) · cada historia se ilustra (sin spoilers) · nada inventado
 ---
 
-# BlockFrame — Frame (video / frame layer)
+## Paleta
+- fondo: #0c0809 (negro cálido) con radial granate #4a1020 → #1c0a0f; glow rojo rgba(200,40,70,.35)
+- texto: #f3e9dc (crema) · acento: #ff5a7a / #ff3d63 (rojo) · secundario: #ff8fa5 / #ffb3c1
+- estrellas / detalle: #ffcf5a (oro) · cinta policial #f2c230
+- **Tinte por libro:** cada libro de `index.html` trae `c1`/`c2` (colores de su portada). Úsalos para el
+  glow y el lomo 3D de ese libro, de modo que cada punto tenga su color sin salirse de la base noir.
 
-## Brand adaptation (READ FIRST — the frontmatter is the source of truth)
+## Tipografía (locales en `assets/fonts/`, @font-face root-relative)
+- Display: DM Serif Display (títulos, captions narrativos 70–150px)
+- Etiquetas: Space Grotesk 600–800, mayúsculas, tracking .12–.22em (pills, tags, labels)
+- Cuerpo: DM Sans 500–600 (tarjetas)
 
-This is the **blockframe** preset remixed onto the **EmpiezaLibros** brand (azul marino `#101a2b`
-+ azul `#4d8fd6`, blanco de tarjeta). The YAML frontmatter above (colors · typography · components) is
-**normative and already correct — use it verbatim.** The prose below is the ORIGINAL preset's intent;
-read it THROUGH the frontmatter:
+## Atmósfera (siempre, en capas bajo el contenido)
+- `.bg` radial granate + `.glow` que respira (scale .8→1.15 durante toda la pieza)
+- `.sweep`: banda de luz diagonal que barre la pantalla (x 0→2600 en ~5s)
+- polvo: ~40 partículas deterministas (PRNG con semilla, NUNCA Math.random) que flotan hacia arriba
+- `.grain` + `.vignette` DEBAJO del texto (encima dan falsos positivos de oclusión en `check`)
 
-- **Fonts** — already set to **DM Serif Display** (display, tono literario) / **DM Sans** (body); ignore any preset font name lingering in prose.
-- **Colors** — use the frontmatter hex. Los "pastel" del preset son aquí **tintas de azul claro**
-  sobre las que cicla el fondo; `white` = relleno blanco de tarjeta (legibilidad); `yellow` = el
-  **azul de marca `#4d8fd6`** (CTA + la única sombra de color). `black` = azul marino, borde y texto.
-  Ninguna semántica de color: emparejar por yuxtaposición, no inventar tonos.
+## Componentes
+- **Libro 3D** (`.bookwrap > .book > .front/.back/.spine/.pages/.top`, ver referencia): 440×671, grosor 64px,
+  `.front` = portada real `assets/img/<idLibro>.jpg` con brillo diagonal; lomo con el título en vertical.
+  Entradas: cae desde z:-2600 girando rotationY -600→-22 y rebota al aterrizar (thock); en reposo gira
+  despacio (sine.inOut). Sombra elíptica bajo el libro que acompaña su escala/posición.
+- **Caption narrativo** (`.cap`): DM Serif 80px centrado en y≈1290, palabra a palabra (blur 8→0, y 50→0,
+  stagger .07), con la parte clave en `<em>` rojo. Franja `.capfade` oscura detrás para legibilidad.
+- **Pill de capítulo** arriba (y≈130): "La historia · sin spoilers", "Reseña en 12 segundos"…
+- **Estrellas** (nota editorial `stars` = "Nuestra valoración", nunca "valoración de lectores"), contadores
+  que suben (páginas, año, precio) — datos SOLO de la ficha del libro.
+- **Tarjetas pros/contras** que voltean en rotationX -95→0; la de contra tiembla.
+- **Sello** "EMPIEZA AQUÍ" (borde rojo 10px, fondo casi opaco) que cae desde scale 3.2 y sacude el libro.
+  Nunca encima del título de la portada: debajo del libro.
 
+## Escenas de historia (motion comic) — el corazón del estilo
+Por cada libro, 1–3 viñetas animadas que ilustran su PREMISA (lo que cuenta la sinopsis oficial, nunca
+giros ni finales). Se construyen con SVG/CSS: siluetas planas a contraluz (rim-light rojo con
+drop-shadow), arquitectura/escenario simple, y UN efecto de movimiento fuerte por viñeta. Vocabulario
+ya probado en la referencia:
+- ciudad nocturna con luna, ventana encendida con silueta, lluvia (gotas en bucle determinista), zoom de cámara
+- hueco de escalera en espiral (cuadrados anidados que giran) + sombra que crece a golpe de pasos (thock)
+- gota de sangre que cae → salpicadura → la pantalla se tiñe de rojo + cintas policiales que cruzan y tiemblan
+- pareja protagonista en silueta a contraluz con tags de nombre
+Ideas análogas según el libro: pueblo nevado/bosque (nórdica), faro/costa, casa aislada, tren, hospital,
+huella/lupa, fotografía antigua que se revela, mapa con chinchetas unidas por hilo rojo, reloj, teléfono.
+Siluetas: formas simples y reconocibles (hombros + cabeza + pelo), nunca "muñeco de nieve" (dos círculos).
+Ninguna figura debe tapar más de ~40% del frame ni el caption.
 
-## Overview
+## Movimiento
+- eases power3/expo para entradas, sine.inOut para reposo; cortes secos + fundidos cortos (.3–.4s) entre viñetas
+- sacudidas (x ±10–14px, repeat 5, yoyo) solo en impactos (aterrizaje, sello, sangre)
+- todo en UNA timeline GSAP pausada por composición, seek-safe: `immediateRender:false` en fromTo repetidos
+  sobre el mismo elemento; nada de letterSpacing animado (usar scale/x)
+- el texto entra EN SU CUE de voz (timestamps de `audio_meta.json`), no antes ni 1s después
 
-BlockFrame at frame scale is a **maximalist neobrutalist** system on five laws: every region has a
-4px black border, every elevated element an 8px hard offset shadow, every corner square, every
-accent a saturated pastel, and every layout allowed to be a little crooked. The joy is the
-deliberate collision — bordered cards meeting bordered cards, shadows stacking, tilted decorations
-puncturing the grid.
-
-The voice is **DM Serif Display** at weight 800–900 in tight uppercase with negative tracking (display) +
-weight 500 sentence body, and **Space Grotesk** weight 600 uppercase 0.08em as the label/chrome
-voice. Five candy pastels (pink/blue/green/yellow/cream) cycle as full-bleed grounds across frames
-— the color cycling is the primary rhythm. Depth is **hard offset shadow** (8px/4px, solid black,
-zero blur, bottom-right); the close-frame's 12px yellow shadow is the one colored exception.
-
-**Key characteristics at frame scale:**
-
-- **4px black borders + 8px hard shadows** on primary cards; 3px + 4px on chrome (weights coupled).
-- **Five-pastel palette** cycled as full-bleed grounds; black/white/off-white structural.
-- **DM Serif Display 800–900 uppercase** negative-tracked display; **Space Grotesk** label chrome.
-- **Square corners** everywhere (only the stat-deco dot is round); **tilted decorations** puncture the grid.
-- **Label-pills** open every region; star bursts, stripe blocks, dot grids are reusable attention units.
-- **Comfortably dense** — packed reads as authoritative; empty corners read as broken.
-
-## The Frame
-
-### Frame Craft Bar
-
-Three eyeball tests gate every frame before any structural check:
-
-- **Squint** — one DM Serif Display display moment dominates at 3–6× its neighbor; cards read as a system, not rivals.
-- **Silence** — cover/quote/close keep air (decorations, not content); the **feature-card and stat grids are the dense exception**.
-- **Restraint** — the 4px→08px / 3px→4px coupling holds; black borders only (white on close); pastel ground **cycles** one per frame; no sixth pastel.
-- **Reference** — aim at a **zine / 1990s sticker-book / toy-packaging spread** (bordered blocks, tilted decorations); failure looks like a **flat, borderless, blurred-shadow web card grid**.
-
-- **Primary:** 1920×1080 (16:9). Display authored in **`cqw`** (`px ÷ 1920 × 100 = cqw`).
-- **Vertical:** 1080×1920 (9:16). **Square:** 1080×1080 (1:1).
-- **Safe area:** `slide-pad` ~3.1cqw; decorations may bleed off edges.
-
-**The container law (load-bearing).** Every frame ground sets `container-type: size`; ALL
-frame-relative units are `cqw`/`cqh` against it — never `vw`. Borders/shadows scale in `cqw` so the
-4px↔8px coupling holds proportionally; corners stay square.
-
-## Colors
-
-Tokens identical to the source. `{colors.offwhite}` is the default ground, but frames **cycle**
-through `{colors.cream}`/`blue`/`pink`/`green`/`yellow` grounds — the cycle is the rhythm.
-`{colors.black}` is every border + structural text; `{colors.white}` is card fills. The five pastels
-are interchangeable with **no semantic meaning** — pair by juxtaposition (pink+blue+green trio,
-cream+yellow warm pair). `{colors.yellow}` is the CTA + the one colored (close) shadow;
-`{colors.black}` ground is the close surface. **No sixth pastel.**
-
-## Typography
-
-Two ramps. The **reading/chrome ramp** (DM Serif Display body 0.95cqw weight 500, Space Grotesk labels in px)
-carries copy + chrome; the **display ramp** (DM Serif Display `heading-md` 2.1cqw → `heading-xl` 5cqw, weight
-800–900 uppercase) carries every headline + stat.
-
-- **Legibility floor:** any load-bearing line ≥ **1.4cqw**; px labels are chrome only.
-- **Fit-to-measure:** size the headline to its length. Cap the block at **≤ 78cqw**; ≤3 words → `heading-xl`; 4–6 → `heading-lg`; 7+ → `heading-md`.
-- **DM Serif Display display is uppercase, weight 800–900, negative-tracked** (−0.01..−0.03em); body weight 500 sentence case; **Space Grotesk labels uppercase 0.08em**. No sentence-case display, no untracked display.
-
-## Depth & Surface
-
-Hard offset shadow, solid black, zero blur, bottom-right:
-
-- **0.8cqw (8px)** primary cards; **0.4cqw (4px)** chrome; **0.6cqw (6px)** hover.
-- **Border-based depth** — the 4px/3px borders do much of the lift; shadow makes it "elevated."
-- **Tilt** — ±2°–12° rotation breaks the grid for perceived dimension.
-- **Inverted close** — 12px YELLOW shadow (and 6px white on close-btn) — the only colored shadows.
-
-**Ceiling:** no blurred shadow, no rounded corner (save the stat-deco dot), no gradient depth.
-
-## Shapes
-
-- **0 radius everywhere** except the 12px stat-deco dot (50%). Square corners are the structural identity.
-
-## Components
-
-- **card-elevated / card-small** — the bordered+shadowed content cards (weight-coupled).
-- **label-pill** — the universal eyebrow (border+shadow+pastel). **button-primary** — yellow CTA.
-- **star-burst / stripe-block / bg-dot-grid / tilt-deco** — the reusable decoration units (one per frame min).
-- **stat-deco-dot** — the lone round shape. **close-frame** — the inverted black+white+yellow-shadow closer.
-
-## Frame Treatments
-
-> Recipe: ground · container · composes · focal · chrome · accent · silence · Fixed/Free · density.
-> Cycle the ground color; add ≥1 decoration per frame; open with a label-pill.
-
-### 1 · Cover (identity · move: decorations puncture · left)
-
-**Ground** `{colors.cream}` (or offwhite) + faint dot-grid. **Composes** label-pill, heading-xl, tilt-deco rect, star-burst, counter. **Focal** a 2–3 line DM Serif Display `heading-xl` uppercase, left, under a label-pill; tilted pastel rects + a star burst puncture the right. **Chrome** counter pill. **Accent** the decorations' pastels. **Silence** right third holds decorations. **Fixed** 4px/8px coupling, uppercase display, square. **Free** title, decoration placement/colors. **Density** comfortable.
-
-### 2 · Feature Cards (catalog · move: 3-up bordered grid · blue ground)
-
-**Ground** `{colors.blue}`, `slide-pad`. **Composes** label-pill, heading-lg, 3× card-elevated (icon-square + card-title + body). **Focal** three white bordered+shadowed cards. **Chrome** label-pill eyebrow. **Accent** the pastel icon-squares (pink/green/yellow). **Silence** tight — dense by design. **Fixed** 4px border + 8px shadow, square, uppercase card-titles. **Free** card content, icon hues. **Density** dense-exception.
-
-### 3 · Stat Grid (data · move: tilted stat cards · green ground)
-
-**Ground** `{colors.green}`, `slide-pad`. **Composes** label-pill, heading-lg, 3× card-small (tilted −2/+2°, stat-deco dot, stat-number + label). **Focal** three tilted bordered stat cards. **Accent** the deco-dots' pastels + black stat numerals. **Silence** moderate. **Fixed** alternating tilt, 3px+4px, round deco-dot only. **Free** figures (from script), dot hues. **Density** dense-exception.
-
-### 4 · Closing Plate (closer · move: inverted black · centered)
-
-**Ground** `{colors.black}`. **Composes** close-frame (4px white border, 12px yellow shadow), label-pill (inverted), close-title, star-burst. **Focal** a white `close-title` inside the white-bordered frame with the yellow offset shadow; a pink star punctures a corner. **Accent** the yellow shadow + pink star. **Silence** ~50%. **Fixed** white-on-black, 12px yellow shadow (only here), square. **Free** sign-off, star placement. **Density** low.
-
-### 5 · Quote (quote · move: bordered quote frame · pink ground)
-
-**Ground** `{colors.pink}` (or offwhite). **Composes** label-pill, quote-text in a card-elevated, attribution. **Focal** an DM Serif Display `quote-text` (900 uppercase) inside a white bordered+shadowed frame. **Accent** the ground + one decoration. **Silence** moderate. **Fixed** uppercase quote, 4px/8px. **Free** quote, ground. **Density** comfortable.
-
-### 6 · Timeline (process · move: stepped bordered cards · offwhite)
-
-**Ground** `{colors.offwhite}`. **Composes** label-pill, heading-lg, 3–4 card-small steps + step-connectors. **Focal** a row of bordered step cards linked by black connector bars, each a pastel + step-num. **Accent** the step pastels. **Silence** moderate. **Fixed** 3px+4px steps, square, connectors. **Free** steps, hues. **Density** standard.
-
-## Composition Rules
-
-### Do
-
-- Pair **4px borders with 8px shadows**, **3px with 4px** — the coupling is non-negotiable.
-- **Cycle pastel grounds** across frames; keep the deck visually rhythmic.
-- Set DM Serif Display display **uppercase, 800–900, negative-tracked**; open every region with a **label-pill**.
-- Render shadows **solid black, zero blur, bottom-right**; add **≥1 decoration** (tilt/star/stripe/dots) per frame.
-- Use **yellow** for CTAs; use the **inverted black + 12px yellow shadow** close-frame for the closer.
-- Tilt decorations ±2°–12°; lean left on most frames.
-
-### Don't
-
-- No rounded corners (save the stat-deco dot); no blurred shadows.
-- No colored borders (black only, save the close-frame white); no sixth pastel.
-- No sentence-case DM Serif Display display; no untracked display; no label as plain text.
-- Don't keep everything perfectly aligned (tilt is the signature); don't leave corners empty.
-- Don't blow a headline edge-to-edge — fit to measure.
-
-## Aspect-Ratio Behavior
-
-| Treatment     | 16:9                          | 9:16                         | 1:1                      |
-| ------------- | ----------------------------- | ---------------------------- | ------------------------ |
-| Cover         | title left, decorations right | title top, decorations below | title, fewer decorations |
-| Feature Cards | 3 across                      | 3 stacked                    | 2+1                      |
-| Stat Grid     | 3 tilted across               | 3 tilted stacked             | 2×2                      |
-| Closing       | centered close-frame          | centered, taller             | centered                 |
-| Quote         | quote frame                   | quote stacked                | centered                 |
-| Timeline      | horizontal steps              | vertical (connectors hidden) | 2×2                      |
-
-`slide-pad` holds on the short edge; re-step display above the 1.4cqw floor. Decoration count drops
-on tighter ratios so the frame stays bordered, not cluttered.
-
-## Approved Entities
-
-No real customers, logos, or vendors are defined in the source — render any such mark as a
-placeholder. Pastel fills, decorations, and tilts are content-agnostic.
-
-## Numerals & Claims (hard rule)
-
-Never invent figures, stats, or counts at frame scale. Render slots as `— figure —`, `{metric}`,
-`N×`. Stat cards and charts carry placeholders until the script supplies values. Slide counters and
-list numbers are decorative.
-
-## Pre-Render Self-Audit
-
-- **Squint** — one DM Serif Display display moment dominates; cards read as a system.
-- **Silence** — only feature/stat grids run dense; cover/quote/close keep air with decorations.
-- **Borders/shadows** — 4px↔8px / 3px↔4px coupling holds; solid black, zero blur.
-- **Color** — pastel ground cycles; black borders only (white on close); no sixth pastel.
-- **Type** — DM Serif Display uppercase 800–900 negative-tracked, fit-to-measure; Space Grotesk labels 0.08em; ≥1.4cqw floor.
-- **Shape** — square corners (only stat-deco dot round); ≥1 tilt/decoration per frame.
-- **Fabrication** — every numeral traces to the script, else placeholder.
-
-## Known Gaps
-
-- **Motion intentionally out of scope.** frame.md specifies composition only; the source toggles slides via display, no transition.
-- **DM Serif Display + Space Grotesk via Google Fonts.** CJK: Noto Sans SC 900 (sentence case — the uppercase signal drops); lean harder on borders/shadows/decoration to carry the brutalist identity.
-- **9:16 / 1:1 are guidance**; verify the floor and that decoration count scales down.
-- Star bursts (clip-path), stripe blocks, dot grids, and tilts are CSS-only; no external imagery is required.
+## Prohibido
+- inventar datos, portadas o premisas; usar la portada de otro libro; spoilers
+- emojis, bokeh genérico "IA", nav/cursores; contenido por debajo de y=1594

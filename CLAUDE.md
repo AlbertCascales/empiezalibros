@@ -62,12 +62,15 @@ frente con los gigantes en todos. Se decidió con datos de GSC (`gsc-report.js`)
 | `download-covers.js` | Descarga las portadas que falten a `img/covers/`. Algunos libros necesitan un alias del título original (mapa `OVERRIDES`) porque Open Library no indexa la edición española. |
 | `telegram-post.js` | Publica en el canal `@Empiezalibros`. `book <id>` publica un libro concreto; `backfill` publica el pendiente más antiguo. |
 | `gsc-report.js` | Informe de Search Console (solo lectura). `--perf` rendimiento (rápido, 2 llamadas); `--index` estado URL a URL (~110 llamadas, lento, con reintentos); sin flag, ambos. Sin dependencias: JWT RS256 con módulos nativos. |
-| `scaffold-video.js` | `node tools/scaffold-video.js <idGuía>` genera en `videos/<slug>/` un proyecto de vídeo TikTok (HyperFrames faceless-explainer) con storyboard+guion+diseño ya rellenos desde la guía (gancho + N puntos + CTA, estética blockframe azul marino/azul, voz Mateo). `--list` lista guías. NO produce el MP4 solo: los frames los construye un agente (workers HyperFrames); el script imprime los pasos restantes (voz→frames→ensamblar→render). Repasar gancho/VO (son borrador). Réplica del montaje de empiezapadel; ver memoria [[tiktok-video-pipeline]] y el calendario en `tools/video-assets/PLAN-tiktok.md`. |
+| `scaffold-video.js` | `node tools/scaffold-video.js <idGuía>` genera en `videos/<slug>/` un proyecto de vídeo TikTok (HyperFrames faceless-explainer) con storyboard+guion+diseño ya rellenos desde la guía (gancho + N puntos + CTA, estilo "Noir 3D / motion comic", voz Fernando Sanz; copia al proyecto las portadas reales de los libros que nombra cada punto). `--list` lista guías. NO produce el MP4 solo: los frames los construye un agente (workers HyperFrames); el script imprime los pasos restantes (voz→frames→ensamblar→render). Repasar gancho/VO (son borrador). Réplica del montaje de empiezapadel; ver memoria [[tiktok-video-pipeline]] y el calendario en `tools/video-assets/PLAN-tiktok.md`. |
 
 `scaffold-video.js` no genera vídeo con IA: HyperFrames renderiza HTML/CSS→MP4 (Chrome headless +
-FFmpeg, gratis, sin GPU). Voz/música vía sesión HeyGen (OAuth en `~/.heygen/`). La estética de marca
-(preset blockframe recoloreado a azul marino `#101a2b` / azul `#4d8fd6`) vive en
-`tools/video-assets/` (`frame.md` + `caption-skin.html`) y se versiona; los proyectos generados en
+FFmpeg, gratis, sin GPU). Voz/música vía sesión HeyGen (OAuth en `~/.heygen/`). El estilo de vídeo
+es **"Noir 3D / motion comic"** (aprobado por el usuario el 23/09/2026): libros en 3D con su portada
+real + viñetas animadas de la premisa, sin spoilers. Vive en `tools/video-assets/` (`frame.md` = guía
+del estilo, `noir/referencia-demo.html` = composición de referencia, `fonts/`) y se versiona; el
+blockframe azul anterior queda en `frame-blockframe.md` solo como histórico. HyperFrames va fijado a
+`@0.8.63` (la 0.8.64 falla con "Runtime checksum mismatch"); los proyectos generados en
 `videos/` **no** (está en `.gitignore`). La rutina `empiezalibros-tiktok-video` genera 1 vídeo cada
 3 días leyendo `plan-tiktok/calendario-tiktok.txt` (calendario máquina) y `plan-tiktok/generados.txt`
 (estado); el agente afina gancho y voz en cada ejecución. Publicar en TikTok sigue siendo **manual**
