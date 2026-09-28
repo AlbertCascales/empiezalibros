@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://empiezalibros.es/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://empiezalibros.es/thriller/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -313,8 +313,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://empiezalibros.es/thriller/freida-mcfadden-el-secreto-de-la-asistenta/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://empiezalibros.es/guias/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -495,6 +501,12 @@
   <url>
     <loc>https://empiezalibros.es/guias/joel-dicker-por-donde-empezar-y-en-que-orden-leer-sus-novelas/</loc>
     <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://empiezalibros.es/guias/freida-mcfadden-por-donde-empezar-y-en-que-orden-leer-la-saga-de-la-asistenta/</loc>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
