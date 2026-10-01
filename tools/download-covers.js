@@ -113,6 +113,7 @@ const OVERRIDES = {
   t29: 'isbn=9788466333122',
   t33: 'isbn=9788491293545',
   t39: 'isbn=9788491045830',
+  t47: 'isbn=9788420665696',
 };
 
 async function findCandidates(book) {
